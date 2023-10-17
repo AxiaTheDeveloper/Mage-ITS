@@ -1,0 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameInput : MonoBehaviour
+{
+    public static GameInput Instance{get; private set;}
+    private void Awake() 
+    {
+        Instance = this;
+    }
+    public Vector3 GetMousePosition()
+    {
+        return Input.mousePosition;
+    }
+}
