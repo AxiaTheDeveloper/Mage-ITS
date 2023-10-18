@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class TilePuzzleManager : MonoBehaviour
 {
+    public static TilePuzzleManager Instance {get; private set;}
     [SerializeField]private TilePuzzleListScriptableObject tilePuzzleListSO;
     [SerializeField]private int totalRow, totalColumn, jarakAntarTile;//kolom ke kiri, row ke bawah
     [SerializeField]private Vector2 startPositionTile;
+    [SerializeField]private Vector2 minPuzzleSize, maxPuzzleSize;
     private GameObject chosenTileToInstantiate;
     
     [SerializeField]private List<TilePuzzleName> tilePuzzleList_ForThisPuzzle; 
     
     private void Awake() 
     {
+        Instance = this;
+
+        minPuzzleSize = startPositionTile;
+        maxPuzzleSize.x = startPositionTile.x + jarakAntarTile * (totalColumn-1);
+        maxPuzzleSize.y = (startPositionTile.y + jarakAntarTile * (totalRow-1)) * -1;
         // int positionTilePuzzleList_Now = 0;
         for(int i=0;i<totalRow;i++)
         {
@@ -57,4 +64,16 @@ public class TilePuzzleManager : MonoBehaviour
     // 4/(total column) = 2 -> ada d row berapa
     // <=(total row) = ada d kolom berapa
     // > total row - totalcolumn = ada d kolom berapa
+    public int JarakAntarTile()
+    {
+        return jarakAntarTile;
+    }
+    public Vector2 MinPuzzleSize()
+    {
+        return minPuzzleSize;
+    }
+    public Vector2 MaxPuzzleSize()
+    {
+        return maxPuzzleSize;
+    }
 }

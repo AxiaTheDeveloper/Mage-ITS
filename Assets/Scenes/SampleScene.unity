@@ -193,7 +193,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -445,7 +445,9 @@ MonoBehaviour:
   totalColumn: 3
   jarakAntarTile: 2
   startPositionTile: {x: 0, y: 0}
-  tilePuzzleList_ForThisPuzzle: 000000000300000002000000020000000300000002000000000000000300000002000000
+  minPuzzleSize: {x: 0, y: 0}
+  maxPuzzleSize: {x: 0, y: 0}
+  tilePuzzleList_ForThisPuzzle: 000000000200000003000000020000000300000000000000030000000000000000000000
 --- !u!1001 &1275860573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -501,25 +503,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: TilePuzzle_Template
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6765165425833132604, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+    - target: {fileID: 7259884123767429239, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
---- !u!1 &1275860574 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7259884123767429239, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
-  m_PrefabInstance: {fileID: 1275860573}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1275860575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275860574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed1a392bbb709d1428cceb3d9c6ce6c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilePuzzle: {fileID: 0}
-  gameInput: {fileID: 0}
