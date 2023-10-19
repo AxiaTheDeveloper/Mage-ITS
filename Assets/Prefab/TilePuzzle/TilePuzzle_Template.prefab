@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 3925040390655966196}
   - component: {fileID: 8534445393779573682}
   - component: {fileID: 2945835620832171013}
+  - component: {fileID: 964511433425544703}
   m_Layer: 0
   m_Name: RightCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3925040390655966196
 Transform:
   m_ObjectHideFlags: 0
@@ -40,7 +41,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359041355227661289}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -79,6 +80,27 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   size: {x: 2, y: 2}
   colliderDirection: 1
+--- !u!50 &964511433425544703
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359041355227661289}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &2991203032918786976
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,13 +112,14 @@ GameObject:
   - component: {fileID: 2665251925742551957}
   - component: {fileID: 6947237387372243766}
   - component: {fileID: 8885351610251965313}
+  - component: {fileID: 6897572024991714073}
   m_Layer: 0
   m_Name: DownCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2665251925742551957
 Transform:
   m_ObjectHideFlags: 0
@@ -119,7 +142,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2991203032918786976}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -158,6 +181,27 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   size: {x: 2, y: 2}
   colliderDirection: 3
+--- !u!50 &6897572024991714073
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2991203032918786976}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &3936936679118160318
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,13 +213,14 @@ GameObject:
   - component: {fileID: 2710981506897395634}
   - component: {fileID: 987938920559297884}
   - component: {fileID: 4487058235866264080}
+  - component: {fileID: 1754617258237585622}
   m_Layer: 0
   m_Name: LeftCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2710981506897395634
 Transform:
   m_ObjectHideFlags: 0
@@ -198,7 +243,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3936936679118160318}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -237,6 +282,27 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   size: {x: 2, y: 2}
   colliderDirection: 0
+--- !u!50 &1754617258237585622
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3936936679118160318}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &6744904601315928530
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,13 +314,14 @@ GameObject:
   - component: {fileID: 3655552691011457276}
   - component: {fileID: 9066711298226946162}
   - component: {fileID: 1924349453763828331}
+  - component: {fileID: 5178221843395945174}
   m_Layer: 0
   m_Name: TopCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3655552691011457276
 Transform:
   m_ObjectHideFlags: 0
@@ -277,7 +344,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6744904601315928530}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -316,6 +383,27 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   size: {x: 2, y: 2}
   colliderDirection: 2
+--- !u!50 &5178221843395945174
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744904601315928530}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &7259884122108244190
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,7 +584,17 @@ MonoBehaviour:
   tilePuzzle: {fileID: 0}
   tilePuzzleManager: {fileID: 0}
   gameInput: {fileID: 0}
+  mousePos: {x: 0, y: 0, z: 0}
+  startPosX: 0
+  startPosY: 0
+  leftMax: 0
+  topMax: 0
+  rightMax: 0
+  downMax: 0
   top: {fileID: 0}
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+  tileLayerCollide:
+    serializedVersion: 2
+    m_Bits: 64

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileColliderChecker : MonoBehaviour
+public class TileColliderCheckerNew : MonoBehaviour
 {
     private bool thereSomething = false, firsTimeStart = true;
     private GameObject saveGameObject1, saveGameObject2;
@@ -141,69 +141,5 @@ public class TileColliderChecker : MonoBehaviour
             }
         }
         
-    }
-
-    private void OnTriggerStay2D(Collider2D other) 
-    {
-        Debug.Log(other.gameObject + "Stay");
-        if(other.gameObject.CompareTag("TilePuzzle") && other.gameObject != moveTile.gameObject)
-        {
-            saveGameObject1 = other.gameObject;
-            
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-        
-        if(other.gameObject.CompareTag("TilePuzzle") && other.gameObject != moveTile.gameObject)
-        {
-            Debug.Log(other.gameObject + "Enter");
-            // if(thereSomething)
-            // {
-            //     saveGameObject2 = other.gameObject;
-            // }
-            // else
-            // {
-            //     thereSomething = true;
-            //     saveGameObject1 = other.gameObject;
-            // }
-            saveGameObject1 = other.gameObject;
-            // if(colliderDirection == ColliderDirection.Left)
-            // {
-            //     moveTile.ChangeLeftMax(moveTile.transform.position.x);
-            // }
-            // else if(colliderDirection == ColliderDirection.Right)
-            // {
-            //     moveTile.ChangeLeftMax(moveTile.transform.position.x);
-            // }
-            // else if(colliderDirection == ColliderDirection.Top)
-            // {
-            //     moveTile.ChangeLeftMax(moveTile.transform.position.y);
-            // }
-            // else if(colliderDirection == ColliderDirection.Down)
-            // {
-            //     moveTile.ChangeLeftMax(moveTile.transform.position.y);
-            // }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other) 
-    {
-        
-        if(other.gameObject.CompareTag("TilePuzzle") && other.gameObject != moveTile.gameObject)
-        {
-            Debug.Log(other.gameObject + "Exit");
-            saveGameObject1 = null;
-            
-            // else if(colliderDirection == ColliderDirection.Top)
-            // {
-            //     moveTile.ChangeLeftMax(moveTile.transform.position.y + tilePuzzleManager.JarakAntarTile());
-            // }
-            // else if(colliderDirection == ColliderDirection.Down)
-            // {
-            //     moveTile.ChangeLeftMax(moveTile.transform.position.y - tilePuzzleManager.JarakAntarTile());
-            // }
-        }
     }
 }
