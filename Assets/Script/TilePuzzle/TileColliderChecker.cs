@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileColliderChecker : MonoBehaviour
 {
-    private bool thereSomething = false, firsTimeStart = true;
+    // private bool thereSomething = false, firsTimeStart = true;
     private GameObject saveGameObject1, saveGameObject2;
     [SerializeField]private TilePuzzleManager tilePuzzleManager;
     [SerializeField]private MoveTile moveTile;

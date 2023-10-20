@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,26 +15,23 @@ public class MoveTile : MonoBehaviour
     [SerializeField]private Vector3 mousePos;
     [SerializeField]private float startPosX, startPosY, leftMax, topMax, rightMax, downMax;
 
-    [SerializeField]private Collider2D top,down,left,right;
+    [SerializeField]private List<Collider2D> top,down,left,right;
 
     [SerializeField]private RaycastHit2D[] hitObjectLeft, hitObjectRight, hitObjectTop, hitObjectDown;
     [SerializeField]private LayerMask tileLayerCollide;
 
-    private bool goHorizontal, goVertical, isFirstTime = true;
+    [SerializeField]private bool canLeft, canRight, canTop, canDown, goHorizontal, goVertical, isFirstTime = true;
 
     private void Awake() 
     {
         tilePuzzle = GetComponent<TilePuzzle>();
         isMoveAble = tilePuzzle.IsMoveAble();
         tilePuzzleManager = GetComponentInParent<TilePuzzleManager>();
+        left = new List<Collider2D>();
+        right = new List<Collider2D>();
+        top = new List<Collider2D>();
+        down = new List<Collider2D>();
 
-        for(int i=1;i<transform.childCount;i++)
-        {
-            if(i==1)top = transform.GetChild(i).GetComponent<Collider2D>();
-            if(i==2)down = transform.GetChild(i).GetComponent<Collider2D>();
-            if(i==3)left = transform.GetChild(i).GetComponent<Collider2D>();
-            if(i==4)right = transform.GetChild(i).GetComponent<Collider2D>();
-        }
     }
     private void Start() 
     {
@@ -42,8 +40,6 @@ public class MoveTile : MonoBehaviour
         startPosX = transform.position.x;
         startPosY = transform.position.y;
 
-        
-        CheckTileBeside();
 
         ErrorLog();
         // leftMax = transform.position.x - tilePuzzleManager.JarakAntarTile();
@@ -65,13 +61,13 @@ public class MoveTile : MonoBehaviour
 
             
             
-            if(mousePos.x != 0)
+            if(goHorizontal)
             {
                 if(transform.localPosition.x % 2 != 0)
                 {
                     if(transform.localPosition.x % 2 >= 1)
                     {
-                        Debug.Log(Mathf.Floor(transform.localPosition.x) + 1);
+                        // Debug.Log(Mathf.Floor(transform.localPosition.x) + 1);
                         transform.localPosition = new Vector2(Mathf.Floor(transform.localPosition.x) + 1, transform.localPosition.y);
                         
                     }
@@ -83,27 +79,97 @@ public class MoveTile : MonoBehaviour
                     }
                 }
             }
-            else if(mousePos.y != 0)
+            else if(goVertical)
             {
-                if(transform.localPosition.y % 2 != 0)
+                if(Mathf.Abs(transform.localPosition.y) % 2 != 0)
                 {
-                    if(transform.localPosition.y % 2 >= 1)
+                    if(Mathf.Abs(transform.localPosition.y) % 2 >= 1)
                     {
-                        transform.localPosition = new Vector2(transform.localPosition.x, Mathf.Floor(transform.localPosition.y) + 1);
+                        // Debug.Log(transform.localPosition.y + "atas");
+                        transform.localPosition = new Vector2(transform.localPosition.x, -1 * Mathf.Floor(Mathf.Abs(transform.localPosition.y)) + 1);
                     }
                     else
                     {
-                        transform.localPosition = new Vector2(transform.localPosition.x, Mathf.Floor(transform.localPosition.y));
+                        // Debug.Log(transform.localPosition.y + "bwh");
+                        // Debug.Log(Mathf.Floor(transform.localPosition.y) + "bawah");
+                        transform.localPosition = new Vector2(transform.localPosition.x, -1* Mathf.Floor(Mathf.Abs(transform.localPosition.y)));
                     }
                 }
                 
             }
             
+            goHorizontal = false;
+            goVertical = false;
 
+            float oldStartPosX = startPosX;
+            float oldStartPosY = startPosY;
             startPosX = transform.position.x;
             startPosY = transform.position.y;
 
-            CheckTileBeside();
+            if(!isFirstTime)
+            {
+                if(oldStartPosX != startPosX)
+                {
+                    foreach(RaycastHit2D hit in hitObjectLeft)
+                    {
+                        if(hit.collider.gameObject != gameObject)
+                        {
+                            Debug.Log(oldStartPosX + "ubah kanan");
+                            // hit.collider.gameObject.GetComponent<MoveTile>().ChangeRightMax(oldStartPosX);
+                            hit.collider.gameObject.GetComponent<MoveTile>().CheckTileRightNormal();
+                            
+                        }
+                           
+                    }
+                    foreach(RaycastHit2D hit in hitObjectRight)
+                    {
+                        if(hit.collider.gameObject != gameObject)
+                        {
+                            Debug.Log(oldStartPosX + "ubah kiri");
+                            // hit.collider.gameObject.GetComponent<MoveTile>().ChangeLeftMax(oldStartPosX);
+                            hit.collider.gameObject.GetComponent<MoveTile>().CheckTileLeftNormal();
+                            // canRight = false;
+                            
+                        }
+                    }
+                }
+                if(oldStartPosY != startPosY)
+                {
+                    foreach(RaycastHit2D hit in hitObjectTop)
+                    {
+                        Debug.Log(hit.collider + "atas");
+                        if(hit.collider.gameObject != gameObject)
+                        {
+                            Debug.Log(oldStartPosY + "ubah bawah");
+                            // hit.collider.gameObject.GetComponent<MoveTile>().ChangeDownMax(oldStartPosY);
+                            hit.collider.gameObject.GetComponent<MoveTile>().CheckTileDownNormal();
+                            // canTop = false;
+                            
+                        }
+
+                    }    
+                    foreach(RaycastHit2D hit in hitObjectDown)
+                    {
+                        if(hit.collider.gameObject != gameObject)
+                        {
+                            Debug.Log(oldStartPosY + "ubah atas");
+                            // hit.collider.gameObject.GetComponent<MoveTile>().ChangeTopMax(oldStartPosY);
+                            hit.collider.gameObject.GetComponent<MoveTile>().CheckTileTopNormal();
+                            // canDown = false;
+                            
+                        }
+
+                    }
+                }
+                
+                CheckTileBeside();
+            }
+            else
+            {
+                CheckTileBesideNormal();
+                isFirstTime = false;
+            }
+            
             //trus di sini cek collider apa ada kiri kanan
             
             wasBeingClicked = false;
@@ -133,50 +199,89 @@ public class MoveTile : MonoBehaviour
             //     mousePos.x = 0f;
             // }
             
-            // Debug.Log(mousePos);
+            // Debug.Log(mousePos + " " + transform.localPosition);
             // Debug.Log((mousePos.y - transform.localPosition.y) + "DAN" + (mousePos.x - transform.localPosition.x));
-            // if(Mathf.Abs(mousePos.y ) > Mathf.Abs(mousePos.x))
-            // {
-                
-            //     Debug.Log(mousePos + " x 0");
-            //     goHorizontal = false;
-            //     goVertical = true;
-            //     mousePos.x = 0f;
-            //     // Debug.Log(mousePos);
-            // }
-            // else
-            // {
-            //     Debug.Log(mousePos + " y 0");
-            //     mousePos.y = 0f;
-            //     goHorizontal = true;
-            //     goVertical = false;
-            // }
+            if(goHorizontal || goVertical)
+            {
+                if(mousePos.x == startPosX && mousePos.y == startPosY)
+                {
+                    goHorizontal = false;
+                    goVertical = false;
+                }
+                if(goHorizontal)
+                {
+                    mousePos.y = startPosY;
+                    
+                }
+                if(goVertical)
+                {
+                    mousePos.x = startPosX;
+                }
+            }
+            else if(!goHorizontal && !goVertical)
+            {
+                if(Mathf.Abs(mousePos.y - transform.localPosition.y) > Mathf.Abs(mousePos.x - transform.localPosition.x))
+                {
+                    
+                    // Debug.Log(mousePos + " x 0");
+                    goHorizontal = false;
+                    goVertical = true;
+                    mousePos.x = startPosX;
+                    // Debug.Log(mousePos);
+                }
+                else
+                {
+                    // Debug.Log(mousePos + " y 0");
+                    mousePos.y = startPosY;
+                    goHorizontal = true;
+                    goVertical = false;
+                }
+            }
             
-            if(mousePos.x < leftMax)
+            
+            if(goVertical)
             {
-                // Debug.Log("melebihi dari leftmax");
-                mousePos.x = leftMax;   
+                // if(canTop)
+                // {
+                    if(mousePos.y > topMax)
+                    {
+                        mousePos.y = topMax;   
+                    }
+                // }
+                // if(canDown)
+                // {
+                    else if(mousePos.y < downMax)
+                    {
+                        mousePos.y = downMax; 
+                    }
+                // }
+                
             }
-            else if(mousePos.x > rightMax)
+            if(goHorizontal)
             {
-                // Debug.Log("melebihi dari rightmax");
-                mousePos.x = rightMax; 
+                // if(canLeft)
+                // {
+                    if(mousePos.x < leftMax)
+                    {
+                        // Debug.Log("melebihi dari leftmax");
+                        mousePos.x = leftMax;   
+                    }
+                // }
+                // if(canRight)
+                // {
+                    else if(mousePos.x > rightMax)
+                    {
+                        // Debug.Log("melebihi dari rightmax");
+                        mousePos.x = rightMax; 
+                    }
+                // }
+                
             }
-            if(mousePos.y > topMax)
-            {
-                mousePos.y = topMax;   
-            }
-            else if(mousePos.y < downMax)
-            {
-                mousePos.y = downMax; 
-            }
-            if(mousePos.x != 0 && mousePos.y != 0)
-            {
+            
+            
 
-            }
-            else{
-                transform.localPosition = mousePos;
-            }
+            //kalo downmax gitu jdnya harus di abs dulu kalo downmaxnya minus, intinya kalo dr pastinya minus trus hsl setelahnya lebih besar????????
+            
             
             // Debug.Log(mousePos);
             
@@ -187,11 +292,12 @@ public class MoveTile : MonoBehaviour
             
             // Vector3 localDirection = transform.InverseTransformDirection(mousePos - transform.localPosition);
 
-            // transform.Translate(localDirection, Space.Self);
+            // transform.Translate(localDirection * Time.deltaTime, Space.Self);
+            transform.localPosition = mousePos;
 
             
             
-            if(mousePos.x != 0)
+            if(goHorizontal)
             {
                 if(transform.localPosition.x % 2 == 0 && transform.localPosition.x != startPosX) 
                 {
@@ -199,7 +305,7 @@ public class MoveTile : MonoBehaviour
                     isBeingClicked = false;
                 }
             }
-            else if(mousePos.y != 0)
+            else if(goVertical)
             {
                 if(transform.localPosition.y % 2 == 0 && transform.localPosition.y != startPosY) 
                 {
@@ -244,7 +350,7 @@ public class MoveTile : MonoBehaviour
         {
             rightMax = tilePuzzleManager.MaxPuzzleSize().x;
         }
-        Debug.Log(rightMax + "batas kanan baru" + gameObject);
+        // Debug.Log(rightMax + "batas kanan baru" + gameObject);
         // Debug.Log("Dipanggil Right");
     }
     public void ChangeTopMax(float change)
@@ -268,63 +374,175 @@ public class MoveTile : MonoBehaviour
     }
     public void CheckTileBeside()
     {
-
         hitObjectLeft = Physics2D.RaycastAll(new Vector2(transform.position.x - 1.1f, transform.position.y), new Vector2(-1,0), 0.9f, (int)tileLayerCollide);
+        left.Clear();
         ChangeLeftMax(startPosX - tilePuzzleManager.JarakAntarTile());
+        // canLeft = true;
         foreach(RaycastHit2D hit in hitObjectLeft)
         {
-            Debug.Log(hit.collider.gameObject);
             if(hit.collider.gameObject != gameObject)
             {
+                left.Add(hit.collider);
                 ChangeLeftMax(hit.transform.localPosition.x + tilePuzzleManager.JarakAntarTile());
+                // hit.collider.gameObject.GetComponent<MoveTile>().ChangeRightMax(startPosX - tilePuzzleManager.JarakAntarTile());
+                hit.collider.gameObject.GetComponent<MoveTile>().CheckTileRightNormal();
                 break;
             }
             ChangeLeftMax(startPosX - tilePuzzleManager.JarakAntarTile());
+            // canLeft = true;
                 
         }
 
-
         hitObjectRight = Physics2D.RaycastAll(new Vector2(transform.position.x + 1.1f, transform.position.y), new Vector2(1,0), 0.9f, (int)tileLayerCollide);
+        right.Clear();
         ChangeRightMax(startPosX + tilePuzzleManager.JarakAntarTile());
+        // canRight = true;
         foreach(RaycastHit2D hit in hitObjectRight)
         {
             if(hit.collider.gameObject != gameObject)
             {
+                right.Add(hit.collider);
                 ChangeRightMax(hit.transform.localPosition.x - tilePuzzleManager.JarakAntarTile());
-                Debug.Log(hit.transform.localPosition.x +" " + tilePuzzleManager.JarakAntarTile());
+                // Debug.Log(hit.transform.localPosition.x +" " + tilePuzzleManager.JarakAntarTile());
+                // hit.collider.gameObject.GetComponent<MoveTile>().ChangeLeftMax(startPosX + tilePuzzleManager.JarakAntarTile());
+                hit.collider.gameObject.GetComponent<MoveTile>().CheckTileLeftNormal();
+                // canRight = false;
                 break;
             }
             ChangeRightMax(startPosX + tilePuzzleManager.JarakAntarTile());
+            // canRight = true;
         }
             
-       
-
         hitObjectTop = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y + 1.1f), new Vector2(0,1), 0.9f, (int)tileLayerCollide);
+        top.Clear();
         ChangeTopMax(startPosY + tilePuzzleManager.JarakAntarTile());
+        // canTop = true;
         foreach(RaycastHit2D hit in hitObjectTop)
         {
+
             if(hit.collider.gameObject != gameObject)
             {
+                top.Add(hit.collider);
                 ChangeTopMax(hit.transform.localPosition.y - tilePuzzleManager.JarakAntarTile());
-                Debug.Log(hit.collider + "top" + gameObject);
+                // Debug.Log(hit.collider + "top" + gameObject);
+                // hit.collider.gameObject.GetComponent<MoveTile>().ChangeDownMax(startPosY + tilePuzzleManager.JarakAntarTile());
+                hit.collider.gameObject.GetComponent<MoveTile>().CheckTileDownNormal();
+                // canTop = false;
                 break;
             }
             ChangeTopMax(startPosY + tilePuzzleManager.JarakAntarTile());
+            // canTop = true;
         }    
 
         hitObjectDown = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y - 1.1f), new Vector2(0,-1), 0.9f, (int)tileLayerCollide);
+        down.Clear();
         ChangeDownMax(startPosY - tilePuzzleManager.JarakAntarTile());
+        // canDown = true;
         foreach(RaycastHit2D hit in hitObjectDown)
         {
             if(hit.collider.gameObject != gameObject)
             {
+                down.Add(hit.collider);
                 ChangeDownMax(hit.transform.localPosition.y + tilePuzzleManager.JarakAntarTile());
-                Debug.Log(hit.collider + "down" + gameObject);
+                // Debug.Log(hit.collider + "down" + gameObject);
+                // hit.collider.gameObject.GetComponent<MoveTile>().ChangeTopMax(startPosY - tilePuzzleManager.JarakAntarTile());
+                hit.collider.gameObject.GetComponent<MoveTile>().CheckTileTopNormal();
+                // canDown = false;
                 break;
             }
             ChangeDownMax(startPosY - tilePuzzleManager.JarakAntarTile());
+            // canDown = true;
+        }
+                
+    }
+    public void CheckTileLeftNormal()
+    {
+        hitObjectLeft = Physics2D.RaycastAll(new Vector2(transform.position.x - 1.1f, transform.position.y), new Vector2(-1,0), 0.9f, (int)tileLayerCollide);
+        left.Clear();
+        ChangeLeftMax(startPosX - tilePuzzleManager.JarakAntarTile());
+        // canLeft = true;
+        foreach(RaycastHit2D hit in hitObjectLeft)
+        {
+            if(hit.collider.gameObject != gameObject)
+            {
+                left.Add(hit.collider);
+                ChangeLeftMax(hit.transform.localPosition.x + tilePuzzleManager.JarakAntarTile());
+                break;
+            }
+            ChangeLeftMax(startPosX - tilePuzzleManager.JarakAntarTile());
+            // canLeft = true;
+                
+        }  
+    }
+    public void CheckTileRightNormal()
+    {
+        hitObjectRight = Physics2D.RaycastAll(new Vector2(transform.position.x + 1.1f, transform.position.y), new Vector2(1,0), 0.9f, (int)tileLayerCollide);
+        right.Clear();
+        ChangeRightMax(startPosX + tilePuzzleManager.JarakAntarTile());
+        // canRight = true;
+        foreach(RaycastHit2D hit in hitObjectRight)
+        {
+            if(hit.collider.gameObject != gameObject)
+            {
+                right.Add(hit.collider);
+                ChangeRightMax(hit.transform.localPosition.x - tilePuzzleManager.JarakAntarTile());
+                break;
+            }
+            ChangeRightMax(startPosX + tilePuzzleManager.JarakAntarTile());
+            // canRight = true;
+        }  
+    }
+    public void CheckTileTopNormal()
+    {
+        hitObjectTop = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y + 1.1f), new Vector2(0,1), 0.9f, (int)tileLayerCollide);
+        top.Clear();
+        ChangeTopMax(startPosY + tilePuzzleManager.JarakAntarTile());
+        // canTop = true;
+        foreach(RaycastHit2D hit in hitObjectTop)
+        {
+
+            if(hit.collider.gameObject != gameObject)
+            {
+                top.Add(hit.collider);
+                ChangeTopMax(hit.transform.localPosition.y - tilePuzzleManager.JarakAntarTile());
+                break;
+            }
+            ChangeTopMax(startPosY + tilePuzzleManager.JarakAntarTile());
+            // canTop = true;
+        }    
+    }
+    public void CheckTileDownNormal()
+    {
+        hitObjectDown = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y - 1.1f), new Vector2(0,-1), 0.9f, (int)tileLayerCollide);
+        down.Clear();
+        ChangeDownMax(startPosY - tilePuzzleManager.JarakAntarTile());
+        // canDown = true;
+        foreach(RaycastHit2D hit in hitObjectDown)
+        {
+            if(hit.collider.gameObject != gameObject)
+            {
+                down.Add(hit.collider);
+                ChangeDownMax(hit.transform.localPosition.y + tilePuzzleManager.JarakAntarTile());
+                break;
+            }
+            ChangeDownMax(startPosY - tilePuzzleManager.JarakAntarTile());
+            // canDown = true;
         }
                 
     }
 
+    public void GetTilePuzzleManager(TilePuzzleManager manager)
+    {
+        tilePuzzleManager = manager;
+        // tilePuzzleManager.OnFinishSpawnPuzzle += tilePuzzleManager_OnFinishSpawnPuzzle;
+    }
+
+    //yg normal ini cuma cek sendiri sendiri aja + semua
+    private void CheckTileBesideNormal()
+    {
+        CheckTileLeftNormal();
+        CheckTileRightNormal();
+        CheckTileDownNormal();
+        CheckTileTopNormal();
+    }
 }

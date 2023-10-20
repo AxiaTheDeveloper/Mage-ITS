@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TilePuzzleManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class TilePuzzleManager : MonoBehaviour
     private GameObject chosenTileToInstantiate;
     
     [SerializeField]private List<TilePuzzleName> tilePuzzleList_ForThisPuzzle; 
+
+    public event EventHandler OnFinishSpawnPuzzle;
     
     private void Awake() 
     {
@@ -49,6 +52,7 @@ public class TilePuzzleManager : MonoBehaviour
                         tileInstantiate.transform.localPosition = new Vector3((startPositionTile.x + jarakAntarTile * j), (startPositionTile.y + jarakAntarTile * i)*-1, 0f);
 
                         tileInstantiate.transform.rotation = Quaternion.Euler(0f,0f,0f);
+                        tileInstantiate.GetComponent<MoveTile>().GetTilePuzzleManager(this);
                         break;
                     }
                 }
@@ -56,6 +60,7 @@ public class TilePuzzleManager : MonoBehaviour
                 
             }
         }
+        OnFinishSpawnPuzzle?.Invoke(this, EventArgs.Empty);
     }
 
     // 0 1 2

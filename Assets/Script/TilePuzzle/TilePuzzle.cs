@@ -18,6 +18,10 @@ public class TilePuzzle : MonoBehaviour
     {
         return isMoveAble;
     }
+    public bool IsTilePuzzle()
+    {
+        return isTilePuzzle;
+    }
 
 
 }

@@ -489,13 +489,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePuzzleListSO: {fileID: 11400000, guid: 9c565cba032bf4b429a0c6930e93616c, type: 2}
-  totalRow: 3
-  totalColumn: 3
+  totalRow: 4
+  totalColumn: 6
   jarakAntarTile: 2
   startPositionTile: {x: 0, y: 0}
   minPuzzleSize: {x: 0, y: 0}
   maxPuzzleSize: {x: 0, y: 0}
-  tilePuzzleList_ForThisPuzzle: 020000000300000000000000000000000000000000000000000000000000000000000000
+  tilePuzzleList_ForThisPuzzle: 030000000300000002000000020000000300000002000000020000000300000002000000020000000200000002000000020000000200000000000000020000000200000002000000020000000200000002000000020000000200000002000000
 --- !u!1001 &1275860573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -557,7 +557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7259884123767429239, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8960236272171064567, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}

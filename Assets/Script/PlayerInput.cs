@@ -24,13 +24,18 @@ public class PlayerInput : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(gameInput.GetMousePosition());
             Debug.DrawRay(ray.origin, ray.direction, Color.blue);
             
-            Debug.Log("One");
+            // Debug.Log("One");
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, layerClickAble);
             if(hit)
             {
                 // Debug.Log(hit.collider.gameObject.name);
-                chosenTile = hit.collider.GetComponent<MoveTile>();
-                chosenTile.ChangeIsBeingClicked(true);
+                TilePuzzle tilePuzzle = hit.collider.GetComponent<TilePuzzle>();
+                if(tilePuzzle.IsTilePuzzle() && tilePuzzle.IsMoveAble())
+                {
+                    chosenTile = hit.collider.GetComponent<MoveTile>();
+                    chosenTile.ChangeIsBeingClicked(true);
+                }
+                
                 
             }
         }
@@ -38,8 +43,12 @@ public class PlayerInput : MonoBehaviour
         {
             if(chosenTile)
             {
+                if(chosenTile.IsBeingClicked())
+                {
+                    chosenTile.ChangeWasBeingClicked(true);
+                }
                 chosenTile.ChangeIsBeingClicked(false);
-                chosenTile.ChangeWasBeingClicked(true);
+                
             }
             
             

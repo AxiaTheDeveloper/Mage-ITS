@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7736145505128383691
+--- !u!1001 &9051257643337780329
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,15 +9,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7259884122108244188, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Color.b
-      value: 0.003575325
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7259884122108244188, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.25334814
       objectReference: {fileID: 0}
     - target: {fileID: 7259884122108244188, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.6037736
       objectReference: {fileID: 0}
     - target: {fileID: 7259884123767429238, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_RootOrder
@@ -65,15 +65,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7259884123767429239, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Name
-      value: TilePuzzle_HorizontalPipe
+      value: ORGate_UnMoveAble_TilePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: tileName
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
-      propertyPath: isTilePuzzle
-      value: 1
+      propertyPath: isMoveAble
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
