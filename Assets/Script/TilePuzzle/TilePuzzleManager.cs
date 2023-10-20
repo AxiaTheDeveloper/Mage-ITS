@@ -6,6 +6,7 @@ using System;
 public class TilePuzzleManager : MonoBehaviour
 {
     public static TilePuzzleManager Instance {get; private set;}
+    [SerializeField]private int LEVEL;
     [SerializeField]private TilePuzzleListScriptableObject tilePuzzleListSO;
     [SerializeField]private int totalRow, totalColumn, jarakAntarTile;//kolom ke kiri, row ke bawah
     [SerializeField]private Vector2 startPositionTile;

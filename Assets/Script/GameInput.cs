@@ -21,4 +21,9 @@ public class GameInput : MonoBehaviour
     {
         return Input.GetMouseButtonUp(0);
     }
+
+    public bool GetMouse1InputDown()
+    {
+        return Input.GetMouseButtonDown(1);
+    }
 }

@@ -54,6 +54,10 @@ public class PlayerInput : MonoBehaviour
             
             chosenTile = null;
         }
+        if(gameInput.GetMouse1InputDown())
+        {
+            Debug.Log("Hi");
+        }
     }
     // public void DeleteChosenTile()
     // {
