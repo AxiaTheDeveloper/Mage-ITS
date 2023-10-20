@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7259884123767429239, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Name
-      value: CornerWire_MoveAble_TilePuzzle
+      value: CornerWireRU_MoveAble_TilePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: tileName
@@ -75,5 +75,32 @@ PrefabInstance:
       propertyPath: isMoveAble
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+--- !u!1 &517870164215939366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7259884123767429239, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+  m_PrefabInstance: {fileID: 7201134921412942161}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4909907393182860687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517870164215939366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028754e421eb93448b07dba4e807393a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileName: 10
+  visual: {fileID: 0}
+  isTilePuzzle: 1
+  isMoveAble: 1
+  isPuzzleAnswer: 1
+  direction: 2
+  rotationLU: 90
+  rotationRU: 180
+  rotationRB: 270

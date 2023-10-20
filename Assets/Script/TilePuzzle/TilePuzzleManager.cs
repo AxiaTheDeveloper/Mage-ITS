@@ -13,6 +13,7 @@ public class TilePuzzleManager : MonoBehaviour
     private GameObject chosenTileToInstantiate;
     
     [SerializeField]private List<TilePuzzleName> tilePuzzleList_ForThisPuzzle; 
+    [SerializeField]private int rotationVertical, rotationRB, rotationLU, rotationRU;
 
     public event EventHandler OnFinishSpawnPuzzle;
     
@@ -48,6 +49,7 @@ public class TilePuzzleManager : MonoBehaviour
                         chosenTileToInstantiate = tilePuzzleListSO.tilePuzzleList[p];
 
                         Transform tileInstantiate = Instantiate(chosenTileToInstantiate.transform, this.gameObject.transform);
+                        
 
                         tileInstantiate.transform.localPosition = new Vector3((startPositionTile.x + jarakAntarTile * j), (startPositionTile.y + jarakAntarTile * i)*-1, 0f);
 

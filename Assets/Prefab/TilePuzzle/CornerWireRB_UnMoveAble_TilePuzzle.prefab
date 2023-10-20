@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8204965897461538234
+--- !u!1001 &7201134921412942161
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7259884122108244188, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Color.b
-      value: 0.42323345
+      value: 0.6893239
       objectReference: {fileID: 0}
     - target: {fileID: 7259884122108244188, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Color.g
@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7259884122108244188, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Color.r
-      value: 0.6132076
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7259884123767429238, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_RootOrder
@@ -65,15 +65,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7259884123767429239, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Name
-      value: CornerWire_UnMoveAble_TilePuzzle
+      value: CornerWireRB_UnMoveAble_TilePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: tileName
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: isMoveAble
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+--- !u!1 &517870164215939366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7259884123767429239, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+  m_PrefabInstance: {fileID: 7201134921412942161}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4909907393182860687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517870164215939366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028754e421eb93448b07dba4e807393a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileName: 13
+  visual: {fileID: 0}
+  isTilePuzzle: 1
+  isMoveAble: 0
+  isPuzzleAnswer: 1
+  direction: 3
+  rotationLU: 90
+  rotationRU: 180
+  rotationRB: 270

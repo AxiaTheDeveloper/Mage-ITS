@@ -5,11 +5,13 @@ using UnityEngine;
 public class TilePuzzle : MonoBehaviour
 {
     [SerializeField]private TilePuzzleName tileName;
+    [SerializeField]protected GameObject visual;
     [SerializeField]private bool isTilePuzzle;
     [SerializeField]private bool isMoveAble; // tilepuzzle bisa ga gerak
     [SerializeField]private bool isPuzzleAnswer; // maksudnya trmasuk pipa ato ga
+    
 
-
+    
     public TilePuzzleName TileName()
     {
         return tileName;
