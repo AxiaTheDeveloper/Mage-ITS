@@ -84,5 +84,6 @@ MonoBehaviour:
   isTilePuzzle: 1
   isMoveAble: 1
   isPuzzleAnswer: 1
+  isRotateAble: 1
   direction: 0
   rotationVertical: 90

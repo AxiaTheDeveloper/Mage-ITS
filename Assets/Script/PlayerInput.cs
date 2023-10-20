@@ -22,7 +22,7 @@ public class PlayerInput : MonoBehaviour
         if(gameInput.GetMouse0InputDown() && !chosenTile)
         {
             Ray ray = Camera.main.ScreenPointToRay(gameInput.GetMousePosition());
-            Debug.DrawRay(ray.origin, ray.direction, Color.blue);
+            // Debug.DrawRay(ray.origin, ray.direction, Color.blue);
             
             // Debug.Log("One");
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, layerClickAble);
@@ -56,7 +56,31 @@ public class PlayerInput : MonoBehaviour
         }
         if(gameInput.GetMouse1InputDown())
         {
-            Debug.Log("Hi");
+            Ray ray = Camera.main.ScreenPointToRay(gameInput.GetMousePosition());
+            // Debug.DrawRay(ray.origin, ray.direction, Color.blue);
+            
+            // Debug.Log("One");
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, layerClickAble);
+            if(hit)
+            {
+                // Debug.Log(hit.collider.gameObject.name);
+                TilePuzzle tilePuzzle = hit.collider.GetComponent<TilePuzzle>();
+                if(tilePuzzle.IsTilePuzzle() && tilePuzzle.IsRotateAble())
+                {
+                    if(tilePuzzle.TileName() == TilePuzzleName.StraightWireHorizontal_MoveAble || tilePuzzle.TileName() == TilePuzzleName.StraightWireHorizontal_UnMoveAble)
+                    {
+                        hit.collider.GetComponent<TilePuzzleStraight>().RotateVisual(90);
+                        Debug.Log("Rotasi");
+                    }
+                    else if(tilePuzzle.TileName() == TilePuzzleName.CornerWireLB_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLB_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLU_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLU_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRB_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRB_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRU_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRU_UnMoveAble)
+                    {
+                        hit.collider.GetComponent<TilePuzzleCorner>().RotateVisual(90);
+                        Debug.Log("Rotasi");
+                    }
+                }
+                
+                
+            }
         }
     }
     // public void DeleteChosenTile()

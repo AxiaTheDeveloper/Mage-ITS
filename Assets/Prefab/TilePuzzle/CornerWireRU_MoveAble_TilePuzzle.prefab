@@ -108,6 +108,7 @@ MonoBehaviour:
   isTilePuzzle: 1
   isMoveAble: 1
   isPuzzleAnswer: 1
+  isRotateAble: 1
   direction: 2
   rotationLU: 90
   rotationRU: 180

@@ -9,7 +9,7 @@ public class TilePuzzleCorner : TilePuzzle
         LB, LU, RU, RB
     }
     [SerializeField]private DirectionCornerPuzzle direction;
-    [SerializeField]private int rotationLU, rotationRU, rotationRB;
+    [SerializeField]private float rotationLU, rotationRU, rotationRB;
     private void Awake() 
     {
         visual = transform.GetChild(0).gameObject;
@@ -26,8 +26,9 @@ public class TilePuzzleCorner : TilePuzzle
             RotateVisual(rotationRB);
         }
     }
-    public void RotateVisual(int rotasi)
+    public void RotateVisual(float rotasi)
     {
-        visual.transform.rotation = Quaternion.Euler(0f,0f,rotasi);
+        Quaternion rotasi_visual = visual.transform.localRotation;
+        visual.transform.rotation = Quaternion.Euler(0f,0f,rotasi_visual.eulerAngles.z + rotasi);
     }
 }

@@ -9,6 +9,8 @@ public class TilePuzzle : MonoBehaviour
     [SerializeField]private bool isTilePuzzle;
     [SerializeField]private bool isMoveAble; // tilepuzzle bisa ga gerak
     [SerializeField]private bool isPuzzleAnswer; // maksudnya trmasuk pipa ato ga
+    [SerializeField]protected bool isRotateAble;
+
     
 
     
@@ -23,6 +25,10 @@ public class TilePuzzle : MonoBehaviour
     public bool IsTilePuzzle()
     {
         return isTilePuzzle;
+    }
+    public bool IsRotateAble()
+    {
+        return isRotateAble;
     }
 
 
