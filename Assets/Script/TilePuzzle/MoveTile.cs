@@ -103,71 +103,67 @@ public class MoveTile : MonoBehaviour
 
             float oldStartPosX = startPosX;
             float oldStartPosY = startPosY;
-            startPosX = transform.position.x;
-            startPosY = transform.position.y;
+            startPosX = transform.localPosition.x;
+            startPosY = transform.localPosition.y;
 
             if(!isFirstTime)
             {
-                if(oldStartPosX != startPosX)
+                foreach(RaycastHit2D hit in hitObjectLeft)
                 {
-                    foreach(RaycastHit2D hit in hitObjectLeft)
+                    if(hit.collider.gameObject != gameObject)
                     {
-                        if(hit.collider.gameObject != gameObject)
-                        {
-                            Debug.Log(oldStartPosX + "ubah kanan");
+                        Debug.Log(oldStartPosX + "ubah kanan");
                             // hit.collider.gameObject.GetComponent<MoveTile>().ChangeRightMax(oldStartPosX);
-                            hit.collider.gameObject.GetComponent<MoveTile>().CheckTileRightNormal();
+                        hit.collider.gameObject.GetComponent<MoveTile>().CheckTileRightNormal();
                             
-                        }
-                           
                     }
-                    foreach(RaycastHit2D hit in hitObjectRight)
+                           
+                }
+                foreach(RaycastHit2D hit in hitObjectRight)
+                {
+                    if(hit.collider.gameObject != gameObject)
                     {
-                        if(hit.collider.gameObject != gameObject)
-                        {
-                            Debug.Log(oldStartPosX + "ubah kiri");
+                        Debug.Log(oldStartPosX + "ubah kiri");
                             // hit.collider.gameObject.GetComponent<MoveTile>().ChangeLeftMax(oldStartPosX);
-                            hit.collider.gameObject.GetComponent<MoveTile>().CheckTileLeftNormal();
+                        hit.collider.gameObject.GetComponent<MoveTile>().CheckTileLeftNormal();
                             // canRight = false;
                             
-                        }
                     }
                 }
-                if(oldStartPosY != startPosY)
+
+                foreach(RaycastHit2D hit in hitObjectTop)
                 {
-                    foreach(RaycastHit2D hit in hitObjectTop)
+                    Debug.Log(hit.collider + "atas");
+                    if(hit.collider.gameObject != gameObject)
                     {
-                        Debug.Log(hit.collider + "atas");
-                        if(hit.collider.gameObject != gameObject)
-                        {
-                            Debug.Log(oldStartPosY + "ubah bawah");
+                        Debug.Log(oldStartPosY + "ubah bawah");
                             // hit.collider.gameObject.GetComponent<MoveTile>().ChangeDownMax(oldStartPosY);
-                            hit.collider.gameObject.GetComponent<MoveTile>().CheckTileDownNormal();
+                        hit.collider.gameObject.GetComponent<MoveTile>().CheckTileDownNormal();
                             // canTop = false;
                             
-                        }
+                    }
 
-                    }    
-                    foreach(RaycastHit2D hit in hitObjectDown)
+                }    
+                foreach(RaycastHit2D hit in hitObjectDown)
+                {
+                    Debug.Log("Orang di bwh suruh ganti");
+                    if(hit.collider.gameObject != gameObject)
                     {
-                        if(hit.collider.gameObject != gameObject)
-                        {
-                            Debug.Log(oldStartPosY + "ubah atas");
+                        Debug.Log(oldStartPosY + "ubah atas");
                             // hit.collider.gameObject.GetComponent<MoveTile>().ChangeTopMax(oldStartPosY);
-                            hit.collider.gameObject.GetComponent<MoveTile>().CheckTileTopNormal();
+                        hit.collider.gameObject.GetComponent<MoveTile>().CheckTileTopNormal();
                             // canDown = false;
                             
-                        }
-
                     }
+
                 }
-                
                 CheckTileBeside();
             }
             else
             {
                 CheckTileBesideNormal();
                 isFirstTime = false;
+                // Debug.Log(transform.position + "dan" + transform.localPosition);
             }
             
             //trus di sini cek collider apa ada kiri kanan
@@ -180,27 +176,10 @@ public class MoveTile : MonoBehaviour
             // Debug.Log("World input" + mousePos);
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             mousePos = new Vector3(mousePos.x, mousePos.y, 0f);
-            // Debug.Log(mousePos);
-            
-            
-            
-            
-            
-            
+            // Debug.Log("sebelum" + mousePos);
+            mousePos = mousePos - tilePuzzleManager.GetComponent<Transform>().position;
+            // Debug.Log("setelah" + mousePos);
 
-            // //ke kanan
-            // if(( mousePos.x >= 0 && mousePos.y < 0 && mousePos.x >= mousePos.y))
-            // {
-            //     mousePos.y = 0f;
-            // }
-            // //ke bawah
-            // else if(mousePos.x < mousePos.y)
-            // {
-            //     mousePos.x = 0f;
-            // }
-            
-            // Debug.Log(mousePos + " " + transform.localPosition);
-            // Debug.Log((mousePos.y - transform.localPosition.y) + "DAN" + (mousePos.x - transform.localPosition.x));
             if(goHorizontal || goVertical)
             {
                 if(mousePos.x == startPosX && mousePos.y == startPosY)
@@ -278,21 +257,6 @@ public class MoveTile : MonoBehaviour
                 
             }
             
-            
-
-            //kalo downmax gitu jdnya harus di abs dulu kalo downmaxnya minus, intinya kalo dr pastinya minus trus hsl setelahnya lebih besar????????
-            
-            
-            // Debug.Log(mousePos);
-            
-
-            // Debug.Log(mousePos);
-            // if(mousePos.x == 6)   Debug.Log(mousePos);
-            
-            
-            // Vector3 localDirection = transform.InverseTransformDirection(mousePos - transform.localPosition);
-
-            // transform.Translate(localDirection * Time.deltaTime, Space.Self);
             transform.localPosition = mousePos;
 
             

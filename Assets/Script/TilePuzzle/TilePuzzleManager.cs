@@ -13,7 +13,6 @@ public class TilePuzzleManager : MonoBehaviour
     private GameObject chosenTileToInstantiate;
     
     [SerializeField]private List<TilePuzzleName> tilePuzzleList_ForThisPuzzle; 
-    [SerializeField]private int rotationVertical, rotationRB, rotationLU, rotationRU;
 
     public event EventHandler OnFinishSpawnPuzzle;
     

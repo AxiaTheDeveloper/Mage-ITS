@@ -489,13 +489,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePuzzleListSO: {fileID: 11400000, guid: 9c565cba032bf4b429a0c6930e93616c, type: 2}
-  totalRow: 4
-  totalColumn: 6
+  totalRow: 3
+  totalColumn: 3
   jarakAntarTile: 2
   startPositionTile: {x: 0, y: 0}
   minPuzzleSize: {x: 0, y: 0}
   maxPuzzleSize: {x: 0, y: 0}
-  tilePuzzleList_ForThisPuzzle: 030000000400000002000000020000000300000002000000020000000300000002000000020000000200000002000000020000000200000000000000020000000200000002000000020000000200000002000000020000000200000002000000
+  tilePuzzleList_ForThisPuzzle: 020000000300000002000000020000000200000000000000000000000000000002000000
   rotationVertical: 0
   rotationRB: 0
   rotationLU: 0
