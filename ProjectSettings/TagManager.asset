@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - TilePuzzle
+  - Output
+  - Input
   layers:
   - Default
   - TransparentFX

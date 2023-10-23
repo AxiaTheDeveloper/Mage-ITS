@@ -15,22 +15,22 @@ public class MoveTile : MonoBehaviour
     [SerializeField]private Vector3 mousePos;
     [SerializeField]private float startPosX, startPosY, leftMax, topMax, rightMax, downMax;
 
-    [SerializeField]private List<Collider2D> top,down,left,right;
+    // [SerializeField]private List<Collider2D> top,down,left,right;
 
     [SerializeField]private RaycastHit2D[] hitObjectLeft, hitObjectRight, hitObjectTop, hitObjectDown;
     [SerializeField]private LayerMask tileLayerCollide;
 
-    [SerializeField]private bool canLeft, canRight, canTop, canDown, goHorizontal, goVertical, isFirstTime = true;
+    [SerializeField]private bool goHorizontal, goVertical, isFirstTime = true;
 
     private void Awake() 
     {
         tilePuzzle = GetComponent<TilePuzzle>();
         isMoveAble = tilePuzzle.IsMoveAble();
         tilePuzzleManager = GetComponentInParent<TilePuzzleManager>();
-        left = new List<Collider2D>();
-        right = new List<Collider2D>();
-        top = new List<Collider2D>();
-        down = new List<Collider2D>();
+        // left = new List<Collider2D>();
+        // right = new List<Collider2D>();
+        // top = new List<Collider2D>();
+        // down = new List<Collider2D>();
 
     }
     private void Start() 
@@ -339,14 +339,14 @@ public class MoveTile : MonoBehaviour
     public void CheckTileBeside()
     {
         hitObjectLeft = Physics2D.RaycastAll(new Vector2(transform.position.x - 1.1f, transform.position.y), new Vector2(-1,0), 0.9f, (int)tileLayerCollide);
-        left.Clear();
+        // left.Clear();
         ChangeLeftMax(startPosX - tilePuzzleManager.JarakAntarTile());
         // canLeft = true;
         foreach(RaycastHit2D hit in hitObjectLeft)
         {
             if(hit.collider.gameObject != gameObject)
             {
-                left.Add(hit.collider);
+                // left.Add(hit.collider);
                 ChangeLeftMax(hit.transform.localPosition.x + tilePuzzleManager.JarakAntarTile());
                 // hit.collider.gameObject.GetComponent<MoveTile>().ChangeRightMax(startPosX - tilePuzzleManager.JarakAntarTile());
                 hit.collider.gameObject.GetComponent<MoveTile>().CheckTileRightNormal();
@@ -358,14 +358,14 @@ public class MoveTile : MonoBehaviour
         }
 
         hitObjectRight = Physics2D.RaycastAll(new Vector2(transform.position.x + 1.1f, transform.position.y), new Vector2(1,0), 0.9f, (int)tileLayerCollide);
-        right.Clear();
+        // right.Clear();
         ChangeRightMax(startPosX + tilePuzzleManager.JarakAntarTile());
         // canRight = true;
         foreach(RaycastHit2D hit in hitObjectRight)
         {
             if(hit.collider.gameObject != gameObject)
             {
-                right.Add(hit.collider);
+                // right.Add(hit.collider);
                 ChangeRightMax(hit.transform.localPosition.x - tilePuzzleManager.JarakAntarTile());
                 // Debug.Log(hit.transform.localPosition.x +" " + tilePuzzleManager.JarakAntarTile());
                 // hit.collider.gameObject.GetComponent<MoveTile>().ChangeLeftMax(startPosX + tilePuzzleManager.JarakAntarTile());
@@ -378,7 +378,7 @@ public class MoveTile : MonoBehaviour
         }
             
         hitObjectTop = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y + 1.1f), new Vector2(0,1), 0.9f, (int)tileLayerCollide);
-        top.Clear();
+        // top.Clear();
         ChangeTopMax(startPosY + tilePuzzleManager.JarakAntarTile());
         // canTop = true;
         foreach(RaycastHit2D hit in hitObjectTop)
@@ -386,7 +386,7 @@ public class MoveTile : MonoBehaviour
 
             if(hit.collider.gameObject != gameObject)
             {
-                top.Add(hit.collider);
+                // top.Add(hit.collider);
                 ChangeTopMax(hit.transform.localPosition.y - tilePuzzleManager.JarakAntarTile());
                 // Debug.Log(hit.collider + "top" + gameObject);
                 // hit.collider.gameObject.GetComponent<MoveTile>().ChangeDownMax(startPosY + tilePuzzleManager.JarakAntarTile());
@@ -399,14 +399,14 @@ public class MoveTile : MonoBehaviour
         }    
 
         hitObjectDown = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y - 1.1f), new Vector2(0,-1), 0.9f, (int)tileLayerCollide);
-        down.Clear();
+        // down.Clear();
         ChangeDownMax(startPosY - tilePuzzleManager.JarakAntarTile());
         // canDown = true;
         foreach(RaycastHit2D hit in hitObjectDown)
         {
             if(hit.collider.gameObject != gameObject)
             {
-                down.Add(hit.collider);
+                // down.Add(hit.collider);
                 ChangeDownMax(hit.transform.localPosition.y + tilePuzzleManager.JarakAntarTile());
                 // Debug.Log(hit.collider + "down" + gameObject);
                 // hit.collider.gameObject.GetComponent<MoveTile>().ChangeTopMax(startPosY - tilePuzzleManager.JarakAntarTile());
@@ -422,14 +422,14 @@ public class MoveTile : MonoBehaviour
     public void CheckTileLeftNormal()
     {
         hitObjectLeft = Physics2D.RaycastAll(new Vector2(transform.position.x - 1.1f, transform.position.y), new Vector2(-1,0), 0.9f, (int)tileLayerCollide);
-        left.Clear();
+        // left.Clear();
         ChangeLeftMax(startPosX - tilePuzzleManager.JarakAntarTile());
         // canLeft = true;
         foreach(RaycastHit2D hit in hitObjectLeft)
         {
             if(hit.collider.gameObject != gameObject)
             {
-                left.Add(hit.collider);
+                // left.Add(hit.collider);
                 ChangeLeftMax(hit.transform.localPosition.x + tilePuzzleManager.JarakAntarTile());
                 break;
             }
@@ -441,14 +441,14 @@ public class MoveTile : MonoBehaviour
     public void CheckTileRightNormal()
     {
         hitObjectRight = Physics2D.RaycastAll(new Vector2(transform.position.x + 1.1f, transform.position.y), new Vector2(1,0), 0.9f, (int)tileLayerCollide);
-        right.Clear();
+        // right.Clear();
         ChangeRightMax(startPosX + tilePuzzleManager.JarakAntarTile());
         // canRight = true;
         foreach(RaycastHit2D hit in hitObjectRight)
         {
             if(hit.collider.gameObject != gameObject)
             {
-                right.Add(hit.collider);
+                // right.Add(hit.collider);
                 ChangeRightMax(hit.transform.localPosition.x - tilePuzzleManager.JarakAntarTile());
                 break;
             }
@@ -459,7 +459,7 @@ public class MoveTile : MonoBehaviour
     public void CheckTileTopNormal()
     {
         hitObjectTop = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y + 1.1f), new Vector2(0,1), 0.9f, (int)tileLayerCollide);
-        top.Clear();
+        // top.Clear();
         ChangeTopMax(startPosY + tilePuzzleManager.JarakAntarTile());
         // canTop = true;
         foreach(RaycastHit2D hit in hitObjectTop)
@@ -467,7 +467,7 @@ public class MoveTile : MonoBehaviour
 
             if(hit.collider.gameObject != gameObject)
             {
-                top.Add(hit.collider);
+                // top.Add(hit.collider);/
                 ChangeTopMax(hit.transform.localPosition.y - tilePuzzleManager.JarakAntarTile());
                 break;
             }
@@ -478,14 +478,14 @@ public class MoveTile : MonoBehaviour
     public void CheckTileDownNormal()
     {
         hitObjectDown = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y - 1.1f), new Vector2(0,-1), 0.9f, (int)tileLayerCollide);
-        down.Clear();
+        // down.Clear();
         ChangeDownMax(startPosY - tilePuzzleManager.JarakAntarTile());
         // canDown = true;
         foreach(RaycastHit2D hit in hitObjectDown)
         {
             if(hit.collider.gameObject != gameObject)
             {
-                down.Add(hit.collider);
+                // down.Add(hit.collider);
                 ChangeDownMax(hit.transform.localPosition.y + tilePuzzleManager.JarakAntarTile());
                 break;
             }

@@ -29,6 +29,29 @@ public class TilePuzzleCorner : TilePuzzle
     public void RotateVisual(float rotasi)
     {
         Quaternion rotasi_visual = visual.transform.localRotation;
-        visual.transform.rotation = Quaternion.Euler(0f,0f,rotasi_visual.eulerAngles.z + rotasi);
+        float rotasiNew = rotasi_visual.eulerAngles.z + rotasi;
+        if(rotasiNew == 360)
+        {
+            rotasiNew = 0;
+        }
+        visual.transform.rotation = Quaternion.Euler(0f,0f,rotasiNew);
+        // Debug.Log(visual.transform.rotation.eulerAngles.z);
+        if(visual.transform.rotation.eulerAngles.z == rotationLU)
+        {
+            direction = DirectionCornerPuzzle.LU;
+        }
+        else if(visual.transform.rotation.eulerAngles.z == rotationRU)
+        {
+            direction = DirectionCornerPuzzle.RU;
+        }
+        else if(visual.transform.rotation.eulerAngles.z == rotationRB)
+        {
+            direction = DirectionCornerPuzzle.RB;
+        }
+        else if(visual.transform.rotation.eulerAngles.z == 0)
+        {
+            direction = DirectionCornerPuzzle.LB;
+        }
+        // Debug.Log(direction);
     }
 }

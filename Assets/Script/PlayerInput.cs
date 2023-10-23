@@ -22,9 +22,7 @@ public class PlayerInput : MonoBehaviour
         if(gameInput.GetMouse0InputDown() && !chosenTile)
         {
             Ray ray = Camera.main.ScreenPointToRay(gameInput.GetMousePosition());
-            // Debug.DrawRay(ray.origin, ray.direction, Color.blue);
-            
-            // Debug.Log("One");
+
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, layerClickAble);
             if(hit)
             {
@@ -35,7 +33,6 @@ public class PlayerInput : MonoBehaviour
                     chosenTile = hit.collider.GetComponent<MoveTile>();
                     chosenTile.ChangeIsBeingClicked(true);
                 }
-                
                 
             }
         }
@@ -48,34 +45,27 @@ public class PlayerInput : MonoBehaviour
                     chosenTile.ChangeWasBeingClicked(true);
                 }
                 chosenTile.ChangeIsBeingClicked(false);
-                
             }
-            
             
             chosenTile = null;
         }
         if(gameInput.GetMouse1InputDown())
         {
             Ray ray = Camera.main.ScreenPointToRay(gameInput.GetMousePosition());
-            // Debug.DrawRay(ray.origin, ray.direction, Color.blue);
-            
-            // Debug.Log("One");
+
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, layerClickAble);
             if(hit)
             {
-                // Debug.Log(hit.collider.gameObject.name);
                 TilePuzzle tilePuzzle = hit.collider.GetComponent<TilePuzzle>();
                 if(tilePuzzle.IsTilePuzzle() && tilePuzzle.IsRotateAble())
                 {
                     if(tilePuzzle.TileName() == TilePuzzleName.StraightWireHorizontal_MoveAble || tilePuzzle.TileName() == TilePuzzleName.StraightWireHorizontal_UnMoveAble)
                     {
                         hit.collider.GetComponent<TilePuzzleStraight>().RotateVisual(90);
-                        Debug.Log("Rotasi");
                     }
                     else if(tilePuzzle.TileName() == TilePuzzleName.CornerWireLB_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLB_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLU_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLU_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRB_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRB_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRU_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRU_UnMoveAble)
                     {
                         hit.collider.GetComponent<TilePuzzleCorner>().RotateVisual(90);
-                        Debug.Log("Rotasi");
                     }
                 }
                 
@@ -83,8 +73,5 @@ public class PlayerInput : MonoBehaviour
             }
         }
     }
-    // public void DeleteChosenTile()
-    // {
-    //     chosenTile = null;
-    // }
+
 }
