@@ -163,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114563338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 4, z: 0}
+  m_LocalPosition: {x: -4, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -455,6 +455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 662804194}
   - component: {fileID: 662804193}
+  - component: {fileID: 662804195}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -489,6 +490,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &662804195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662804192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0187890dbcdf6478199ea71bf2e122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateGame: 0
+  startState: 0
+  saveStartState: 0
+  startBlocks: []
+  finishBlocks: []
 --- !u!1 &924844233
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe57881661a16b499304a28db07ad86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzleGameManager: {fileID: 0}
   layerClickAble:
     serializedVersion: 2
     m_Bits: 64
@@ -589,7 +608,7 @@ MonoBehaviour:
   startPositionTile: {x: 0, y: 0}
   minPuzzleSize: {x: 0, y: 0}
   maxPuzzleSize: {x: 0, y: 0}
-  tilePuzzleList_ForThisPuzzle: 0200000008000000000000000e0000000600000000000000020000001400000000000000
+  tilePuzzleList_ForThisPuzzle: 060000001400000008000000140000000000000014000000060000001400000008000000
 --- !u!1 &969772992
 GameObject:
   m_ObjectHideFlags: 0

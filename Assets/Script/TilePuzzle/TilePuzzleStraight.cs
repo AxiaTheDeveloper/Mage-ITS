@@ -35,7 +35,6 @@ public class TilePuzzleStraight : TilePuzzle
         else
         {
             direction = DirectionStraightPuzzle.Horizontal;
-            //kasih jg d corner, trus ntr baru bikin checker buat slsain game
         }
         // Debug.Log(direction);
     }

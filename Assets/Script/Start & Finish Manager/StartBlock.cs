@@ -32,13 +32,15 @@ public class StartBlock : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Return))
         {
             Debug.Log("pew pew");
-            OutputElectricity();
+            StartOutputElectricity();
         }
     }
 
-    public void OutputElectricity()
+    public void StartOutputElectricity()
     {
-        bool isOutputting = false;
+        PuzzleGameManager.Instance.StartChecking();
+        // bool isOutputting = false;
+        bool isTheRightWay = false;
         collidersInside = new Collider2D[5];
         int colliderCollideTotal = outputCollider.OverlapCollider(new ContactFilter2D(), collidersInside);
         // Debug.Log(colliderCollideTotal + " " + gameObject);
@@ -52,30 +54,37 @@ public class StartBlock : MonoBehaviour
                 TilePuzzle tilePuzzleColliderInside = parent.GetComponentInParent<TilePuzzle>();
                 if(!tilePuzzleColliderInside.HasElectricity())
                 {
-                    isOutputting = true;
-                    AddTilePuzzleOn(tilePuzzleColliderInside);
-                    tilePuzzleColliderInside.GotInputElectricity(collider);
+                    // isOutputting = true;
+                    // AddTilePuzzleOn(tilePuzzleColliderInside);
+                    isTheRightWay = tilePuzzleColliderInside.GotInputElectricity(collider);
                     break;
                 }
             }
         }
-            
-        
-
-        if(!isOutputting)
+        if(!isTheRightWay)
         {
-            Debug.Log("Tidak ada apa-apa");
+            NotTheAnswer();
         }
+
+        // if(!isOutputting)
+        // {
+        //     Debug.Log("Tidak ada apa-apa");
+        // }
     }
 
     public void NotTheAnswer()
     {
         Debug.Log("Clear");
+
         for(int i = tilePuzzleOnList.Count - 1;i>=0;i--)
         {
+            Debug.Log(tilePuzzleOnList[i]);
             tilePuzzleOnList[i].NoElectricity();
         }
+
         tilePuzzleOnList.Clear();
+        PuzzleGameManager.Instance.StartGame();
+        // Debug.Log(tilePuzzleOnList.Count + "slsai");
     }
 }
 

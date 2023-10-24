@@ -21,9 +21,12 @@ public class GameInput : MonoBehaviour
     {
         return Input.GetMouseButtonUp(0);
     }
-
     public bool GetMouse1InputDown()
     {
         return Input.GetMouseButtonDown(1);
+    }
+    public bool GetPauseInput()
+    {
+        return Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P);
     }
 }
