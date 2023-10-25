@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StraightWireHorizontal_UnMoveAble_TilePuzzle
       objectReference: {fileID: 0}
+    - target: {fileID: 2882084582136376335, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5fbde2259374ca04cbe0d5471707fb72, type: 3}
     - target: {fileID: 7827120475807742009, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
       propertyPath: isMoveAble
       value: 0
