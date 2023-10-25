@@ -10,6 +10,7 @@ public class TilePuzzleCorner : TilePuzzle
     }
     [SerializeField]private DirectionCornerPuzzle direction;
     [SerializeField]private float rotationLU, rotationRU, rotationRB;
+    private bool isRotating = false;
     private void Awake() 
     {
         visual = transform.GetChild(0).gameObject;
@@ -34,8 +35,18 @@ public class TilePuzzleCorner : TilePuzzle
         {
             rotasiNew = 0;
         }
-        visual.transform.rotation = Quaternion.Euler(0f,0f,rotasiNew);
+        isRotating = true;
+        LeanTween.rotate(visual, new Vector3(0f,0f,rotasiNew), 0.5f).setOnComplete(
+            ()=> Berotasi()
+        );
+        // visual.transform.rotation = Quaternion.Euler(0f,0f,rotasiNew);
         // Debug.Log(visual.transform.rotation.eulerAngles.z);
+        
+        // Debug.Log(direction);
+    }
+    private void Berotasi()
+    {
+        isRotating = false;
         if(visual.transform.rotation.eulerAngles.z == rotationLU)
         {
             direction = DirectionCornerPuzzle.LU;
@@ -52,6 +63,9 @@ public class TilePuzzleCorner : TilePuzzle
         {
             direction = DirectionCornerPuzzle.LB;
         }
-        // Debug.Log(direction);
+    }
+    public bool IsRotating()
+    {
+        return isRotating;
     }
 }

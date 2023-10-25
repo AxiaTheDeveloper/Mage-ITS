@@ -59,5 +59,14 @@ PrefabInstance:
       propertyPath: tileName
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: visualSprite
+      value: 
+      objectReference: {fileID: 4224529222492860536}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+--- !u!212 &4224529222492860536 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2632367222548754654, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+  m_PrefabInstance: {fileID: 2173135223197778086}
+  m_PrefabAsset: {fileID: 0}

@@ -123,6 +123,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4705073149691618693, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4870059793075859604, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -131,6 +135,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5145254839447251343, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 68301da1cec8214499dceed144798b9d, type: 3}
     - target: {fileID: 6457064462142783385, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Name
       value: Output2
@@ -150,6 +158,14 @@ PrefabInstance:
     - target: {fileID: 7259884122108244188, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7259884122108244189, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7259884122108244189, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7259884123767429238, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_RootOrder
@@ -230,6 +246,7 @@ MonoBehaviour:
   tileName: 8
   startBlock: {fileID: 0}
   visual: {fileID: 0}
+  visualSprite: {fileID: 2632367222548754654}
   onVisual: {fileID: 0}
   offVisual: {fileID: 0}
   isTilePuzzle: 1
@@ -256,6 +273,11 @@ Transform:
 --- !u!61 &979562827209707373 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 7959981762652247612, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+  m_PrefabInstance: {fileID: 7201134921412942161}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2632367222548754654 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5145254839447251343, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
   m_PrefabInstance: {fileID: 7201134921412942161}
   m_PrefabAsset: {fileID: 0}
 --- !u!61 &3932769039769935554 stripped

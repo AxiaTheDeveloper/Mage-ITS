@@ -29,14 +29,14 @@ public class StartBlock : MonoBehaviour
     // }
     private void Update() 
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return) && PuzzleGameManager.Instance.GetStartState() == PuzzleGameManager.StartState.Normal)
         {
             Debug.Log("pew pew");
-            StartOutputElectricity();
+            StartCoroutine(StartOutputElectricity());
         }
     }
 
-    public void StartOutputElectricity()
+    public IEnumerator StartOutputElectricity()
     {
         PuzzleGameManager.Instance.StartChecking();
         // bool isOutputting = false;
@@ -49,14 +49,21 @@ public class StartBlock : MonoBehaviour
             // Debug.Log(collider);
             if(collider && collider.gameObject.CompareTag("Input"))
             {
-                
+                bool isCourotine = true;
                 Transform parent = collider.gameObject.GetComponentInParent<Transform>();
                 TilePuzzle tilePuzzleColliderInside = parent.GetComponentInParent<TilePuzzle>();
                 if(!tilePuzzleColliderInside.HasElectricity())
                 {
                     // isOutputting = true;
                     // AddTilePuzzleOn(tilePuzzleColliderInside);
-                    isTheRightWay = tilePuzzleColliderInside.GotInputElectricity(collider);
+                    StartCoroutine(tilePuzzleColliderInside.GotInputElectricity(collider,result =>
+                        {
+                            isTheRightWay = result;
+                            isCourotine = false;
+                        }
+                    ));
+                    yield return new WaitUntil(()=> !isCourotine);
+                    // Debug.Log(isTheRightWay;
                     break;
                 }
             }
@@ -74,17 +81,23 @@ public class StartBlock : MonoBehaviour
 
     public void NotTheAnswer()
     {
+        // StartCoroutine(waaiit());
         Debug.Log("Clear");
 
         for(int i = tilePuzzleOnList.Count - 1;i>=0;i--)
         {
-            Debug.Log(tilePuzzleOnList[i]);
+            // Debug.Log(tilePuzzleOnList[i]);
             tilePuzzleOnList[i].NoElectricity();
+            tilePuzzleOnList[i].OffAllInput();
         }
 
         tilePuzzleOnList.Clear();
         PuzzleGameManager.Instance.StartGame();
         // Debug.Log(tilePuzzleOnList.Count + "slsai");
+    }
+    private IEnumerator waaiit()
+    {
+        yield return new WaitForSeconds(0.2f);
     }
 }
 

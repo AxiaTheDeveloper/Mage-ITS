@@ -112,7 +112,7 @@ public class MoveTile : MonoBehaviour
                 {
                     if(hit.collider.gameObject != gameObject)
                     {
-                        Debug.Log(oldStartPosX + "ubah kanan");
+                        // Debug.Log(oldStartPosX + "ubah kanan");
                             // hit.collider.gameObject.GetComponent<MoveTile>().ChangeRightMax(oldStartPosX);
                         hit.collider.gameObject.GetComponent<MoveTile>().CheckTileRightNormal();
                             
@@ -123,7 +123,7 @@ public class MoveTile : MonoBehaviour
                 {
                     if(hit.collider.gameObject != gameObject)
                     {
-                        Debug.Log(oldStartPosX + "ubah kiri");
+                        // Debug.Log(oldStartPosX + "ubah kiri");
                             // hit.collider.gameObject.GetComponent<MoveTile>().ChangeLeftMax(oldStartPosX);
                         hit.collider.gameObject.GetComponent<MoveTile>().CheckTileLeftNormal();
                             // canRight = false;
@@ -133,10 +133,10 @@ public class MoveTile : MonoBehaviour
 
                 foreach(RaycastHit2D hit in hitObjectTop)
                 {
-                    Debug.Log(hit.collider + "atas");
+                    // Debug.Log(hit.collider + "atas");
                     if(hit.collider.gameObject != gameObject)
                     {
-                        Debug.Log(oldStartPosY + "ubah bawah");
+                        // Debug.Log(oldStartPosY + "ubah bawah");
                             // hit.collider.gameObject.GetComponent<MoveTile>().ChangeDownMax(oldStartPosY);
                         hit.collider.gameObject.GetComponent<MoveTile>().CheckTileDownNormal();
                             // canTop = false;
@@ -146,10 +146,10 @@ public class MoveTile : MonoBehaviour
                 }    
                 foreach(RaycastHit2D hit in hitObjectDown)
                 {
-                    Debug.Log("Orang di bwh suruh ganti");
+                    // Debug.Log("Orang di bwh suruh ganti");
                     if(hit.collider.gameObject != gameObject)
                     {
-                        Debug.Log(oldStartPosY + "ubah atas");
+                        // Debug.Log(oldStartPosY + "ubah atas");
                             // hit.collider.gameObject.GetComponent<MoveTile>().ChangeTopMax(oldStartPosY);
                         hit.collider.gameObject.GetComponent<MoveTile>().CheckTileTopNormal();
                             // canDown = false;

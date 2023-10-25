@@ -8,7 +8,7 @@ public class PuzzleGameManager : MonoBehaviour
     private GameInput gameInput;
     public enum GameState
     {
-        WaitingToStart, Start, Pause, Done
+        WaitingToStart, Start, Pause, Finish
     }
     public enum StartState
     {
@@ -17,9 +17,8 @@ public class PuzzleGameManager : MonoBehaviour
     [SerializeField]private GameState stateGame;
     [SerializeField]private StartState startState, saveStartState;
     private bool isPause;
+    private bool isGameFinish;
 
-    [SerializeField]private List<StartBlock> startBlocks;
-    [SerializeField]private List<StartBlock> finishBlocks;
     private void Awake() 
     {
         Instance = this;
@@ -73,7 +72,7 @@ public class PuzzleGameManager : MonoBehaviour
     }
     public void FinishGame()
     {
-        stateGame = GameState.Done;
+        stateGame = GameState.Finish;
         startState = StartState.None;
     }
 

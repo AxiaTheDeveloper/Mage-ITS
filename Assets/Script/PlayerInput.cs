@@ -64,11 +64,20 @@ public class PlayerInput : MonoBehaviour
                     {
                         if(tilePuzzle.TileName() == TilePuzzleName.StraightWireHorizontal_MoveAble || tilePuzzle.TileName() == TilePuzzleName.StraightWireHorizontal_UnMoveAble)
                         {
-                            hit.collider.GetComponent<TilePuzzleStraight>().RotateVisual(90);
+                            TilePuzzleStraight straight = hit.collider.GetComponent<TilePuzzleStraight>();
+                            if(!straight.IsRotating())
+                            {
+                                straight.RotateVisual(90);
+                            }
+                            
                         }
                         else if(tilePuzzle.TileName() == TilePuzzleName.CornerWireLB_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLB_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLU_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLU_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRB_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRB_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRU_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRU_UnMoveAble)
                         {
-                            hit.collider.GetComponent<TilePuzzleCorner>().RotateVisual(90);
+                            TilePuzzleCorner straight = hit.collider.GetComponent<TilePuzzleCorner>();
+                            if(!straight.IsRotating())
+                            {
+                                straight.RotateVisual(90);
+                            }
                         }
                     }
                     
