@@ -21,6 +21,7 @@ public class TilePuzzleStraight : TilePuzzle
     }
     public void RotateVisual(float rotasi)
     {
+        PuzzleGameManager.Instance.ChangeIsTileRotating(true);
         Quaternion rotasi_visual = visual.transform.localRotation;
         float rotasiNew = rotasi_visual.eulerAngles.z + rotasi;
         if(rotasiNew == 360)
@@ -41,6 +42,7 @@ public class TilePuzzleStraight : TilePuzzle
 
     private void Berotasi()
     {
+        PuzzleGameManager.Instance.ChangeIsTileRotating(false);
         isRotating = false;
         if(visual.transform.rotation.eulerAngles.z == 90 || visual.transform.rotation.eulerAngles.z == -90 || visual.transform.rotation.eulerAngles.z == 270 )
         {

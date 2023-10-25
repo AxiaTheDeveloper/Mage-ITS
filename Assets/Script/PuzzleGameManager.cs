@@ -17,7 +17,7 @@ public class PuzzleGameManager : MonoBehaviour
     [SerializeField]private GameState stateGame;
     [SerializeField]private StartState startState, saveStartState;
     private bool isPause;
-    private bool isGameFinish;
+    private bool isGameFinish, isTileMoving, isTIleRotating;
 
     private void Awake() 
     {
@@ -74,6 +74,23 @@ public class PuzzleGameManager : MonoBehaviour
     {
         stateGame = GameState.Finish;
         startState = StartState.None;
+    }
+
+    public bool IsTileMoving()
+    {
+        return isTileMoving;
+    }
+    public void ChangeIsTileMoving(bool change)
+    {
+        isTileMoving = change;
+    }
+    public bool IsTIleRotating()
+    {
+        return isTIleRotating;
+    }
+    public void ChangeIsTileRotating(bool change)
+    {
+        isTIleRotating = change;
     }
 
 

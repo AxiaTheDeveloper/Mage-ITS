@@ -266,7 +266,7 @@ public class MoveTile : MonoBehaviour
                 if(transform.localPosition.x % 2 == 0 && transform.localPosition.x != startPosX) 
                 {
                     wasBeingClicked = true;
-                    isBeingClicked = false;
+                    ChangeIsBeingClicked(false);
                 }
             }
             else if(goVertical)
@@ -274,7 +274,7 @@ public class MoveTile : MonoBehaviour
                 if(transform.localPosition.y % 2 == 0 && transform.localPosition.y != startPosY) 
                 {
                     wasBeingClicked = true;
-                    isBeingClicked = false;
+                    ChangeIsBeingClicked(false);
                 }
             }
         
@@ -287,6 +287,8 @@ public class MoveTile : MonoBehaviour
     public void ChangeIsBeingClicked(bool change)
     {
         isBeingClicked = change;
+        if(!isBeingClicked)PuzzleGameManager.Instance.ChangeIsTileMoving(false);
+        else PuzzleGameManager.Instance.ChangeIsTileMoving(true);
     }
     public void ChangeWasBeingClicked(bool change)
     {

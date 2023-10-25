@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public enum InputType
 {
@@ -121,6 +120,16 @@ public class TilePuzzle : MonoBehaviour
             {
                 if(collider && collider.gameObject.CompareTag("Input"))
                 {
+                    bool isOwnColliderInput = false;
+                    foreach(Collider2D cll in inputColliderList)
+                    {
+                        if(collider == cll)
+                        {
+                            isOwnColliderInput = true;
+                            break;
+                        }
+                    }
+                    if(isOwnColliderInput)continue;
                     Transform parent = collider.gameObject.GetComponentInParent<Transform>();
                     TilePuzzle tilePuzzleColliderInside = parent.GetComponentInParent<TilePuzzle>();
                     if(!tilePuzzleColliderInside)
@@ -133,29 +142,52 @@ public class TilePuzzle : MonoBehaviour
                     {
                         // isOutputting = true;
                         // startBlock.AddTilePuzzleOn(tilePuzzleColliderInside);
-                        StartCoroutine(tilePuzzleColliderInside.GotInputElectricity(collider,result =>
-                            {
-                                isOutputting = result;
-                            }
-                        ));
+                        isOutputting = tilePuzzleColliderInside.GotInputElectricity(collider);
                         break;
                     }
                     
                 }
-                if(PuzzleGameManager.Instance.GetStateGame() == PuzzleGameManager.GameState.Finish)
-                {
-                    return true;
-                    // break;
-                }
+                // if(PuzzleGameManager.Instance.GetStateGame() == PuzzleGameManager.GameState.Finish)
+                // {
+                //     return true;
+                //     // break;
+                // }
+                
+                
             }
+            if(colliderOutput)Debug.Log(isOutputting + " " + gameObject + colliderOutput.gameObject);
             
         }
 
         return isOutputting;
     }
-    public IEnumerator GotInputElectricity(Collider2D colliderGotInput, Action<bool> callback)
+    // public bool GotInputElectricity(Collider2D colliderGotInput)
+    // {
+    //     bool isTheRightWay = true;
+    //     int position = inputColliderList.IndexOf(colliderGotInput);
+    //     if(inputType == InputType.AND)
+    //     {
+    //         saveInputAlreadyGotInputed.Add(colliderGotInput);
+    //     }
+    //     // inputCounter++;
+    //     inputOnOff_Checker[position] = true;
+    //     // CheckSyaratNyalaTerpenuhi();
+    //     if(CheckSyaratNyalaTerpenuhi())
+    //     {
+            
+    //         YesElectricity();
+    //         startBlock.AddTilePuzzleOn(this);
+    //         isTheRightWay = OutputElectricity();
+    //     }
+    //     else
+    //     {
+    //         isTheRightWay = false;
+    //     }
+
+    //     return isTheRightWay;
+    // }
+    public bool GotInputElectricity(Collider2D colliderGotInput)
     {
-        // Debug.Log("hi");
         bool isTheRightWay = true;
         int position = inputColliderList.IndexOf(colliderGotInput);
         if(inputType == InputType.AND)
@@ -167,21 +199,18 @@ public class TilePuzzle : MonoBehaviour
         // CheckSyaratNyalaTerpenuhi();
         if(CheckSyaratNyalaTerpenuhi())
         {
-            yield return new WaitForSeconds(0.1f);
+            
             YesElectricity();
             startBlock.AddTilePuzzleOn(this);
             isTheRightWay = OutputElectricity();
-            Debug.Log(isTheRightWay + "benar");
         }
         else
         {
             isTheRightWay = false;
-            Debug.Log(isTheRightWay + "salah");
         }
-        
-        callback(isTheRightWay);
-    }
 
+        return isTheRightWay;
+    }
     public bool CheckSyaratNyalaTerpenuhi()
     {
         if(inputType == InputType.AllDirection)
@@ -190,9 +219,6 @@ public class TilePuzzle : MonoBehaviour
             {
                 if(inputChecker)
                 {
-                    // YesElectricity();
-                    // OutputElectricity();
-                    // break;
                     return true;
                 }
             }
@@ -211,16 +237,11 @@ public class TilePuzzle : MonoBehaviour
             }
             if(isTileOn)
             {
-                // YesElectricity();
-                // OutputElectricity();
+
                 return true;
             }
             else
             {
-                // if(inputCounter == 1)
-                // {
-                //     CheckIfThereInput();
-                // }
                 return false;
             }
         }

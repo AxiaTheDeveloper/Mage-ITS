@@ -5,6 +5,7 @@ using UnityEngine;
 public class StartBlock : MonoBehaviour
 {
     public static StartBlock Instance{get; private set;}
+    [SerializeField]private PuzzleGameManager puzzleGameManager;
     // public enum StartEnergyDirection
     // {
     //     Top, Down, Left, Right
@@ -19,6 +20,10 @@ public class StartBlock : MonoBehaviour
         Instance = this;
         // tilePuzzleOnList = new List<TilePuzzle>();
     }
+    private void Start() 
+    {
+        puzzleGameManager = PuzzleGameManager.Instance;
+    }
     public void AddTilePuzzleOn(TilePuzzle tileAdd)
     {
         tilePuzzleOnList.Add(tileAdd);
@@ -29,14 +34,15 @@ public class StartBlock : MonoBehaviour
     // }
     private void Update() 
     {
-        if(Input.GetKeyDown(KeyCode.Return) && PuzzleGameManager.Instance.GetStartState() == PuzzleGameManager.StartState.Normal)
+        if(Input.GetKeyDown(KeyCode.Return))
         {
             Debug.Log("pew pew");
-            StartCoroutine(StartOutputElectricity());
+            if(!puzzleGameManager.IsTileMoving() && !puzzleGameManager.IsTIleRotating())StartOutputElectricity();
+            
         }
     }
 
-    public IEnumerator StartOutputElectricity()
+    public void StartOutputElectricity()
     {
         PuzzleGameManager.Instance.StartChecking();
         // bool isOutputting = false;
@@ -49,21 +55,14 @@ public class StartBlock : MonoBehaviour
             // Debug.Log(collider);
             if(collider && collider.gameObject.CompareTag("Input"))
             {
-                bool isCourotine = true;
+                
                 Transform parent = collider.gameObject.GetComponentInParent<Transform>();
                 TilePuzzle tilePuzzleColliderInside = parent.GetComponentInParent<TilePuzzle>();
                 if(!tilePuzzleColliderInside.HasElectricity())
                 {
                     // isOutputting = true;
                     // AddTilePuzzleOn(tilePuzzleColliderInside);
-                    StartCoroutine(tilePuzzleColliderInside.GotInputElectricity(collider,result =>
-                        {
-                            isTheRightWay = result;
-                            isCourotine = false;
-                        }
-                    ));
-                    yield return new WaitUntil(()=> !isCourotine);
-                    // Debug.Log(isTheRightWay;
+                    isTheRightWay = tilePuzzleColliderInside.GotInputElectricity(collider);
                     break;
                 }
             }
@@ -81,23 +80,21 @@ public class StartBlock : MonoBehaviour
 
     public void NotTheAnswer()
     {
-        // StartCoroutine(waaiit());
         Debug.Log("Clear");
-
-        for(int i = tilePuzzleOnList.Count - 1;i>=0;i--)
+        if(!(PuzzleGameManager.Instance.GetStateGame() == PuzzleGameManager.GameState.Finish))
         {
-            // Debug.Log(tilePuzzleOnList[i]);
-            tilePuzzleOnList[i].NoElectricity();
-            tilePuzzleOnList[i].OffAllInput();
-        }
+            for(int i = tilePuzzleOnList.Count - 1;i>=0;i--)
+            {
+                // Debug.Log(tilePuzzleOnList[i]);
+                tilePuzzleOnList[i].NoElectricity();
+                tilePuzzleOnList[i].OffAllInput();
+            }
 
-        tilePuzzleOnList.Clear();
-        PuzzleGameManager.Instance.StartGame();
+            tilePuzzleOnList.Clear();
+            PuzzleGameManager.Instance.StartGame();
+        }
+        
         // Debug.Log(tilePuzzleOnList.Count + "slsai");
-    }
-    private IEnumerator waaiit()
-    {
-        yield return new WaitForSeconds(0.2f);
     }
 }
 

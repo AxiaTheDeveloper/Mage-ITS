@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98acc1abd6d162b4bab8940aac9328b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzleGameManager: {fileID: 0}
   outputCollider: {fileID: 1104549836}
   collidersInside: []
   tilePuzzleOnList: []
@@ -208,7 +209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268818504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -505,8 +506,6 @@ MonoBehaviour:
   stateGame: 0
   startState: 0
   saveStartState: 0
-  startBlocks: []
-  finishBlocks: []
 --- !u!1 &924844233
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,7 +607,7 @@ MonoBehaviour:
   startPositionTile: {x: 0, y: 0}
   minPuzzleSize: {x: 0, y: 0}
   maxPuzzleSize: {x: 0, y: 0}
-  tilePuzzleList_ForThisPuzzle: 060000001400000008000000140000000000000014000000060000001400000008000000
+  tilePuzzleList_ForThisPuzzle: 080000001400000006000000020000000600000002000000060000000200000006000000
 --- !u!1 &969772992
 GameObject:
   m_ObjectHideFlags: 0
