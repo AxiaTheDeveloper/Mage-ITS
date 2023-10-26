@@ -15,11 +15,6 @@ public class StartBlock : MonoBehaviour
     [SerializeField]private Collider2D[] collidersInside;
     [SerializeField]private List<TilePuzzle> tilePuzzleOnList; // kalo pake button buat nyalain lsg gitu gaperlu bikin list
 
-    private void Awake() 
-    {
-        Instance = this;
-        // tilePuzzleOnList = new List<TilePuzzle>();
-    }
     private void Start() 
     {
         puzzleGameManager = PuzzleGameManager.Instance;
@@ -32,69 +27,70 @@ public class StartBlock : MonoBehaviour
     // {
     //     tilePuzzleOnList.Remove(tileRemove);
     // }
-    private void Update() 
-    {
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-            Debug.Log("pew pew");
-            if(!puzzleGameManager.IsTileMoving() && !puzzleGameManager.IsTIleRotating())StartOutputElectricity();
+    // private void Update() 
+    // {
+    //     // if(Input.GetKeyDown(KeyCode.Return))
+    //     // {
+    //     //     Debug.Log("pew pew");
+    //     //     if(!puzzleGameManager.IsTileMoving() && !puzzleGameManager.IsTIleRotating())StartOutputElectricity();
             
-        }
-    }
+    //     // }
+    // }
 
-    public void StartOutputElectricity()
-    {
-        PuzzleGameManager.Instance.StartChecking();
-        // bool isOutputting = false;
-        bool isTheRightWay = false;
-        collidersInside = new Collider2D[5];
-        int colliderCollideTotal = outputCollider.OverlapCollider(new ContactFilter2D(), collidersInside);
-        // Debug.Log(colliderCollideTotal + " " + gameObject);
-        foreach(Collider2D collider in collidersInside)
-        {
-            // Debug.Log(collider);
-            if(collider && collider.gameObject.CompareTag("Input"))
-            {
+
+    // public void StartOutputElectricity()
+    // {
+    //     PuzzleGameManager.Instance.StartChecking();
+    //     // bool isOutputting = false;
+    //     bool isTheRightWay = false;
+    //     collidersInside = new Collider2D[5];
+    //     int colliderCollideTotal = outputCollider.OverlapCollider(new ContactFilter2D(), collidersInside);
+    //     // Debug.Log(colliderCollideTotal + " " + gameObject);
+    //     foreach(Collider2D collider in collidersInside)
+    //     {
+    //         // Debug.Log(collider);
+    //         if(collider && collider.gameObject.CompareTag("Input"))
+    //         {
                 
-                Transform parent = collider.gameObject.GetComponentInParent<Transform>();
-                TilePuzzle tilePuzzleColliderInside = parent.GetComponentInParent<TilePuzzle>();
-                if(!tilePuzzleColliderInside.HasElectricity())
-                {
-                    // isOutputting = true;
-                    // AddTilePuzzleOn(tilePuzzleColliderInside);
-                    isTheRightWay = tilePuzzleColliderInside.GotInputElectricity(collider);
-                    break;
-                }
-            }
-        }
-        if(!isTheRightWay)
-        {
-            NotTheAnswer();
-        }
+    //             Transform parent = collider.gameObject.GetComponentInParent<Transform>();
+    //             TilePuzzle tilePuzzleColliderInside = parent.GetComponentInParent<TilePuzzle>();
+    //             if(!tilePuzzleColliderInside.HasElectricity())
+    //             {
+    //                 // isOutputting = true;
+    //                 // AddTilePuzzleOn(tilePuzzleColliderInside);
+    //                 isTheRightWay = tilePuzzleColliderInside.GotInputElectricity(collider);
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     if(!isTheRightWay)
+    //     {
+    //         NotTheAnswer();
+    //     }
 
-        // if(!isOutputting)
-        // {
-        //     Debug.Log("Tidak ada apa-apa");
-        // }
-    }
+    //     // if(!isOutputting)
+    //     // {
+    //     //     Debug.Log("Tidak ada apa-apa");
+    //     // }
+    // }
 
-    public void NotTheAnswer()
-    {
-        Debug.Log("Clear");
-        if(!(PuzzleGameManager.Instance.GetStateGame() == PuzzleGameManager.GameState.Finish))
-        {
-            for(int i = tilePuzzleOnList.Count - 1;i>=0;i--)
-            {
-                // Debug.Log(tilePuzzleOnList[i]);
-                tilePuzzleOnList[i].NoElectricity();
-                tilePuzzleOnList[i].OffAllInput();
-            }
+    // public void NotTheAnswer()
+    // {
+    //     Debug.Log("Clear");
+    //     if(!(PuzzleGameManager.Instance.GetStateGame() == PuzzleGameManager.GameState.Finish))
+    //     {
+    //         for(int i = tilePuzzleOnList.Count - 1;i>=0;i--)
+    //         {
+    //             // Debug.Log(tilePuzzleOnList[i]);
+    //             tilePuzzleOnList[i].NoElectricity();
+    //             tilePuzzleOnList[i].OffAllInput();
+    //         }
 
-            tilePuzzleOnList.Clear();
-            PuzzleGameManager.Instance.StartGame();
-        }
+    //         tilePuzzleOnList.Clear();
+    //         PuzzleGameManager.Instance.StartGame();
+    //     }
         
-        // Debug.Log(tilePuzzleOnList.Count + "slsai");
-    }
+    //     // Debug.Log(tilePuzzleOnList.Count + "slsai");
+    // }
 }
 

@@ -58,8 +58,6 @@ public class MoveTile : MonoBehaviour
         if(wasBeingClicked)
         {
             //sbnrnya ada checker si kalo misal td tu digeser ud masuk ke zona empty lain gitu, ntr dia pindah ke posisi itu lsg, tp skrg ini dulu trus ada checker di seklilingnya ada kosong ato ga, kalo ga ya  min max posnya ya dibikin dia gabisa gerak
-
-            
             
             if(goHorizontal)
             {
@@ -500,7 +498,6 @@ public class MoveTile : MonoBehaviour
     public void GetTilePuzzleManager(TilePuzzleManager manager)
     {
         tilePuzzleManager = manager;
-        // tilePuzzleManager.OnFinishSpawnPuzzle += tilePuzzleManager_OnFinishSpawnPuzzle;
     }
 
     //yg normal ini cuma cek sendiri sendiri aja + semua

@@ -125,7 +125,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4705073149691618693, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4870059793075859604, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -138,7 +138,7 @@ PrefabInstance:
     - target: {fileID: 5145254839447251343, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 68301da1cec8214499dceed144798b9d, type: 3}
+      objectReference: {fileID: 21300000, guid: a52a4eef04a526741b29d27763463f84, type: 3}
     - target: {fileID: 6457064462142783385, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Name
       value: Output2
@@ -244,11 +244,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileName: 8
-  startBlock: {fileID: 0}
+  moveTile: {fileID: 4471265268071619437}
   visual: {fileID: 0}
   visualSprite: {fileID: 2632367222548754654}
-  onVisual: {fileID: 0}
-  offVisual: {fileID: 0}
+  onVisual:
+  - {fileID: 21300000, guid: a52a4eef04a526741b29d27763463f84, type: 3}
+  - {fileID: 21300000, guid: ea4dc45455497aa42ab1a765f2f5d418, type: 3}
+  - {fileID: 21300000, guid: cbad583eb50c2c84881e12c983c0f3cf, type: 3}
+  - {fileID: 21300000, guid: 7f9e6d8b3fa300a45bf6ba2d92bfe486, type: 3}
+  offVisual:
+  - {fileID: 21300000, guid: 719067d15a0fd4a4c8d0027a40649865, type: 3}
+  - {fileID: 21300000, guid: 203592e4c7cf89543a73c09a5c4ef458, type: 3}
+  - {fileID: 21300000, guid: 9b2f19c97b71fb54fb159c4b4a328c72, type: 3}
+  - {fileID: 21300000, guid: 7dbca1afd303d2a45873b990dd03e821, type: 3}
   isTilePuzzle: 1
   isMoveAble: 1
   isPuzzleAnswer: 1
@@ -261,6 +269,7 @@ MonoBehaviour:
   outputColliderList:
   - {fileID: 3932769039769935554}
   - {fileID: 6124906918028206069}
+  isBeingRotateed: 0
   direction: 0
   rotationLU: 270
   rotationRU: 180
@@ -285,3 +294,14 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 6159678080070616979, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
   m_PrefabInstance: {fileID: 7201134921412942161}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4471265268071619437 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6765165425833132604, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+  m_PrefabInstance: {fileID: 7201134921412942161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517870164215939366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1a392bbb709d1428cceb3d9c6ce6c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

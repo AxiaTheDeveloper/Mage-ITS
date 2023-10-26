@@ -18,31 +18,32 @@ public class TilePuzzleStraight : TilePuzzle
         {
             RotateVisual(rotationVertical);
         }
+        
     }
     public void RotateVisual(float rotasi)
     {
+        // Debug.Log("test");
         PuzzleGameManager.Instance.ChangeIsTileRotating(true);
+        ChangeIsBeingRotateed(true);
         Quaternion rotasi_visual = visual.transform.localRotation;
         float rotasiNew = rotasi_visual.eulerAngles.z + rotasi;
         if(rotasiNew == 360)
         {
             rotasiNew = 0;
         }
+        // Debug.Log(rotasiNew);
         isRotating = true;
-        LeanTween.rotate(visual, new Vector3(0f,0f,rotasiNew), 0.5f).setOnComplete(
-            ()=> Berotasi()
-        );
+        visual.transform.rotation = Quaternion.Euler(0f,0f,rotasiNew);
+        Berotasi();
         
         
-        // visual.transform.rotation = Quaternion.Euler(0f,0f,rotasiNew);r
-        // Debug.Log(visual.transform.rotation.eulerAngles.z);
-        
-        // Debug.Log(direction);
     }
 
     private void Berotasi()
     {
+        
         PuzzleGameManager.Instance.ChangeIsTileRotating(false);
+        ChangeIsBeingRotateed(false);
         isRotating = false;
         if(visual.transform.rotation.eulerAngles.z == 90 || visual.transform.rotation.eulerAngles.z == -90 || visual.transform.rotation.eulerAngles.z == 270 )
         {
@@ -52,10 +53,15 @@ public class TilePuzzleStraight : TilePuzzle
         {
             direction = DirectionStraightPuzzle.Horizontal;
         }
+        ChangeVisual();
     }
     public bool IsRotating()
     {
         return isRotating;
+    }
+    public int GetDirection()
+    {
+        return (int)direction;
     }
 
     

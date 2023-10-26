@@ -55,9 +55,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: StraightWireVertical_MoveAble_TilePuzzle
       objectReference: {fileID: 0}
+    - target: {fileID: 2882084582136376335, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f12c09be51043414a9cd6e254f9f5394, type: 3}
+    - target: {fileID: 7827120475807742009, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
+      propertyPath: tileName
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7827120475807742009, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
       propertyPath: direction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7827120475807742009, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
+      propertyPath: onVisual.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7827120475807742009, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
+      propertyPath: offVisual.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7827120475807742009, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
+      propertyPath: onVisual.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3918f74581888f047a3bc9b686349400, type: 3}
+    - target: {fileID: 7827120475807742009, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
+      propertyPath: offVisual.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 20a79414039c230469eec703fb333330, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}

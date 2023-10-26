@@ -37,10 +37,8 @@ public class TilePuzzleCorner : TilePuzzle
             rotasiNew = 0;
         }
         isRotating = true;
-        LeanTween.rotate(visual, new Vector3(0f,0f,rotasiNew), 0.5f).setOnComplete(
-            ()=> Berotasi()
-        );
-        // visual.transform.rotation = Quaternion.Euler(0f,0f,rotasiNew);
+        visual.transform.rotation = Quaternion.Euler(0f,0f,rotasiNew);
+        Berotasi();
         // Debug.Log(visual.transform.rotation.eulerAngles.z);
         
         // Debug.Log(direction);
@@ -65,9 +63,14 @@ public class TilePuzzleCorner : TilePuzzle
         {
             direction = DirectionCornerPuzzle.LB;
         }
+        ChangeVisual();
     }
     public bool IsRotating()
     {
         return isRotating;
+    }
+    public int GetDirection()
+    {
+        return (int)direction;
     }
 }

@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2632367222548754654, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7d1a1bf8566b48f4c83a9c5d47eabe8e, type: 3}
     - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
       propertyPath: tileName
       value: 7
@@ -63,5 +67,37 @@ PrefabInstance:
       propertyPath: isMoveAble
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: onVisual.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cb2c56e70ebfb54d9eeec6a2022d857, type: 3}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: onVisual.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7d1a1bf8566b48f4c83a9c5d47eabe8e, type: 3}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: onVisual.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c2e81e10cea8dd49b19c4409966e1a9, type: 3}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: onVisual.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: b98fd758453fe3c48bf3cf84aba4cafd, type: 3}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: offVisual.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 30bb0e38c756f6543add320f5ddf75ea, type: 3}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: offVisual.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 04647e87025623549897d643f3dc71e4, type: 3}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: offVisual.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2e472cd0de49a8e48898d1bb0ae15dc9, type: 3}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: offVisual.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 862417880ca866c4d9c08d629b6d910a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
