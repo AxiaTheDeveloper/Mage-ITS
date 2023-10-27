@@ -32,7 +32,7 @@ public class FadeInOutBlackScreen : MonoBehaviour
     {
         if(!playerSaveManager.IsPlayerRestartLevel())
         {
-            blackScreen.LeanAlpha(0, 0.5f).setOnComplete(
+            blackScreen.LeanAlpha(0, 0.8f).setOnComplete(
                 ()=>FadeOutEnded()
             );
         }

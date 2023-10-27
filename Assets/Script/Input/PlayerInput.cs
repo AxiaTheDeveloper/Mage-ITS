@@ -34,7 +34,8 @@ public class PlayerInput : MonoBehaviour
                     if(tilePuzzle.IsTilePuzzle() && tilePuzzle.IsMoveAble())
                     {
                         chosenTile = hit.collider.GetComponent<MoveTile>();
-                        chosenTile.ChangeIsBeingClicked(true);
+                        if(!chosenTile.IsFirstTime())chosenTile.ChangeIsBeingClicked(true);
+                        
                     }
                     
                 }

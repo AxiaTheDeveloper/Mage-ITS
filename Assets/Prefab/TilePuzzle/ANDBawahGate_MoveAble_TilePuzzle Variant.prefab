@@ -1,12 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1479950914184529733
+--- !u!1001 &2372342060018981991
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6997996922072277987, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997996922072277987, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997996922072277987, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997996922072277987, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997996922072277987, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 270
+      objectReference: {fileID: 0}
     - target: {fileID: 7302173617992008506, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,19 +73,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7302173617992008507, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
       propertyPath: m_Name
-      value: ANDGate_UnMoveAble_TilePuzzle
+      value: ANDBawahGate_MoveAble_TilePuzzle Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302173619654880145, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302173619654880145, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302173619654880145, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302173619654880145, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302173619654880145, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 7738391303783076005, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
       propertyPath: tileName
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7738391303783076005, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
-      propertyPath: isMoveAble
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7738391303783076005, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
-      propertyPath: isPuzzleAnswer
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}

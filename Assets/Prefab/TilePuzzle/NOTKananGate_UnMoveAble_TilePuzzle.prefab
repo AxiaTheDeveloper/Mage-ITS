@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4851678409574516455, guid: 682d0886c76d4124398001a898f4d64e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 46f1afd35576ad2429904022b9f26ec3, type: 3}
     - target: {fileID: 6986010939210610462, guid: 682d0886c76d4124398001a898f4d64e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,15 +57,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6986010939210610463, guid: 682d0886c76d4124398001a898f4d64e, type: 3}
       propertyPath: m_Name
-      value: NOTGate_UnMoveAble_TilePuzzle
+      value: NOTKananGate_UnMoveAble_TilePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 7980812005432288385, guid: 682d0886c76d4124398001a898f4d64e, type: 3}
       propertyPath: tileName
-      value: 19
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 7980812005432288385, guid: 682d0886c76d4124398001a898f4d64e, type: 3}
       propertyPath: isMoveAble
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7980812005432288385, guid: 682d0886c76d4124398001a898f4d64e, type: 3}
+      propertyPath: onVisual.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1f6e4b11e89eac948b8a56a0aca07335, type: 3}
+    - target: {fileID: 7980812005432288385, guid: 682d0886c76d4124398001a898f4d64e, type: 3}
+      propertyPath: offVisual.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 46f1afd35576ad2429904022b9f26ec3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 682d0886c76d4124398001a898f4d64e, type: 3}

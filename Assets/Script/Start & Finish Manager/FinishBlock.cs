@@ -20,15 +20,18 @@ public class FinishBlock : MonoBehaviour
                     TilePuzzle tilePuzzleColliderInside = parent.GetComponentInParent<TilePuzzle>();
                     if(tilePuzzleColliderInside && tilePuzzleColliderInside.HasElectricity())
                     {
-                        Debug.Log("Game WIN");
+                        // Debug.Log("Game WIN");
                         PlayerSaveManager.Instance.CalculateScore();
                         PuzzleGameManager.Instance.FinishGame();
-                        
                     }
                 }
                         
             }
         }
+        
+    }
+    public void takenum(int aaaa)
+    {
         
     }
 }

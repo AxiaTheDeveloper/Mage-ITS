@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6168022125342615170, guid: 99275f57a7465d94aacd6860cc466154, type: 3}
       propertyPath: m_Name
-      value: ORGate_UnMoveAble_TilePuzzle
+      value: ORKananGate_UnMoveAble_TilePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 6168022125342615171, guid: 99275f57a7465d94aacd6860cc466154, type: 3}
       propertyPath: m_RootOrder
@@ -57,11 +57,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6605644454476461340, guid: 99275f57a7465d94aacd6860cc466154, type: 3}
       propertyPath: tileName
-      value: 17
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 6605644454476461340, guid: 99275f57a7465d94aacd6860cc466154, type: 3}
       propertyPath: isMoveAble
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6605644454476461340, guid: 99275f57a7465d94aacd6860cc466154, type: 3}
+      propertyPath: onVisual.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4e349a44fc0d471458a9f56dd9b8443b, type: 3}
+    - target: {fileID: 6605644454476461340, guid: 99275f57a7465d94aacd6860cc466154, type: 3}
+      propertyPath: onVisual.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: cf559b84c2e11bd4a9dd3513cf87bcfe, type: 3}
+    - target: {fileID: 6605644454476461340, guid: 99275f57a7465d94aacd6860cc466154, type: 3}
+      propertyPath: offVisual.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 212555364a762064991a492a3a1ecf7b, type: 3}
+    - target: {fileID: 8520497481668155258, guid: 99275f57a7465d94aacd6860cc466154, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 212555364a762064991a492a3a1ecf7b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99275f57a7465d94aacd6860cc466154, type: 3}

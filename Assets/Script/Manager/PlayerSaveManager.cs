@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerSaveManager : MonoBehaviour
 {
@@ -8,8 +9,9 @@ public class PlayerSaveManager : MonoBehaviour
     [SerializeField]private PuzzleGameManager gameManager;
     [SerializeField]private GameSaveManager gameSaveManager;
     [SerializeField]private PlayerSaveScriptableObject playerSaveSO;
-    [SerializeField]private int playerTotalMove;
+    [SerializeField]private int playerTotalMove = 0;
     [SerializeField]private int score;
+    public event EventHandler OnChangeMove;
     private void Awake() 
     {
         Instance = this;
@@ -17,7 +19,8 @@ public class PlayerSaveManager : MonoBehaviour
     }
     public void SaveScore()
     {
-        playerSaveSO.levelScore[gameManager.PuzzleLevel() - 1] = score;
+        playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelScore = score;
+        playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelDone = true;
         // gameSaveManager.SaveData(playerSaveSO);
     }
     public int Score()
@@ -40,5 +43,15 @@ public class PlayerSaveManager : MonoBehaviour
     public bool IsPlayerRestartLevel()
     {
         return playerSaveSO.isPlayerRestartLevel;
+    }
+    public void AddPlayerMove()
+    {
+        playerTotalMove++;
+        OnChangeMove?.Invoke(this,EventArgs.Empty);
+        // Debug.Log(playerTotalMove);
+    }
+    public int GetPlayerMove()
+    {
+        return playerTotalMove;
     }
 }

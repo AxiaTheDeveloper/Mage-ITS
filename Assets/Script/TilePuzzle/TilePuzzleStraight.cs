@@ -41,7 +41,7 @@ public class TilePuzzleStraight : TilePuzzle
 
     private void Berotasi()
     {
-        
+        playerSave.AddPlayerMove();   
         PuzzleGameManager.Instance.ChangeIsTileRotating(false);
         ChangeIsBeingRotateed(false);
         isRotating = false;

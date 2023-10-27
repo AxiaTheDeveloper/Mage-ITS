@@ -12,5 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b744a8afd9fee68459ceb768b8436752, type: 3}
   m_Name: PlayerSave
   m_EditorClassIdentifier: 
-  levelScore: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  levelIdentities:
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
+  - levelScore: 0
+    levelDone: 0
   isPlayerRestartLevel: 0

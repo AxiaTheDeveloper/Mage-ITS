@@ -6,7 +6,7 @@ using System;
 public class PuzzleGameManager : MonoBehaviour
 {
     public static PuzzleGameManager Instance{get; private set;}
-    [SerializeField]private int level;
+    [SerializeField]private int level, maxMove;
     private GameInput gameInput;
     public enum GameState
     {

@@ -12,6 +12,7 @@ public class TilePuzzle : MonoBehaviour
     [SerializeField]private TilePuzzleName tileName;
     // [SerializeField]private StartBlock startBlock;
     [SerializeField]private PuzzleGameManager gameManager;
+    [SerializeField]protected PlayerSaveManager playerSave;
     [SerializeField]private MoveTile moveTile;
     [Header("Visuaaaaaaaaaal")]
     [SerializeField]protected GameObject visual;
@@ -48,19 +49,22 @@ public class TilePuzzle : MonoBehaviour
     }
     private void Start() 
     {
+        playerSave = PlayerSaveManager.Instance;
+        gameManager = PuzzleGameManager.Instance;
+        gameManager.OnRotatingTile += gameManager_OnRotatingTile;
         wasRotating = false;
-        if(isPuzzleAnswer)
-        {
-            ChangeVisual();
-        }
+        
         inputOnOff_Checker = new List<bool>();
         for(int i=0; i<inputColliderList.Count;i++)
         {
             inputOnOff_Checker.Add(false);
         }
+        if(isPuzzleAnswer)
+        {
+            ChangeVisual();
+        }
         // startBlock = StartBlock.Instance;
-        gameManager = PuzzleGameManager.Instance;
-        gameManager.OnRotatingTile += gameManager_OnRotatingTile;
+        
     }
 
     private void gameManager_OnRotatingTile(object sender, EventArgs e)
@@ -130,9 +134,6 @@ public class TilePuzzle : MonoBehaviour
                         
                         
                         
-
-                        
-                        
                     }
                     
                 }
@@ -143,12 +144,14 @@ public class TilePuzzle : MonoBehaviour
                 else 
                 {
                     if(hasElectricity)NoElectricity();
+                    if(tileName == TilePuzzleName.ANDAtas_Gate_MoveAble || tileName == TilePuzzleName.ANDAtas_Gate_UnMoveAble || tileName == TilePuzzleName.ANDBawah_Gate_MoveAble || tileName == TilePuzzleName.ANDBawah_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKanan_Gate_MoveAble || tileName == TilePuzzleName.ANDKanan_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKiri_Gate_MoveAble || tileName == TilePuzzleName.ANDKiri_Gate_UnMoveAble || tileName == TilePuzzleName.NOTAtas_Gate_MoveAble || tileName == TilePuzzleName.NOTAtas_Gate_UnMoveAble || tileName == TilePuzzleName.NOTBawah_Gate_MoveAble || tileName == TilePuzzleName.NOTBawah_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKanan_Gate_MoveAble || tileName == TilePuzzleName.NOTKanan_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKiri_Gate_MoveAble || tileName == TilePuzzleName.NOTKiri_Gate_UnMoveAble)ChangeVisual();
+                
                 }
             }
             else if(gameManager.IsTileMoving() || gameManager.IsTIleRotating())
             {
-                
                 if(hasElectricity)NoElectricity();
+                if(tileName == TilePuzzleName.ANDAtas_Gate_MoveAble || tileName == TilePuzzleName.ANDAtas_Gate_UnMoveAble || tileName == TilePuzzleName.ANDBawah_Gate_MoveAble || tileName == TilePuzzleName.ANDBawah_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKanan_Gate_MoveAble || tileName == TilePuzzleName.ANDKanan_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKiri_Gate_MoveAble || tileName == TilePuzzleName.ANDKiri_Gate_UnMoveAble || tileName == TilePuzzleName.NOTAtas_Gate_MoveAble || tileName == TilePuzzleName.NOTAtas_Gate_UnMoveAble || tileName == TilePuzzleName.NOTBawah_Gate_MoveAble || tileName == TilePuzzleName.NOTBawah_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKanan_Gate_MoveAble || tileName == TilePuzzleName.NOTKanan_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKiri_Gate_MoveAble || tileName == TilePuzzleName.NOTKiri_Gate_UnMoveAble)ChangeVisual();
             }
             if(wasRotating)StartCoroutine(StartCountDown());
         }
@@ -163,6 +166,7 @@ public class TilePuzzle : MonoBehaviour
 
     public void ChangeVisual()
     {
+        // Debug.Log(gameObject + " test" + hasElectricity);
         int visual = 0;
         if(isRotateAble)
         {
@@ -185,19 +189,87 @@ public class TilePuzzle : MonoBehaviour
                 visualSprite.sprite = offVisual[visual];
             }
         }
-        // if(hasElectricity)
-        // {
-        //     // visualSprite = onVisual;
-        //     visualSprite.sprite = onVisual[visual];
-        // }
-        // else
-        // {
-        //     // visualSprite = offVisual;
-        //     visualSprite.sprite = offVisual[visual];
-        // }
-        
-        
-        
+        else
+        {
+            if(hasElectricity)
+            {
+                // Debug.Log("harusnya ga ke sini");
+                if(tileName == TilePuzzleName.ANDAtas_Gate_MoveAble || tileName == TilePuzzleName.ANDAtas_Gate_UnMoveAble || tileName == TilePuzzleName.ANDBawah_Gate_MoveAble || tileName == TilePuzzleName.ANDBawah_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKanan_Gate_MoveAble || tileName == TilePuzzleName.ANDKanan_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKiri_Gate_MoveAble || tileName == TilePuzzleName.ANDKiri_Gate_UnMoveAble)
+                {
+                    if(inputOnOff_Checker[0] && inputOnOff_Checker[1])
+                    {
+                        visual = 0;
+                    }
+                    else if(inputOnOff_Checker[0] && inputOnOff_Checker[2])
+                    {
+                        visual = 1;
+                    }
+                    else if(inputOnOff_Checker[1] && inputOnOff_Checker[2])
+                    {
+                        visual = 2;
+                    }
+                    visualSprite.sprite = onVisual[visual];
+                }
+                if(tileName == TilePuzzleName.NOTAtas_Gate_MoveAble || tileName == TilePuzzleName.NOTAtas_Gate_UnMoveAble || tileName == TilePuzzleName.NOTBawah_Gate_MoveAble || tileName == TilePuzzleName.NOTBawah_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKanan_Gate_MoveAble || tileName == TilePuzzleName.NOTKanan_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKiri_Gate_MoveAble || tileName == TilePuzzleName.NOTKiri_Gate_UnMoveAble)visualSprite.sprite = onVisual[visual];
+
+                if(tileName == TilePuzzleName.ORAtas_Gate_MoveAble || tileName == TilePuzzleName.ORAtas_Gate_UnMoveAble || tileName == TilePuzzleName.ORBawah_Gate_MoveAble || tileName == TilePuzzleName.ORBawah_Gate_UnMoveAble || tileName == TilePuzzleName.ORKanan_Gate_MoveAble || tileName == TilePuzzleName.ORKanan_Gate_UnMoveAble || tileName == TilePuzzleName.ORKiri_Gate_MoveAble || tileName == TilePuzzleName.ORKiri_Gate_UnMoveAble)
+                {
+                    if(inputOnOff_Checker[0])
+                    {
+                        visual = 0;
+                    }
+                    else if(inputOnOff_Checker[1])
+                    {
+                        visual = 1;
+                    }
+                    visualSprite.sprite = onVisual[visual];
+                }
+                
+            }
+            else
+            {
+                if(tileName == TilePuzzleName.ANDAtas_Gate_MoveAble || tileName == TilePuzzleName.ANDAtas_Gate_UnMoveAble || tileName == TilePuzzleName.ANDBawah_Gate_MoveAble || tileName == TilePuzzleName.ANDBawah_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKanan_Gate_MoveAble || tileName == TilePuzzleName.ANDKanan_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKiri_Gate_MoveAble || tileName == TilePuzzleName.ANDKiri_Gate_UnMoveAble)
+                {
+                    if(inputOnOff_Checker[0] || inputOnOff_Checker[1] || inputOnOff_Checker[2])
+                    {
+                        if(inputOnOff_Checker[0])
+                        {
+                            visual = 1;
+                        }
+                        else if(inputOnOff_Checker[1])
+                        {
+                            visual = 2;
+                        }
+                        else if(inputOnOff_Checker[2])
+                        {
+                            visual = 3;
+                        }
+                    }
+                    else if(inputOnOff_Checker[0] && inputOnOff_Checker[1] && inputOnOff_Checker[2])
+                    {
+                        visual = 0; 
+                    }
+                    if(gameManager.IsTileMoving() || gameManager.IsTIleRotating())
+                    {
+                        visual = 0; 
+                    }
+                    visualSprite.sprite = offVisual[visual];
+                }
+                if(tileName == TilePuzzleName.NOTAtas_Gate_MoveAble || tileName == TilePuzzleName.NOTAtas_Gate_UnMoveAble || tileName == TilePuzzleName.NOTBawah_Gate_MoveAble || tileName == TilePuzzleName.NOTBawah_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKanan_Gate_MoveAble || tileName == TilePuzzleName.NOTKanan_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKiri_Gate_MoveAble || tileName == TilePuzzleName.NOTKiri_Gate_UnMoveAble)
+                {
+                    // Debug.Log("here??");
+                    visualSprite.sprite = offVisual[visual];
+                    if(gameManager.IsTileMoving() || gameManager.IsTIleRotating())visualSprite.sprite = onVisual[visual];
+                    
+                }
+
+                if(tileName == TilePuzzleName.ORAtas_Gate_MoveAble || tileName == TilePuzzleName.ORAtas_Gate_UnMoveAble || tileName == TilePuzzleName.ORBawah_Gate_MoveAble || tileName == TilePuzzleName.ORBawah_Gate_UnMoveAble || tileName == TilePuzzleName.ORKanan_Gate_MoveAble || tileName == TilePuzzleName.ORKanan_Gate_UnMoveAble || tileName == TilePuzzleName.ORKiri_Gate_MoveAble || tileName == TilePuzzleName.ORKiri_Gate_UnMoveAble)
+                {
+                    visualSprite.sprite = offVisual[visual];
+                }
+                
+            }
+        }
     }
     
     public TilePuzzleName TileName()
@@ -344,6 +416,7 @@ public class TilePuzzle : MonoBehaviour
 
     //     return isTheRightWay;
     // }
+
     public bool CheckSyaratNyalaTerpenuhi()
     {
         if(inputType == InputType.AllDirection)
@@ -358,19 +431,25 @@ public class TilePuzzle : MonoBehaviour
         }
         else if(inputType == InputType.AND)
         {
-            bool isTileOn = true;
+            bool isTileOn = false;
+            int totalGotInput = 0;
             foreach(bool inputChecker in inputOnOff_Checker)
             {
-                if(!inputChecker)
-                {
-                    isTileOn = false;
+                // if(!inputChecker)
+                // {
+                //     isTileOn = false;
                     
+                //     break;
+                // }
+                if(inputChecker)totalGotInput++;
+                if(totalGotInput == 2)
+                {
+                    isTileOn = true;
                     break;
                 }
             }
             if(isTileOn)
             {
-
                 return true;
             }
             else

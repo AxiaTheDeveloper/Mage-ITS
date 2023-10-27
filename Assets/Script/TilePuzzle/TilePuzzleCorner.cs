@@ -45,6 +45,7 @@ public class TilePuzzleCorner : TilePuzzle
     }
     private void Berotasi()
     {
+        playerSave.AddPlayerMove();
         PuzzleGameManager.Instance.ChangeIsTileRotating(false);
         isRotating = false;
         if(visual.transform.rotation.eulerAngles.z == rotationLU)

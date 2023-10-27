@@ -53,7 +53,96 @@ public class TilePuzzleManager : MonoBehaviour
                         tileInstantiate.transform.localPosition = new Vector3((startPositionTile.x + jarakAntarTile * j), (startPositionTile.y + jarakAntarTile * i)*-1, 0f);
 
                         tileInstantiate.transform.rotation = Quaternion.Euler(0f,0f,0f);
-                        tileInstantiate.GetComponent<MoveTile>().GetTilePuzzleManager(this);
+                        MoveTile tileNow = tileInstantiate.GetComponent<MoveTile>();
+                        tileNow.GetTilePuzzleManager(this);
+                        
+                        //GANTI LEFT
+                        if(j==0)
+                        {
+                            tileNow.ChangeLeftMax(MinPuzzleSize().x);
+                        }
+                        else
+                        {
+                            int listNumberLeft = 0;
+                            if(i == 0)
+                            {
+                                listNumberLeft = (j-1);
+                            }
+                            else
+                            {
+                                listNumberLeft = (j-1) + i*totalColumn;
+                            }
+                            if(tilePuzzleList_ForThisPuzzle[listNumberLeft] == TilePuzzleName.Null)
+                            {
+                                tileNow.ChangeLeftMax(tileInstantiate.transform.position.x - jarakAntarTile);
+                            }
+                            else
+                            {
+                                tileNow.ChangeLeftMax(tileInstantiate.transform.position.x);
+                            }
+                        }
+                        //GANTI RIGHT
+                        if(j == totalColumn - 1)
+                        {
+                            tileNow.ChangeRightMax(MaxPuzzleSize().x);
+                        }
+                        else
+                        {
+                            int listNumberRight = 0;
+                            if(i == 0)
+                            {
+                                listNumberRight = (j+1);
+                            }
+                            else
+                            {
+                                listNumberRight = (j+1) + i*totalColumn;
+                            }
+                            if(tilePuzzleList_ForThisPuzzle[listNumberRight] == TilePuzzleName.Null)
+                            {
+                                tileNow.ChangeRightMax(tileInstantiate.transform.position.x + jarakAntarTile);
+                            }
+                            else
+                            {
+                                tileNow.ChangeRightMax(tileInstantiate.transform.position.x);
+                            }
+                        }
+                        //GANTI TOP
+                        if(i == 0)
+                        {
+                            tileNow.ChangeTopMax(MinPuzzleSize().y);
+                        }
+                        else
+                        {
+                            int listNumberTop = 0;
+                            listNumberTop = j + (i-1)*totalColumn;
+                            if(tilePuzzleList_ForThisPuzzle[listNumberTop] == TilePuzzleName.Null)
+                            {
+                                tileNow.ChangeTopMax(tileInstantiate.transform.position.y + jarakAntarTile);
+                            }
+                            else
+                            {
+                                tileNow.ChangeTopMax(tileInstantiate.transform.position.y);
+                            }
+                        }
+                        //GANTI DOWN
+                        if(i == totalRow-1)
+                        {
+                            tileNow.ChangeDownMax(MaxPuzzleSize().y);
+                        }
+                        else
+                        {
+                            int listNumberTop = 0;
+                            listNumberTop = j + (i+1)*totalColumn;
+                            if(tilePuzzleList_ForThisPuzzle[listNumberTop] == TilePuzzleName.Null)
+                            {
+                                tileNow.ChangeDownMax(tileInstantiate.transform.position.y - jarakAntarTile);
+                            }
+                            else
+                            {
+                                tileNow.ChangeDownMax(tileInstantiate.transform.position.y);
+                            }
+                        }
+                        
                         break;
                     }
                 }

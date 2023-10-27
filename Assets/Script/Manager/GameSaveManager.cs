@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 [System.Serializable]
 class PlayerData
 {
-    public int[] levelScore;
+    public PlayerSaveScriptableObject.LevelIdentity[] levelIdentities;
 }
 public class GameSaveManager : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class GameSaveManager : MonoBehaviour
         string playerSavePath = Path.Combine(basePath, "ps.dat");
 
         PlayerData pd = new PlayerData();
-        pd.levelScore = playerSO.levelScore;
+        pd.levelIdentities = playerSO.levelIdentities;
 
         File.WriteAllText(playerSavePath, JsonUtility.ToJson(pd));
     }
@@ -33,6 +33,6 @@ public class GameSaveManager : MonoBehaviour
             return;
         }
         PlayerData pd = JsonUtility.FromJson<PlayerData>(File.ReadAllText(playerSavePath));
-        playerSO.levelScore = pd.levelScore;
+        playerSO.levelIdentities = pd.levelIdentities;
     }
 }
