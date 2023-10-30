@@ -29,7 +29,7 @@ public class TilePuzzleCorner : TilePuzzle
     }
     public void RotateVisual(float rotasi)
     {
-        PuzzleGameManager.Instance.ChangeIsTileRotating(true);
+        if(gameManager != null)gameManager.ChangeIsTileRotating(true);
         Quaternion rotasi_visual = visual.transform.localRotation;
         float rotasiNew = rotasi_visual.eulerAngles.z + rotasi;
         if(rotasiNew == 360)
@@ -45,8 +45,8 @@ public class TilePuzzleCorner : TilePuzzle
     }
     private void Berotasi()
     {
-        playerSave.AddPlayerMove();
-        PuzzleGameManager.Instance.ChangeIsTileRotating(false);
+        if(playerSave)playerSave.AddPlayerMove();
+        if(gameManager != null)gameManager.ChangeIsTileRotating(false);
         isRotating = false;
         if(visual.transform.rotation.eulerAngles.z == rotationLU)
         {

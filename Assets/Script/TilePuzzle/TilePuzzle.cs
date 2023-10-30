@@ -11,7 +11,7 @@ public class TilePuzzle : MonoBehaviour
 {
     [SerializeField]private TilePuzzleName tileName;
     // [SerializeField]private StartBlock startBlock;
-    [SerializeField]private PuzzleGameManager gameManager;
+    [SerializeField]protected PuzzleGameManager gameManager;
     [SerializeField]protected PlayerSaveManager playerSave;
     [SerializeField]private MoveTile moveTile;
     [Header("Visuaaaaaaaaaal")]
@@ -37,6 +37,7 @@ public class TilePuzzle : MonoBehaviour
     // [Header("Counter untuk AND ato siapapun yg nantinya butuh byk input gitu di syarat")]
     // private int inputCounter = 0;
     [SerializeField]protected bool isBeingRotateed, wasRotating;
+    private bool isCourotineRunning = false;
     private void Awake() 
     {
         // Debug.Log(transform.GetChild(0).GetComponent<Transform>() + " " + gameObject);
@@ -153,15 +154,17 @@ public class TilePuzzle : MonoBehaviour
                 if(hasElectricity)NoElectricity();
                 if(tileName == TilePuzzleName.ANDAtas_Gate_MoveAble || tileName == TilePuzzleName.ANDAtas_Gate_UnMoveAble || tileName == TilePuzzleName.ANDBawah_Gate_MoveAble || tileName == TilePuzzleName.ANDBawah_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKanan_Gate_MoveAble || tileName == TilePuzzleName.ANDKanan_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKiri_Gate_MoveAble || tileName == TilePuzzleName.ANDKiri_Gate_UnMoveAble || tileName == TilePuzzleName.NOTAtas_Gate_MoveAble || tileName == TilePuzzleName.NOTAtas_Gate_UnMoveAble || tileName == TilePuzzleName.NOTBawah_Gate_MoveAble || tileName == TilePuzzleName.NOTBawah_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKanan_Gate_MoveAble || tileName == TilePuzzleName.NOTKanan_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKiri_Gate_MoveAble || tileName == TilePuzzleName.NOTKiri_Gate_UnMoveAble)ChangeVisual();
             }
-            if(wasRotating)StartCoroutine(StartCountDown());
+            if(wasRotating && !isCourotineRunning)StartCoroutine(StartCountDown());
         }
         
         
     }
     public IEnumerator StartCountDown()
     {
-        yield return new WaitForSeconds(0.01f); 
+        isCourotineRunning = true;
+        yield return new WaitForSeconds(0.2f); 
         wasRotating = false;
+        isCourotineRunning = false;
     }
 
     public void ChangeVisual()
@@ -259,7 +262,7 @@ public class TilePuzzle : MonoBehaviour
                 {
                     // Debug.Log("here??");
                     visualSprite.sprite = offVisual[visual];
-                    if(gameManager.IsTileMoving() || gameManager.IsTIleRotating())visualSprite.sprite = onVisual[visual];
+                    if(gameManager.IsTileMoving() || gameManager.IsTIleRotating() || wasRotating)visualSprite.sprite = onVisual[visual];
                     
                 }
 
@@ -486,10 +489,12 @@ public class TilePuzzle : MonoBehaviour
             {
                 // YesElectricity();
                 // OutputElectricity();
+                Debug.Log("Nyala");
                 return true;
             }
             else
             {
+                Debug.Log("Mati");
                 // startBlock.NotTheAnswer();
                 return false;
             }

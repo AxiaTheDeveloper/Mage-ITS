@@ -63,5 +63,9 @@ PrefabInstance:
       propertyPath: tileName
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}

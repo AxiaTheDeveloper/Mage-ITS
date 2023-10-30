@@ -10,6 +10,7 @@ public class InGameUI : MonoBehaviour
 {
     [SerializeField]private PlayerSaveManager playerSaveManager;
     [SerializeField]private PuzzleGameManager gameManager;
+    [SerializeField]private PauseUI pauseUI;
     [SerializeField]private Button RestartButton, PauseButton, LevelListButton, NextLevelButton;
     [SerializeField]private TextMeshProUGUI moveText;
     private void Awake() 
@@ -65,13 +66,17 @@ public class InGameUI : MonoBehaviour
     }
     public void Restart()
     {
-        // PlayerSaveManager.Instance.PlayerRestart(true);
+        // playerSaveManager.PlayerRestart(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void Pause()
     {
-        PuzzleGameManager.Instance.Pause();
-        //showpauseUI
+        if(gameManager.GetStateGame() == PuzzleGameManager.GameState.Start)
+        {
+            PuzzleGameManager.Instance.Pause();
+            pauseUI.ShowPause();
+        }
+        
     }
     public void ShowLevelList()
     {
