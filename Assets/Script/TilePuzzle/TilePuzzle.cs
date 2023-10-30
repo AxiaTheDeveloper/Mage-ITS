@@ -11,10 +11,12 @@ public class TilePuzzle : MonoBehaviour
 {
     [SerializeField]private TilePuzzleName tileName;
     // [SerializeField]private StartBlock startBlock;
-    [SerializeField]private PuzzleGameManager gameManager;
+    [SerializeField]protected PuzzleGameManager gameManager;
     [SerializeField]protected PlayerSaveManager playerSave;
+    [SerializeField]protected InGameUI inGameUI;
     [SerializeField]private MoveTile moveTile;
     [Header("Visuaaaaaaaaaal")]
+    [SerializeField]private string nameTILE;
     [SerializeField]protected GameObject visual;
     [SerializeField]protected SpriteRenderer visualSprite;
     [SerializeField]private Sprite[] onVisual;
@@ -37,6 +39,7 @@ public class TilePuzzle : MonoBehaviour
     // [Header("Counter untuk AND ato siapapun yg nantinya butuh byk input gitu di syarat")]
     // private int inputCounter = 0;
     [SerializeField]protected bool isBeingRotateed, wasRotating;
+    private bool isCourotineRunning = false;
     private void Awake() 
     {
         // Debug.Log(transform.GetChild(0).GetComponent<Transform>() + " " + gameObject);
@@ -49,6 +52,7 @@ public class TilePuzzle : MonoBehaviour
     }
     private void Start() 
     {
+        inGameUI = InGameUI.Instance;
         playerSave = PlayerSaveManager.Instance;
         gameManager = PuzzleGameManager.Instance;
         gameManager.OnRotatingTile += gameManager_OnRotatingTile;
@@ -71,6 +75,7 @@ public class TilePuzzle : MonoBehaviour
     {
         // Debug.Log("Ded");
         NoElectricity();
+        // OffAllInput();
         wasRotating = true;
     }
 
@@ -82,19 +87,25 @@ public class TilePuzzle : MonoBehaviour
             if(wasRotating)
             {
                 NoElectricity();
+                // OffAllInput();
             }
             if(!gameManager.IsTileMoving() && !gameManager.IsTIleRotating() && !wasRotating)
             {
                 bool hasElectricityInput = false;
-                foreach(Collider2D colliderInput in inputColliderList)
+                // int counter = 0;
+                // foreach(Collider2D colliderInput in inputColliderList)
+                for(int i=0;i<inputColliderList.Count;i++)
                 {
+                    
                     // Debug.Log(colliderInput);
                     Collider2D[] collidersInside = new Collider2D[5];   
-                    colliderInput.OverlapCollider(new ContactFilter2D(), collidersInside);
+                    inputColliderList[i].OverlapCollider(new ContactFilter2D(), collidersInside);
                     // Debug.Log(collidersInside.Length);
                     hasElectricityInput = false;
+                    // counter++;
                     foreach(Collider2D collider in collidersInside)
                     {
+                        
                         
                         hasElectricityInput = false;
                         if(collider && collider.gameObject.CompareTag("Output") && collider.transform.parent.transform.parent.gameObject != this.gameObject)
@@ -104,8 +115,9 @@ public class TilePuzzle : MonoBehaviour
                             TilePuzzle tilePuzzleColliderInside = parent.GetComponentInParent<TilePuzzle>();
                             if(!tilePuzzleColliderInside)
                             {
-                                if(collider.transform.parent.transform.parent.gameObject)
+                                if(collider.transform.parent.transform.parent.gameObject.CompareTag("Start"))
                                 {
+                                    // Debug.Log(collider.transform.parent.transform.parent.gameObject);
                                     hasElectricityInput = true;
                                     // Debug.Log("Dari sini?");
                                 }
@@ -120,16 +132,32 @@ public class TilePuzzle : MonoBehaviour
                         }
                         if(hasElectricityInput)
                         {
-                            int position = inputColliderList.IndexOf(colliderInput);
-                            // Debug.Log(position + " " + "true");
-                            inputOnOff_Checker[position] = true;
-                            break;
+                            // if(!hasElectricity)
+                            // {
+                                // int position = inputColliderList.IndexOf(colliderInput);
+                                // Debug.Log(position + " " + "true");
+                                inputOnOff_Checker[i] = true;
+                                
+                                if(inputType == InputType.AllDirection)
+                                {
+                                    // Debug.Log(outputColliderList[i]);
+                                    if(outputColliderList[i].enabled)outputColliderList[i].enabled = false;
+                                }
+                                break;
+                            // }
+                            
                         }
                         else
                         {
-                            int position = inputColliderList.IndexOf(colliderInput);
+                            // int position = inputColliderList.IndexOf(colliderInput);
                             // Debug.Log(position + " " + "false");
-                            inputOnOff_Checker[position] = false;
+                            inputOnOff_Checker[i] = false;
+                            if(inputType == InputType.AllDirection)
+                            {
+                                // Debug.Log(outputColliderList[i]);
+                                if(!outputColliderList[i].enabled)outputColliderList[i].enabled = true;
+                            }
+                            
                         }
                         
                         
@@ -143,25 +171,44 @@ public class TilePuzzle : MonoBehaviour
                 }
                 else 
                 {
-                    if(hasElectricity)NoElectricity();
-                    if(tileName == TilePuzzleName.ANDAtas_Gate_MoveAble || tileName == TilePuzzleName.ANDAtas_Gate_UnMoveAble || tileName == TilePuzzleName.ANDBawah_Gate_MoveAble || tileName == TilePuzzleName.ANDBawah_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKanan_Gate_MoveAble || tileName == TilePuzzleName.ANDKanan_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKiri_Gate_MoveAble || tileName == TilePuzzleName.ANDKiri_Gate_UnMoveAble || tileName == TilePuzzleName.NOTAtas_Gate_MoveAble || tileName == TilePuzzleName.NOTAtas_Gate_UnMoveAble || tileName == TilePuzzleName.NOTBawah_Gate_MoveAble || tileName == TilePuzzleName.NOTBawah_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKanan_Gate_MoveAble || tileName == TilePuzzleName.NOTKanan_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKiri_Gate_MoveAble || tileName == TilePuzzleName.NOTKiri_Gate_UnMoveAble)ChangeVisual();
+                    if(hasElectricity)
+                    {
+                        NoElectricity();
+                    }
+                    
+                    if(tileName == TilePuzzleName.ANDAtas_Gate_MoveAble || tileName == TilePuzzleName.ANDAtas_Gate_UnMoveAble || tileName == TilePuzzleName.ANDBawah_Gate_MoveAble || tileName == TilePuzzleName.ANDBawah_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKanan_Gate_MoveAble || tileName == TilePuzzleName.ANDKanan_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKiri_Gate_MoveAble || tileName == TilePuzzleName.ANDKiri_Gate_UnMoveAble || tileName == TilePuzzleName.NOTAtas_Gate_MoveAble || tileName == TilePuzzleName.NOTAtas_Gate_UnMoveAble || tileName == TilePuzzleName.NOTBawah_Gate_MoveAble || tileName == TilePuzzleName.NOTBawah_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKanan_Gate_MoveAble || tileName == TilePuzzleName.NOTKanan_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKiri_Gate_MoveAble || tileName == TilePuzzleName.NOTKiri_Gate_UnMoveAble)
+                    {
+                        ChangeVisual();
+                    }
+                    else
+                    {
+                        // OffAllInput();
+                    }
+                    
                 
                 }
             }
             else if(gameManager.IsTileMoving() || gameManager.IsTIleRotating())
             {
-                if(hasElectricity)NoElectricity();
+                if(hasElectricity)
+                {
+                    // OffAllInput();
+                    NoElectricity();
+                }
+                
                 if(tileName == TilePuzzleName.ANDAtas_Gate_MoveAble || tileName == TilePuzzleName.ANDAtas_Gate_UnMoveAble || tileName == TilePuzzleName.ANDBawah_Gate_MoveAble || tileName == TilePuzzleName.ANDBawah_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKanan_Gate_MoveAble || tileName == TilePuzzleName.ANDKanan_Gate_UnMoveAble || tileName == TilePuzzleName.ANDKiri_Gate_MoveAble || tileName == TilePuzzleName.ANDKiri_Gate_UnMoveAble || tileName == TilePuzzleName.NOTAtas_Gate_MoveAble || tileName == TilePuzzleName.NOTAtas_Gate_UnMoveAble || tileName == TilePuzzleName.NOTBawah_Gate_MoveAble || tileName == TilePuzzleName.NOTBawah_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKanan_Gate_MoveAble || tileName == TilePuzzleName.NOTKanan_Gate_UnMoveAble || tileName == TilePuzzleName.NOTKiri_Gate_MoveAble || tileName == TilePuzzleName.NOTKiri_Gate_UnMoveAble)ChangeVisual();
             }
-            if(wasRotating)StartCoroutine(StartCountDown());
+            if(wasRotating && !isCourotineRunning)StartCoroutine(StartCountDown());
         }
         
         
     }
     public IEnumerator StartCountDown()
     {
-        yield return new WaitForSeconds(0.01f); 
+        isCourotineRunning = true;
+        yield return new WaitForSeconds(0.1f); 
         wasRotating = false;
+        isCourotineRunning = false;
     }
 
     public void ChangeVisual()
@@ -259,7 +306,7 @@ public class TilePuzzle : MonoBehaviour
                 {
                     // Debug.Log("here??");
                     visualSprite.sprite = offVisual[visual];
-                    if(gameManager.IsTileMoving() || gameManager.IsTIleRotating())visualSprite.sprite = onVisual[visual];
+                    if(gameManager.IsTileMoving() || gameManager.IsTIleRotating() || wasRotating)visualSprite.sprite = onVisual[visual];
                     
                 }
 
@@ -295,6 +342,7 @@ public class TilePuzzle : MonoBehaviour
     public void NoElectricity()
     {
         hasElectricity = false;
+        
         ChangeVisual();
         
     }
@@ -486,10 +534,12 @@ public class TilePuzzle : MonoBehaviour
             {
                 // YesElectricity();
                 // OutputElectricity();
+                Debug.Log("Nyala");
                 return true;
             }
             else
             {
+                Debug.Log("Mati");
                 // startBlock.NotTheAnswer();
                 return false;
             }
@@ -504,5 +554,13 @@ public class TilePuzzle : MonoBehaviour
         }
     }
 
+    private void OnMouseEnter() 
+    {
+        if(inGameUI)inGameUI.ChangeNameText(nameTILE);
+    }
+    private void OnMouseExit() 
+    {
+        if(inGameUI)inGameUI.ChangeNameText("");
+    }
 
 }

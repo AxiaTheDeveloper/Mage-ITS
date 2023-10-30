@@ -420,8 +420,12 @@ PrefabInstance:
       value: Split_MoveAble_TilePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: nameTILE
+      value: Split (Moveable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: tileName
-      value: 32
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: inputType
@@ -438,11 +442,11 @@ PrefabInstance:
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: inputColliderList.Array.data[0]
       value: 
-      objectReference: {fileID: 3165812790039731202}
+      objectReference: {fileID: 3015712216685919151}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: inputColliderList.Array.data[1]
       value: 
-      objectReference: {fileID: 3015712216685919151}
+      objectReference: {fileID: 3165812790039731202}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: inputColliderList.Array.data[2]
       value: 

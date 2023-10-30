@@ -96,6 +96,10 @@ PrefabInstance:
       value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 7738391303783076005, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
+      propertyPath: nameTILE
+      value: AND Gate Bawah (Moveable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7738391303783076005, guid: 94a5f2351c890e54d9e10b78992bf6b6, type: 3}
       propertyPath: tileName
       value: 20
       objectReference: {fileID: 0}

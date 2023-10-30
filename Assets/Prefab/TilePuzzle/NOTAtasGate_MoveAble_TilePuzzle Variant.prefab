@@ -88,6 +88,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7980812005432288385, guid: 682d0886c76d4124398001a898f4d64e, type: 3}
+      propertyPath: nameTILE
+      value: NOT Gate Atas (Moveable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980812005432288385, guid: 682d0886c76d4124398001a898f4d64e, type: 3}
       propertyPath: tileName
       value: 30
       objectReference: {fileID: 0}

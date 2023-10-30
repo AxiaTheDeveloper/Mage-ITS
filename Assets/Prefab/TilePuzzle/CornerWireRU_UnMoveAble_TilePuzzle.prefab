@@ -64,6 +64,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
       propertyPath: isMoveAble
       value: 0
       objectReference: {fileID: 0}

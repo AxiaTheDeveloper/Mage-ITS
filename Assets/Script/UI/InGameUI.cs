@@ -8,12 +8,16 @@ using System;
 
 public class InGameUI : MonoBehaviour
 {
+    public static InGameUI Instance{get; private set;}
     [SerializeField]private PlayerSaveManager playerSaveManager;
     [SerializeField]private PuzzleGameManager gameManager;
+    [SerializeField]private PauseUI pauseUI;
     [SerializeField]private Button RestartButton, PauseButton, LevelListButton, NextLevelButton;
-    [SerializeField]private TextMeshProUGUI moveText;
+    [SerializeField]private TextMeshProUGUI moveText, nameTileText;
     private void Awake() 
     {
+        Instance = this;
+        nameTileText.text = "";
         if(RestartButton != null)
         {
             RestartButton.onClick.AddListener(
@@ -76,6 +80,10 @@ public class InGameUI : MonoBehaviour
         string moveNumber = playerSaveManager.GetPlayerMove().ToString();
         moveText.text = moveNumber;
     }
+    public void ChangeNameText(string name)
+    {
+        nameTileText.text = name;
+    }
     public void Restart()
     {
         // PlayerSaveManager.Instance.PlayerRestart(true);
@@ -83,8 +91,11 @@ public class InGameUI : MonoBehaviour
     }
     public void Pause()
     {
-        PuzzleGameManager.Instance.Pause();
-        //showpauseUI
+        if(gameManager.GetStateGame() == PuzzleGameManager.GameState.Start)
+        {
+            PuzzleGameManager.Instance.Pause();
+            pauseUI.ShowPause();
+        }
     }
     public void ShowLevelList()
     {

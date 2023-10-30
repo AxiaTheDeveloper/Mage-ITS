@@ -60,6 +60,10 @@ PrefabInstance:
       value: NOTKananGate_UnMoveAble_TilePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 7980812005432288385, guid: 682d0886c76d4124398001a898f4d64e, type: 3}
+      propertyPath: nameTILE
+      value: NOT Gate Kanan (UnMoveable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980812005432288385, guid: 682d0886c76d4124398001a898f4d64e, type: 3}
       propertyPath: tileName
       value: 35
       objectReference: {fileID: 0}

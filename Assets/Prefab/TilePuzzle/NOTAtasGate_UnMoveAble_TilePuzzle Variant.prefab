@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 403439000445413057, guid: daf170b8be296484c977fdea3e962abc, type: 3}
+      propertyPath: nameTILE
+      value: NOT Gate Atas (UnMoveable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 403439000445413057, guid: daf170b8be296484c977fdea3e962abc, type: 3}
       propertyPath: tileName
       value: 31
       objectReference: {fileID: 0}

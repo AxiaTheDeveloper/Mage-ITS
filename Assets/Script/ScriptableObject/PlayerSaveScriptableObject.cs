@@ -11,6 +11,7 @@ public class PlayerSaveScriptableObject : ScriptableObject
     {
         public int levelScore;
         public bool levelDone;
+        public bool levelUnlocked;
     }
     public LevelIdentity[] levelIdentities;
     public bool isPlayerRestartLevel;

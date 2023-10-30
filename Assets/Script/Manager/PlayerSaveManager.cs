@@ -21,6 +21,11 @@ public class PlayerSaveManager : MonoBehaviour
     {
         playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelScore = score;
         playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelDone = true;
+        if(gameManager.PuzzleLevel() != playerSaveSO.levelIdentities.Length)
+        {
+            playerSaveSO.levelIdentities[gameManager.PuzzleLevel()].levelUnlocked = true;
+        }
+        
         // gameSaveManager.SaveData(playerSaveSO);
     }
     public int Score()

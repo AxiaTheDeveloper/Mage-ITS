@@ -96,6 +96,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8841593218240254732, guid: 985e636e5e908ac4688709335371f86e, type: 3}
+      propertyPath: nameTILE
+      value: OR Gate Kiri (Unmoveable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841593218240254732, guid: 985e636e5e908ac4688709335371f86e, type: 3}
       propertyPath: tileName
       value: 25
       objectReference: {fileID: 0}

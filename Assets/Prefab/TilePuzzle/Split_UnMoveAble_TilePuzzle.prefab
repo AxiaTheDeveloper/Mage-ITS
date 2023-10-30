@@ -56,8 +56,12 @@ PrefabInstance:
       value: Split_UnMoveAble_TilePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 3416608405445951959, guid: 45e3722c431662d46b38308586692ba9, type: 3}
+      propertyPath: nameTILE
+      value: Split (Unmoveable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416608405445951959, guid: 45e3722c431662d46b38308586692ba9, type: 3}
       propertyPath: tileName
-      value: 33
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 3416608405445951959, guid: 45e3722c431662d46b38308586692ba9, type: 3}
       propertyPath: isMoveAble

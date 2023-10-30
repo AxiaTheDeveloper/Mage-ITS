@@ -146,8 +146,16 @@ PrefabInstance:
       value: ORKananGate_MoveAble_TilePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: nameTILE
+      value: OR Gate Kanan (Moveable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: tileName
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: inputType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: onVisual.Array.size

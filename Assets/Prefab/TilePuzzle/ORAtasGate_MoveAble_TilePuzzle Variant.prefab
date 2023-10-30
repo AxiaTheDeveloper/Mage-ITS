@@ -96,6 +96,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6605644454476461340, guid: 99275f57a7465d94aacd6860cc466154, type: 3}
+      propertyPath: nameTILE
+      value: OR Gate Atas (Moveable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605644454476461340, guid: 99275f57a7465d94aacd6860cc466154, type: 3}
       propertyPath: tileName
       value: 26
       objectReference: {fileID: 0}

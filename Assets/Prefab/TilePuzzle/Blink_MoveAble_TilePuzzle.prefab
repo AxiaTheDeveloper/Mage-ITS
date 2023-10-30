@@ -68,6 +68,10 @@ PrefabInstance:
       value: Blink_MoveAble_TilePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: nameTILE
+      value: Blink (Moveable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: tileName
       value: 40
       objectReference: {fileID: 0}

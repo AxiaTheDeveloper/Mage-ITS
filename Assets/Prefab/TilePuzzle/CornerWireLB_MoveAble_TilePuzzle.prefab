@@ -244,7 +244,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileName: 8
+  gameManager: {fileID: 0}
+  playerSave: {fileID: 0}
+  inGameUI: {fileID: 0}
   moveTile: {fileID: 4471265268071619437}
+  nameTILE: Corner Wire (MoveAble)
   visual: {fileID: 0}
   visualSprite: {fileID: 2632367222548754654}
   onVisual:
@@ -267,9 +271,10 @@ MonoBehaviour:
   - {fileID: 979562827209707373}
   - {fileID: 8109162515176984104}
   outputColliderList:
-  - {fileID: 3932769039769935554}
   - {fileID: 6124906918028206069}
+  - {fileID: 3932769039769935554}
   isBeingRotateed: 0
+  wasRotating: 0
   direction: 0
   rotationLU: 270
   rotationRU: 180
