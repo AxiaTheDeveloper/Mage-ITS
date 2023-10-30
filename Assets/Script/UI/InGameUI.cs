@@ -14,30 +14,43 @@ public class InGameUI : MonoBehaviour
     [SerializeField]private TextMeshProUGUI moveText;
     private void Awake() 
     {
-        RestartButton.onClick.AddListener(
-            ()=>
+        if(RestartButton != null)
+        {
+            RestartButton.onClick.AddListener(
+            () =>
             {
                 Restart();
             }
         );
-        PauseButton.onClick.AddListener(
-            ()=>
+        }
+        if(PauseButton != null)
+        {
+            PauseButton.onClick.AddListener(
+            () =>
             {
                 Pause();
             }
         );
-        LevelListButton.onClick.AddListener(
-            ()=>
+        }
+        if(LevelListButton != null)
+        {
+            LevelListButton.onClick.AddListener(
+            () =>
             {
                 ShowLevelList();
             }
         );
-        NextLevelButton.onClick.AddListener(
-            ()=>
+        }
+        if(NextLevelButton != null)
+        {
+            NextLevelButton.onClick.AddListener(
+            () =>
             {
                 NextLevel();
             }
         );
+        }
+
     }
     private void Start()
     {
