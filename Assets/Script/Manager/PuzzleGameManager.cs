@@ -6,7 +6,9 @@ using System;
 public class PuzzleGameManager : MonoBehaviour
 {
     public static PuzzleGameManager Instance{get; private set;}
-    [SerializeField]private int level, maxMove;
+    [SerializeField]private int level;
+    [SerializeField]private LevelMaxMoveScriptableObject levelMaxMoveSO;
+    [SerializeField]private int[] maxMove = new int[3];
     private GameInput gameInput;
     public enum GameState
     {
@@ -21,7 +23,7 @@ public class PuzzleGameManager : MonoBehaviour
     private bool isPause;
     private bool isGameFinish, isTileMoving, isTIleRotating;
 
-    public event EventHandler OnRotatingTile, OnFinishGame;
+    public event EventHandler OnRotatingTile; //, OnFinishGame
     [SerializeField]private PlayerSaveManager playerSaveManager;
 
     private void Awake() 
@@ -31,6 +33,7 @@ public class PuzzleGameManager : MonoBehaviour
         startState = StartState.None;
         
         playerSaveManager = GetComponent<PlayerSaveManager>();
+        maxMove = levelMaxMoveSO.MaxMovePerLevel[level-1].maxMove;
     }
     private void Start() 
     {
@@ -55,6 +58,11 @@ public class PuzzleGameManager : MonoBehaviour
     public StartState GetStartState()
     {
         return startState;
+    }
+    public void WaitToStart()
+    {
+        stateGame = GameState.WaitingToStart;
+        startState = StartState.None;
     }
     public void StartGame()
     {
@@ -85,8 +93,11 @@ public class PuzzleGameManager : MonoBehaviour
     {
         stateGame = GameState.Finish;
         startState = StartState.None;
-        playerSaveManager.SaveScore();
-        OnFinishGame?.Invoke(this,EventArgs.Empty);
+        int score = CalculatingScore(playerSaveManager.GetPlayerMove());
+        //UI diubah lwt sini
+        Debug.Log(score);
+        playerSaveManager.SaveScore(score);
+        // OnFinishGame?.Invoke(this,EventArgs.Empty);
     }
 
     public bool IsTileMoving()
@@ -110,6 +121,22 @@ public class PuzzleGameManager : MonoBehaviour
         isTIleRotating = change;
     }
 
+    public int CalculatingScore(int totalPlayerMove)
+    {
+        if(totalPlayerMove <= maxMove[0])
+        {
+            return 3;
+        }
+        else if(totalPlayerMove <= maxMove[1])
+        {
+            return 2;
+        }
+        else if(totalPlayerMove <= maxMove[2])
+        {
+            return 1;
+        }
+        return 0;
+    }
 
 
 

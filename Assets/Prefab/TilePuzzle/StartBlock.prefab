@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6152780884693295562
+--- !u!1001 &2912599598185863104
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,29 +11,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4870059793075859604, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870059793075859604, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5145254839447251343, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c3b0adaacd63aee4d8515f29b2708456, type: 3}
-    - target: {fileID: 6457064462142783385, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      objectReference: {fileID: 21300000, guid: e79525c0386e0fd4faf7a0d8fc7cae36, type: 3}
+    - target: {fileID: 6159678080070616979, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7259884122108244188, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c3b0adaacd63aee4d8515f29b2708456, type: 3}
-    - target: {fileID: 7259884122108244188, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7259884122108244188, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7259884122108244188, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
-      propertyPath: m_Color.r
-      value: 1
+    - target: {fileID: 6159678080070616979, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
+      propertyPath: m_Size.y
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7259884123767429238, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_RootOrder
@@ -81,15 +77,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7259884123767429239, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: m_Name
-      value: ObstaclePipe_MoveAble_TilePuzzle
+      value: StartBlock
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: nameTILE
-      value: Obstacle (Moveable)
+      value: Source
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: tileName
-      value: 42
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: inputType
@@ -97,10 +93,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
       propertyPath: isMoveAble
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7706375805189032937, guid: 22014835b2a4c2c4989e2c51d3ff4ef6, type: 3}
-      propertyPath: isPuzzleAnswer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

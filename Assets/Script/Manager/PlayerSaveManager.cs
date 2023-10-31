@@ -17,25 +17,26 @@ public class PlayerSaveManager : MonoBehaviour
         Instance = this;
         gameManager = GetComponent<PuzzleGameManager>();
     }
-    public void SaveScore()
+    public void SaveScore(int score)
     {
-        playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelScore = score;
-        playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelDone = true;
-        if(gameManager.PuzzleLevel() != playerSaveSO.levelIdentities.Length)
+        
+        if(!playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelDone)
         {
-            playerSaveSO.levelIdentities[gameManager.PuzzleLevel()].levelUnlocked = true;
+            playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelScore = score;
+            playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelDone = true;
+            if(gameManager.PuzzleLevel() != playerSaveSO.levelIdentities.Length)
+            {
+                playerSaveSO.levelIdentities[gameManager.PuzzleLevel()].levelUnlocked = true;
+            }
+        }
+        else
+        {
+            if(score > playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelScore)playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelScore = score;
+
         }
         
+        
         // gameSaveManager.SaveData(playerSaveSO);
-    }
-    public int Score()
-    {
-        return score;
-    }
-    public void CalculateScore()
-    {
-        //if move segini lalalalala
-        score = 1;
     }
     public PlayerSaveScriptableObject GetPlayerSaveSO()
     {
@@ -58,5 +59,13 @@ public class PlayerSaveManager : MonoBehaviour
     public int GetPlayerMove()
     {
         return playerTotalMove;
+    }
+    public int GetTotalLevel()
+    {
+        return playerSaveSO.levelIdentities.Length;
+    }
+    public bool IsLevelDone()
+    {
+        return playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelDone;
     }
 }

@@ -5,7 +5,7 @@ using System;
 
 public enum InputType
 {
-    AllDirection, AND, OR, NOT
+    AllDirection, AND, OR, NOT, NoOutput
 }
 public class TilePuzzle : MonoBehaviour
 {
@@ -89,7 +89,7 @@ public class TilePuzzle : MonoBehaviour
                 NoElectricity();
                 // OffAllInput();
             }
-            if(!gameManager.IsTileMoving() && !gameManager.IsTIleRotating() && !wasRotating)
+            if(!gameManager.IsTileMoving() && !gameManager.IsTIleRotating() && !wasRotating  && inputType != InputType.NoOutput)
             {
                 bool hasElectricityInput = false;
                 // int counter = 0;
@@ -113,14 +113,9 @@ public class TilePuzzle : MonoBehaviour
                             
                             Transform parent = collider.gameObject.GetComponentInParent<Transform>();
                             TilePuzzle tilePuzzleColliderInside = parent.GetComponentInParent<TilePuzzle>();
-                            if(!tilePuzzleColliderInside)
+                            if(tilePuzzleColliderInside && tilePuzzleColliderInside.TileName() == TilePuzzleName.StartPuzzle)
                             {
-                                if(collider.transform.parent.transform.parent.gameObject.CompareTag("Start"))
-                                {
-                                    // Debug.Log(collider.transform.parent.transform.parent.gameObject);
-                                    hasElectricityInput = true;
-                                    // Debug.Log("Dari sini?");
-                                }
+                                hasElectricityInput = true;
                             }
                             else if(tilePuzzleColliderInside && tilePuzzleColliderInside.HasElectricity())
                             {
@@ -188,7 +183,7 @@ public class TilePuzzle : MonoBehaviour
                 
                 }
             }
-            else if(gameManager.IsTileMoving() || gameManager.IsTIleRotating())
+            else if((gameManager.IsTileMoving() || gameManager.IsTIleRotating()) && inputType != InputType.NoOutput)
             {
                 if(hasElectricity)
                 {
@@ -544,6 +539,7 @@ public class TilePuzzle : MonoBehaviour
                 return false;
             }
         }
+        else if(inputType == InputType.NoOutput) return false;
         return false;
     }
     public void OffAllInput()

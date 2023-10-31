@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PauseUI : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PauseUI : MonoBehaviour
     [SerializeField]private PlayerSaveManager playerSaveManager;
     [SerializeField]private PuzzleGameManager gameManager;
     [SerializeField]private Button UnPauseButton;
+    [SerializeField]private Slider BGM, SFX;
+    [SerializeField]private TextMeshProUGUI BGMVolText, SFXVolText;
     private void Awake() 
     {
         UnPauseButton.onClick.AddListener(
@@ -23,6 +26,8 @@ public class PauseUI : MonoBehaviour
     private void Start()
     {
         LeanTween.alpha(BG, 0, 0);
+        ChangeBGMVolText();
+        ChangeSFXVolText();
     }
 
     // Update is called once per frame
@@ -39,5 +44,26 @@ public class PauseUI : MonoBehaviour
             ()=>BG.SetActive(false)
         );
         LeanTween.moveLocal(pauseUI, startVector, 0.2f);
+    }
+    public Slider GetBGMSlider()
+    {
+        return BGM;
+    }
+    public Slider GetSFXSlider()
+    {
+        return SFX;
+    }
+    public void ChangeBGMVolText()
+    {
+        float value = Mathf.Round(BGM.value * 100);
+        // Debug.Log(value);
+        BGMVolText.text = value.ToString();
+    }
+    public void ChangeSFXVolText()
+    {
+        // Debug.Log(SFX.value);
+        float value = Mathf.Round(SFX.value * 100);
+        // Debug.Log(value);
+        SFXVolText.text = value.ToString();
     }
 }

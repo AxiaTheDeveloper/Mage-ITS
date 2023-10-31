@@ -10,9 +10,10 @@ public class InGameUI : MonoBehaviour
 {
     public static InGameUI Instance{get; private set;}
     [SerializeField]private PlayerSaveManager playerSaveManager;
+    [SerializeField]private FadeInOutBlackScreen fade;
     [SerializeField]private PuzzleGameManager gameManager;
     [SerializeField]private PauseUI pauseUI;
-    [SerializeField]private Button RestartButton, PauseButton, LevelListButton, NextLevelButton;
+    [SerializeField]private Button RestartButton, PauseButton, PrevLevelButton, NextLevelButton, QuitButton;
     [SerializeField]private TextMeshProUGUI moveText, nameTileText;
     private void Awake() 
     {
@@ -21,38 +22,52 @@ public class InGameUI : MonoBehaviour
         if(RestartButton != null)
         {
             RestartButton.onClick.AddListener(
-            () =>
-            {
-                Restart();
-            }
-        );
+                () =>
+                {
+                    
+                    Restart();
+                }
+            );
         }
         if(PauseButton != null)
         {
             PauseButton.onClick.AddListener(
-            () =>
-            {
-                Pause();
-            }
-        );
+                () =>
+                {
+                    Pause();
+                }
+            );
         }
-        if(LevelListButton != null)
+        if(PrevLevelButton != null)
         {
-            LevelListButton.onClick.AddListener(
-            () =>
-            {
-                ShowLevelList();
-            }
-        );
+            PrevLevelButton.onClick.AddListener(
+                () =>
+                {
+                    
+                    PrevLevel();
+                }
+            );
+            
+            
         }
         if(NextLevelButton != null)
         {
             NextLevelButton.onClick.AddListener(
-            () =>
-            {
-                NextLevel();
-            }
-        );
+                () =>
+                {
+                    
+                    NextLevel();
+                }
+            );
+        }
+        if(QuitButton != null)
+        {
+            QuitButton.onClick.AddListener(
+                () =>
+                {
+                    Quit();
+                }
+            );
         }
 
     }
@@ -63,13 +78,13 @@ public class InGameUI : MonoBehaviour
         playerSaveManager.OnChangeMove += playerSaveManager_OnChangeMove;
 
         gameManager = PuzzleGameManager.Instance;
-        gameManager.OnFinishGame += gameManager_OnFinishGame;
+        // gameManager.OnFinishGame += gameManager_OnFinishGame;
     }
-    private void gameManager_OnFinishGame(object sender, EventArgs e)
-    {
-        ShowNextLevelButton();
-        // Debug.Log("finish ui");
-    }
+    // private void gameManager_OnFinishGame(object sender, EventArgs e)
+    // {
+    //     ShowNextLevelButton();
+    //     // Debug.Log("finish ui");
+    // }
 
     private void playerSaveManager_OnChangeMove(object sender, EventArgs e)
     {
@@ -87,6 +102,7 @@ public class InGameUI : MonoBehaviour
     public void Restart()
     {
         // PlayerSaveManager.Instance.PlayerRestart(true);
+        PlayerPrefs.SetString("PlayerPress", "Restart");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void Pause()
@@ -97,16 +113,33 @@ public class InGameUI : MonoBehaviour
             pauseUI.ShowPause();
         }
     }
-    public void ShowLevelList()
+    public void PrevLevel()
     {
-        Debug.Log("level List");
+        if(gameManager.PuzzleLevel()==1)Debug.Log("Ga ada level sblmnya");//mainin suara kek teken tombol kosong?
+        else
+        {
+            PlayerPrefs.SetString("PlayerPress", "PrevLevel");
+            fade.FadeInBlackScreen();
+        }
+        
     }
     public void NextLevel()
     {
-        Debug.Log("next level");
+        
+        if(gameManager.PuzzleLevel()== playerSaveManager.GetTotalLevel() || !playerSaveManager.IsLevelDone())Debug.Log("Ga ada level setelahnya");//mainin suara kek teken tombol kosong?
+        else
+        {
+            PlayerPrefs.SetString("PlayerPress", "NextLevel");
+            fade.FadeInBlackScreen();
+        }
     }
-    public void ShowNextLevelButton()
+    // public void ShowNextLevelButton()
+    // {
+    //     NextLevelButton.gameObject.SetActive(true);
+    // }
+    public void Quit()
     {
-        NextLevelButton.gameObject.SetActive(true);
+        PlayerPrefs.SetString("PlayerPress", "Quit");
+        fade.FadeInBlackScreen();
     }
 }

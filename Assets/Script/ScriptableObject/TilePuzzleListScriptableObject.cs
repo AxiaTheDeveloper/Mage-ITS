@@ -20,7 +20,9 @@ public enum TilePuzzleName
     
     Blink_MoveAble, Blink_UnMoveAble, 
     
-    Obstacle_MoveAble, Obstacle_UnMoveAble
+    Obstacle_MoveAble, Obstacle_UnMoveAble,
+
+    FinishPuzzle, StartPuzzle
 }
 
 [CreateAssetMenu]
