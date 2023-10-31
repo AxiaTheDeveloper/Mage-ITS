@@ -6,40 +6,51 @@ using UnityEngine.SceneManagement;
 
 public class FadeInOutBlackScreen : MonoBehaviour
 {
+    public static FadeInOutBlackScreen Instance{get;private set;}
     [SerializeField]private RectTransform blackScreen;
     [SerializeField]private PlayerSaveManager playerSaveManager;
     [SerializeField]private GameObject tilePuzzle;
     [SerializeField]private Vector3 tilePuzzleStartPos, tilePuzzlePlayPos, tilePuzzleFinishPos;
     private bool isFirstUpdate = true, hasFadeOut;
+    [SerializeField]private bool isLevelScene = true;
     private string playerPress;
     private void Awake() 
     {
-        if(!PlayerPrefs.HasKey("PlayerPress"))
+        Instance = this;
+        if(isLevelScene)
         {
-            tilePuzzle.transform.position = tilePuzzleStartPos;
-        }
-        else
-        {
-            playerPress = PlayerPrefs.GetString("PlayerPress");
-            if(playerPress == "MainMenu")//jangan dilupakan ges
-            {
-
-            }
-            else if(playerPress == "NextLevel")
+            if(!PlayerPrefs.HasKey("PlayerPress"))
             {
                 tilePuzzle.transform.position = tilePuzzleStartPos;
             }
-            else if(playerPress == "PrevLevel")
+            else
             {
-                tilePuzzle.transform.position = tilePuzzleFinishPos;
+                playerPress = PlayerPrefs.GetString("PlayerPress");
+                if(playerPress == "MainMenu")//jangan dilupakan ges
+                {
+
+                }
+                else if(playerPress == "NextLevel")
+                {
+                    tilePuzzle.transform.position = tilePuzzleStartPos;
+                }
+                else if(playerPress == "PrevLevel")
+                {
+                    tilePuzzle.transform.position = tilePuzzleFinishPos;
+                }
+                else if(playerPress == "Restart")
+                {
+                    tilePuzzle.transform.position = tilePuzzlePlayPos;
+                }
+                
             }
-            else if(playerPress == "Restart")
-            {
-                tilePuzzle.transform.position = tilePuzzlePlayPos;
-            }
-            
+            if(!playerSaveManager.IsPlayerRestartLevel())blackScreen.gameObject.SetActive(true);
         }
-        if(!playerSaveManager.IsPlayerRestartLevel())blackScreen.gameObject.SetActive(true);
+        else
+        {
+            blackScreen.gameObject.SetActive(true);
+        }
+        
         
     }
     private void Update()
@@ -59,29 +70,52 @@ public class FadeInOutBlackScreen : MonoBehaviour
     }
     public void FadeOutBlackScreen()
     {
-        if(!playerSaveManager.IsPlayerRestartLevel())
+        if(isLevelScene)
         {
-            MoveTilePuzzle(tilePuzzlePlayPos, 0.5f);
-            blackScreen.LeanAlpha(0, 0.8f).setOnComplete(
-                ()=>FadeOutEnded()
-            );
+            if(!playerSaveManager.IsPlayerRestartLevel())
+            {
+                MoveTilePuzzle(tilePuzzlePlayPos, 0.5f);
+                blackScreen.LeanAlpha(0, 0.8f).setOnComplete(
+                    ()=>FadeOutEnded()
+                );
+            }
+            else
+            {
+                // PuzzleGameManager.Instance.StartGame();
+                // playerSaveManager.PlayerRestart(false);
+                
+                //di atas aja yg dinyalain kalo gamau ada fade in
+                blackScreen.LeanAlpha(0, 0.8f).setOnComplete(
+                    ()=>FadeOutEnded()
+                );
+            }
         }
         else
         {
-            // PuzzleGameManager.Instance.StartGame();
-            // playerSaveManager.PlayerRestart(false);
-            
-            //di atas aja yg dinyalain kalo gamau ada fade in
             blackScreen.LeanAlpha(0, 0.8f).setOnComplete(
                 ()=>FadeOutEnded()
             );
         }
         
+        
     }
     public void FadeOutEnded()
     {
-        PuzzleGameManager.Instance.StartGame();
+        if(isLevelScene)PuzzleGameManager.Instance.StartGame();
+        
         blackScreen.gameObject.SetActive(false);
+    }
+    public void FadeInBlackScreenOutsideInGame(int level)
+    {
+        blackScreen.gameObject.SetActive(true);
+        blackScreen.LeanAlpha(1, 0.8f).setOnComplete(
+            ()=>FadeInEndedOutsideInGame(level)
+        );
+    }
+    public void FadeInEndedOutsideInGame(int level)
+    {
+        string sceneName = "Level " + level;
+        SceneManager.LoadScene(sceneName);
     }
     public void FadeInBlackScreen()
     {
