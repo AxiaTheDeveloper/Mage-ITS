@@ -78,17 +78,25 @@ public class FinishBlock : MonoBehaviour
     }
     public void FinishStart()
     {
-
+        Debug.Log("Start");
+        PuzzleGameManager.Instance.MainMenuMode();
+        //terus geser ke level list sambil di reset semua terus balik ke start mode;
     }
     public void FinishSettings()
     {
-
+        Debug.Log("Settings");
+        PuzzleGameManager.Instance.MainMenuMode();
+        //terus geser ke level list sambil di reset semua terus balik ke start mode;
     }
-    public void FinishCredit(){
-
+    public void FinishCredit()
+    {
+        Debug.Log("Credit");
+        PuzzleGameManager.Instance.MainMenuMode();
+        //terus geser ke level list sambil di reset semua terus balik ke start mode;
     }
-    public void FinishQuit(){
-
+    public void FinishQuit()
+    {
+        Debug.Log("Quit");
     }
     public void ChangeTotalInputNeeded(int change)
     {

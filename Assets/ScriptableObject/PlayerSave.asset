@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: PlayerSave
   m_EditorClassIdentifier: 
   levelIdentities:
-  - levelScore: 1
-    levelDone: 0
+  - levelScore: 2
+    levelDone: 1
     levelUnlocked: 1
   - levelScore: 0
     levelDone: 0
-    levelUnlocked: 0
+    levelUnlocked: 1
   - levelScore: 0
     levelDone: 0
     levelUnlocked: 0
