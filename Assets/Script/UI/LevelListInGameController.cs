@@ -14,7 +14,7 @@ public class LevelListInGameController : MonoBehaviour
     [SerializeField]private Image[] levelList;
     [SerializeField]private LevelListInGameButton[] levelListButTheLevelListInGameButton;
     [SerializeField]private GameObject levelSelect;
-    [SerializeField]private Color[] colorList;//0 normal, 1 yg locked
+    [SerializeField]private Color[] colorList;//0 normal, 1 yg locke;
     
     private void Awake() 
     {

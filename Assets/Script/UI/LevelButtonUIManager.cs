@@ -10,6 +10,7 @@ public class LevelButtonUIManager : MonoBehaviour
     [SerializeField]private PlayerSaveScriptableObject playerSaveSO;
     [SerializeField]private Button buttonBack, settingButton;
     private int totalLevel;
+    [SerializeField]private SFXManager sFXManager;
     private void Awake() 
     {
         
@@ -27,8 +28,13 @@ public class LevelButtonUIManager : MonoBehaviour
             levelButton.GetLevelIdentity(playerSaveSO.levelIdentities[i],i+1);
         }
     } 
+    private void Start() 
+    {
+        sFXManager = SFXManager.Instance;
+    }
     public void BackToMainMenu()
     {
+        if(sFXManager)sFXManager.PlayButtonCanBeUsed();
         Debug.Log("Kembali ke main menu");
     }
 

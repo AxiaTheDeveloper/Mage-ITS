@@ -308,8 +308,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileName: 2
-  startBlock: {fileID: 0}
+  gameManager: {fileID: 0}
+  playerSave: {fileID: 0}
+  inGameUI: {fileID: 0}
   moveTile: {fileID: 6765165425833132604}
+  nameTILE: 
   visual: {fileID: 0}
   visualSprite: {fileID: 5145254839447251343}
   onVisual:
@@ -325,6 +328,7 @@ MonoBehaviour:
   inputColliderList: []
   outputColliderList: []
   isBeingRotateed: 0
+  wasRotating: 0
 --- !u!114 &6765165425833132604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,6 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePuzzle: {fileID: 0}
   tilePuzzleManager: {fileID: 0}
+  playerSave: {fileID: 0}
   gameInput: {fileID: 0}
   mousePos: {x: 0, y: 0, z: 0}
   startPosX: 0
@@ -347,9 +352,16 @@ MonoBehaviour:
   topMax: 0
   rightMax: 0
   downMax: 0
+  top: []
+  down: []
+  left: []
+  right: []
   tileLayerCollide:
     serializedVersion: 2
     m_Bits: 64
   goHorizontal: 0
   goVertical: 0
   isFirstTime: 1
+  sFXManager: {fileID: 0}
+  counterSFX: 0
+  maxCounterSFx: 5

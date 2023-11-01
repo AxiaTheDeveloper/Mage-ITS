@@ -12,7 +12,7 @@ public class PuzzleGameManager : MonoBehaviour
     private GameInput gameInput;
     public enum GameState
     {
-        WaitingToStart, Start, Pause, Finish
+        WaitingToStart, Start, Pause, Finish, MainMenuMode
     }
     public enum StartState
     {
@@ -62,6 +62,11 @@ public class PuzzleGameManager : MonoBehaviour
     public void WaitToStart()
     {
         stateGame = GameState.WaitingToStart;
+        startState = StartState.None;
+    }
+    public void MainMenuMode()
+    {
+        stateGame = GameState.MainMenuMode;
         startState = StartState.None;
     }
     public void StartGame()

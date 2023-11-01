@@ -22,6 +22,8 @@ public class MoveTile : MonoBehaviour
     [SerializeField]private LayerMask tileLayerCollide;
 
     [SerializeField]private bool goHorizontal, goVertical, isFirstTime = true;
+    [SerializeField]private SFXManager sFXManager;
+    // [SerializeField]private int counterSFX, maxCounterSFx;
 
     private void Awake() 
     {
@@ -36,6 +38,7 @@ public class MoveTile : MonoBehaviour
     }
     private void Start() 
     {
+        sFXManager = SFXManager.Instance;
         playerSave = PlayerSaveManager.Instance;
         gameInput = GameInput.Instance;
 
@@ -62,6 +65,7 @@ public class MoveTile : MonoBehaviour
     {
         if(wasBeingClicked)
         {
+            // counterSFX = 0;
             //sbnrnya ada checker si kalo misal td tu digeser ud masuk ke zona empty lain gitu, ntr dia pindah ke posisi itu lsg, tp skrg ini dulu trus ada checker di seklilingnya ada kosong ato ga, kalo ga ya  min max posnya ya dibikin dia gabisa gerak
             
             if(goHorizontal)
@@ -111,6 +115,11 @@ public class MoveTile : MonoBehaviour
 
             if(!isFirstTime)
             {
+                if(sFXManager)
+                {
+                    if(sFXManager.isOnDragPlay())sFXManager.StopOnDrag();
+                    sFXManager.PlayOnDragRelease();
+                }
                 if((oldStartPosX != startPosX && oldStartPosY == startPosY) || (oldStartPosX == startPosX && oldStartPosY != startPosY))
                 {
                     playerSave.AddPlayerMove();
@@ -263,7 +272,28 @@ public class MoveTile : MonoBehaviour
                 // }
                 
             }
-            
+            if(sFXManager && !sFXManager.isOnDragPlay())sFXManager.PlayOnDrag();
+            // if(transform.localPosition != mousePos)
+            // {
+            //     if(sFXManager && !sFXManager.isOnDragPlay())sFXManager.PlayOnDrag();
+            // }
+            // else
+            // {
+            //     if(sFXManager && sFXManager.isOnDragPlay())
+            //     {
+            //         if(counterSFX == maxCounterSFx)
+            //         {
+            //             sFXManager.StopOnDrag();
+            //             counterSFX = 0;
+            //         }
+            //         else
+            //         {
+            //             counterSFX++;
+            //         }
+            //     }
+                
+            // }
+            // Debug.Log(transform.localPosition + " " + mousePos);
             transform.localPosition = mousePos;
 
             
@@ -274,6 +304,8 @@ public class MoveTile : MonoBehaviour
                 {
                     wasBeingClicked = true;
                     ChangeIsBeingClicked(false);
+                    
+                    
                 }
             }
             else if(goVertical)

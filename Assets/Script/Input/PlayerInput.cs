@@ -49,6 +49,7 @@ public class PlayerInput : MonoBehaviour
                         chosenTile.ChangeWasBeingClicked(true);
                     }
                     chosenTile.ChangeIsBeingClicked(false);
+                    
                 }
                 
                 chosenTile = null;

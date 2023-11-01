@@ -529,12 +529,12 @@ public class TilePuzzle : MonoBehaviour
             {
                 // YesElectricity();
                 // OutputElectricity();
-                Debug.Log("Nyala");
+                // Debug.Log("Nyala");
                 return true;
             }
             else
             {
-                Debug.Log("Mati");
+                // Debug.Log("Mati");
                 // startBlock.NotTheAnswer();
                 return false;
             }

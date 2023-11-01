@@ -9,6 +9,7 @@ public class LevelButtonUI : MonoBehaviour
     [SerializeField]private int levelNumber;
     [SerializeField]private Button levelButton;
     [SerializeField]private PlayerSaveScriptableObject.LevelIdentity thisLevelIdentity;
+    [SerializeField]private SFXManager sFXManager;
     private void Awake() 
     {
         
@@ -22,19 +23,23 @@ public class LevelButtonUI : MonoBehaviour
     }
     private void Start() 
     {
+        sFXManager = SFXManager.Instance;
         fade = FadeInOutBlackScreen.Instance;
     }
     public void GoToLevel()
     {
         if(thisLevelIdentity.levelUnlocked)
         {
+            if(sFXManager)sFXManager.PlayButtonCanBeUsed();
             PlayerPrefs.SetString("PlayerPress", "Main Menu");
             fade.FadeInBlackScreenOutsideInGame(levelNumber);
         }
         else
         {
+            if(sFXManager)sFXManager.PlayButtonCantBeUsed();
             //mainin suara kek teken tombol kosong
             Debug.Log("not yet unlocked");
+            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject (null);
         }
         
     }
