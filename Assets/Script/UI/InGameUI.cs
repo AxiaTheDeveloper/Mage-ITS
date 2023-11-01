@@ -116,7 +116,12 @@ public class InGameUI : MonoBehaviour
     }
     public void PrevLevel()
     {
-        if(gameManager.PuzzleLevel()==1)Debug.Log("Ga ada level sblmnya");//mainin suara kek teken tombol kosong?
+        if(gameManager.PuzzleLevel()==1)
+        {
+            Debug.Log("Ga ada level sblmnya");
+            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject (null);
+        }
+        
         else
         {
             PlayerPrefs.SetString("PlayerPress", "PrevLevel");
@@ -132,6 +137,7 @@ public class InGameUI : MonoBehaviour
             Debug.Log("Ga ada level setelahnya");
             // NextLevelButton.spriteState = normal
             // EventSystem.current.SetSelectedGameObject(null);
+            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject (null);
         }
         //mainin suara kek teken tombol kosong?
         else

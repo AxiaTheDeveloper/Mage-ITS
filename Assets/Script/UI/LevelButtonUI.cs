@@ -35,6 +35,7 @@ public class LevelButtonUI : MonoBehaviour
         {
             //mainin suara kek teken tombol kosong
             Debug.Log("not yet unlocked");
+            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject (null);
         }
         
     }
