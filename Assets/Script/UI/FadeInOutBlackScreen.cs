@@ -157,4 +157,30 @@ public class FadeInOutBlackScreen : MonoBehaviour
         }
         SceneManager.LoadScene(sceneName);
     }
+    public void FadeInBlackScreenJumpLevelList(int levelNumber)
+    {
+        PuzzleGameManager.Instance.WaitToStart();
+        playerPress = PlayerPrefs.GetString("PlayerPress");
+        if(playerPress == "JumpNext")
+        {
+            PlayerPrefs.SetString("PlayerPress", "NextLevel");
+            MoveTilePuzzle(tilePuzzleFinishPos, 0.5f);
+        }
+        else if(playerPress == "JumpPrev")
+        {
+            PlayerPrefs.SetString("PlayerPress", "PrevLevel");
+            MoveTilePuzzle(tilePuzzleStartPos, 0.5f);
+        }
+        
+        //ini jg kalo quit gamau fade in tinggal ksh kondisi
+        blackScreen.gameObject.SetActive(true);
+        blackScreen.LeanAlpha(1, 0.8f).setOnComplete(
+            ()=>FadeInEndedJumpLevelList(levelNumber)
+        );
+    }
+    public void FadeInEndedJumpLevelList(int levelNumber)
+    {
+        string sceneName = "Level " + levelNumber;
+        SceneManager.LoadScene(sceneName);
+    }
 }

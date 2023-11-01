@@ -15,11 +15,11 @@ MonoBehaviour:
   MaxMovePerLevel:
   - maxMove: 0a000000140000001e000000
   - maxMove: 05000000090000000c000000
-  - maxMove: 
-  - maxMove: 
-  - maxMove: 
-  - maxMove: 
-  - maxMove: 
-  - maxMove: 
-  - maxMove: 
-  - maxMove: 
+  - maxMove: 000000000000000000000000
+  - maxMove: 000000000000000000000000
+  - maxMove: 000000000000000000000000
+  - maxMove: 000000000000000000000000
+  - maxMove: 000000000000000000000000
+  - maxMove: 000000000000000000000000
+  - maxMove: 000000000000000000000000
+  - maxMove: 000000000000000000000000

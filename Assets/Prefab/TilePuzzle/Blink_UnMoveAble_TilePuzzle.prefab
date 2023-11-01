@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1720644493152574137, guid: 58cdb339bd9e5194abcfd6d62b98b0ad, type: 3}
       propertyPath: tileName
-      value: 41
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 1720644493152574137, guid: 58cdb339bd9e5194abcfd6d62b98b0ad, type: 3}
       propertyPath: isMoveAble

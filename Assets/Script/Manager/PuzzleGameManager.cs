@@ -23,7 +23,7 @@ public class PuzzleGameManager : MonoBehaviour
     private bool isPause;
     private bool isGameFinish, isTileMoving, isTIleRotating;
 
-    public event EventHandler OnRotatingTile; //, OnFinishGame
+    public event EventHandler OnRotatingTile, OnFinishGame; //
     [SerializeField]private PlayerSaveManager playerSaveManager;
 
     private void Awake() 
@@ -95,9 +95,9 @@ public class PuzzleGameManager : MonoBehaviour
         startState = StartState.None;
         int score = CalculatingScore(playerSaveManager.GetPlayerMove());
         //UI diubah lwt sini
-        Debug.Log(score);
+        // Debug.Log(score);
         playerSaveManager.SaveScore(score);
-        // OnFinishGame?.Invoke(this,EventArgs.Empty);
+        OnFinishGame?.Invoke(this,EventArgs.Empty);
     }
 
     public bool IsTileMoving()

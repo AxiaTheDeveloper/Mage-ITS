@@ -15,6 +15,7 @@ public class InGameUI : MonoBehaviour
     [SerializeField]private PauseUI pauseUI;
     [SerializeField]private Button RestartButton, PauseButton, PrevLevelButton, NextLevelButton, QuitButton;
     [SerializeField]private TextMeshProUGUI moveText, nameTileText;
+    
     private void Awake() 
     {
         Instance = this;
@@ -126,7 +127,13 @@ public class InGameUI : MonoBehaviour
     public void NextLevel()
     {
         
-        if(gameManager.PuzzleLevel()== playerSaveManager.GetTotalLevel() || !playerSaveManager.IsLevelDone())Debug.Log("Ga ada level setelahnya");//mainin suara kek teken tombol kosong?
+        if(gameManager.PuzzleLevel()== playerSaveManager.GetTotalLevel() || !playerSaveManager.IsLevelDone())
+        {
+            Debug.Log("Ga ada level setelahnya");
+            // NextLevelButton.spriteState = normal
+            // EventSystem.current.SetSelectedGameObject(null);
+        }
+        //mainin suara kek teken tombol kosong?
         else
         {
             PlayerPrefs.SetString("PlayerPress", "NextLevel");

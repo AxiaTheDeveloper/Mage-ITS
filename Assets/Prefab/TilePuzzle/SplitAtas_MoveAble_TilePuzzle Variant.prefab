@@ -1,12 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5388604787164983045
+--- !u!1001 &2903524204713434982
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 903023358543277082, guid: 45e3722c431662d46b38308586692ba9, type: 3}
+      propertyPath: tileName
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 903023358543277082, guid: 45e3722c431662d46b38308586692ba9, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2402946299992904264, guid: 45e3722c431662d46b38308586692ba9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,19 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2402946299992904265, guid: 45e3722c431662d46b38308586692ba9, type: 3}
       propertyPath: m_Name
-      value: Split_UnMoveAble_TilePuzzle
-      objectReference: {fileID: 0}
-    - target: {fileID: 3416608405445951959, guid: 45e3722c431662d46b38308586692ba9, type: 3}
-      propertyPath: nameTILE
-      value: Split (Unmoveable)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3416608405445951959, guid: 45e3722c431662d46b38308586692ba9, type: 3}
-      propertyPath: tileName
-      value: 39
-      objectReference: {fileID: 0}
-    - target: {fileID: 3416608405445951959, guid: 45e3722c431662d46b38308586692ba9, type: 3}
-      propertyPath: isMoveAble
-      value: 0
+      value: SplitAtas_MoveAble_TilePuzzle Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45e3722c431662d46b38308586692ba9, type: 3}

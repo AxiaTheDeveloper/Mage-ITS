@@ -16,7 +16,7 @@ public enum TilePuzzleName
     
     NOTAtas_Gate_MoveAble, NOTAtas_Gate_UnMoveAble, NOTBawah_Gate_MoveAble, NOTBawah_Gate_UnMoveAble, NOTKanan_Gate_MoveAble, NOTKanan_Gate_UnMoveAble, NOTKiri_Gate_MoveAble, NOTKiri_Gate_UnMoveAble,
     
-    Split_MoveAble, Split_UnMoveAble, 
+    SplitKanan_MoveAble, SplitKanan_UnMoveAble, SplitKiri_MoveAble, SplitKiri_UnMoveAble, SplitAtas_MoveAble, SplitAtas_UnMoveAble, SplitBawah_MoveAble, SplitBawah_UnMoveAble,
     
     Blink_MoveAble, Blink_UnMoveAble, 
     

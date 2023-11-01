@@ -12,7 +12,8 @@ public class LevelButtonUIManager : MonoBehaviour
     private int totalLevel;
     private void Awake() 
     {
-        buttonBack.onClick.AddListener(
+        
+        if(buttonBack)buttonBack.onClick.AddListener(
             ()=>
             {
                 BackToMainMenu();
