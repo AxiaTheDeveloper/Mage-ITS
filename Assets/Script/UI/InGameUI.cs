@@ -15,6 +15,7 @@ public class InGameUI : MonoBehaviour
     [SerializeField]private PauseUI pauseUI;
     [SerializeField]private Button RestartButton, PauseButton, PrevLevelButton, NextLevelButton, QuitButton;
     [SerializeField]private TextMeshProUGUI moveText, nameTileText;
+    [SerializeField]private SFXManager sFXManager;
     
     private void Awake() 
     {
@@ -79,6 +80,7 @@ public class InGameUI : MonoBehaviour
         playerSaveManager.OnChangeMove += playerSaveManager_OnChangeMove;
 
         gameManager = PuzzleGameManager.Instance;
+        sFXManager = SFXManager.Instance;
         // gameManager.OnFinishGame += gameManager_OnFinishGame;
     }
     // private void gameManager_OnFinishGame(object sender, EventArgs e)
@@ -103,6 +105,7 @@ public class InGameUI : MonoBehaviour
     public void Restart()
     {
         // PlayerSaveManager.Instance.PlayerRestart(true);
+        if(sFXManager)sFXManager.PlayButtonCanBeUsed();
         PlayerPrefs.SetString("PlayerPress", "Restart");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -110,6 +113,7 @@ public class InGameUI : MonoBehaviour
     {
         if(gameManager.GetStateGame() == PuzzleGameManager.GameState.Start)
         {
+            if(sFXManager)sFXManager.PlayButtonCanBeUsed();
             PuzzleGameManager.Instance.Pause();
             pauseUI.ShowPause();
         }
@@ -118,12 +122,14 @@ public class InGameUI : MonoBehaviour
     {
         if(gameManager.PuzzleLevel()==1)
         {
+            if(sFXManager)sFXManager.PlayButtonCantBeUsed();
             Debug.Log("Ga ada level sblmnya");
             UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject (null);
         }
         
         else
         {
+            if(sFXManager)sFXManager.PlayButtonCanBeUsed();
             PlayerPrefs.SetString("PlayerPress", "PrevLevel");
             fade.FadeInBlackScreen();
         }
@@ -134,6 +140,7 @@ public class InGameUI : MonoBehaviour
         
         if(gameManager.PuzzleLevel()== playerSaveManager.GetTotalLevel() || !playerSaveManager.IsLevelDone())
         {
+            if(sFXManager)sFXManager.PlayButtonCantBeUsed();
             Debug.Log("Ga ada level setelahnya");
             // NextLevelButton.spriteState = normal
             // EventSystem.current.SetSelectedGameObject(null);
@@ -142,6 +149,7 @@ public class InGameUI : MonoBehaviour
         //mainin suara kek teken tombol kosong?
         else
         {
+            if(sFXManager)sFXManager.PlayButtonCanBeUsed();
             PlayerPrefs.SetString("PlayerPress", "NextLevel");
             fade.FadeInBlackScreen();
         }
@@ -152,6 +160,8 @@ public class InGameUI : MonoBehaviour
     // }
     public void Quit()
     {
+        if(sFXManager)sFXManager.PlayButtonCanBeUsed();
+        
         PlayerPrefs.SetString("PlayerPress", "Quit");
         fade.FadeInBlackScreen();
     }

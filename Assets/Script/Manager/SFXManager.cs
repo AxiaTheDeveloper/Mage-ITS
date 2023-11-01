@@ -8,7 +8,7 @@ public class SFXManager : MonoBehaviour
     public static SFXManager Instance{get; private set;}
     
     [SerializeField]private Slider SFXSlider;
-    [SerializeField]private AudioSource AudioA;
+    [SerializeField]private AudioSource buttonCanBeUsed_SFX, buttonCantBeUsed_SFX, onDrag__SFX, onDragRelease_SFX, rotate__SFX;
     private const string PLAYER_PREF_SFX_VOLUME = "SFX_Volume";
     private float volume;
     private void Awake() 
@@ -23,17 +23,46 @@ public class SFXManager : MonoBehaviour
         SFXSlider.value = volume;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void UpdateSFX_Volume(){
         volume = SFXSlider.value;
-        if(AudioA)AudioA.volume = volume;
-
-
+        if(buttonCanBeUsed_SFX)buttonCanBeUsed_SFX.volume = volume;
+        if(buttonCantBeUsed_SFX)buttonCantBeUsed_SFX.volume = volume;
+        if(onDrag__SFX)onDrag__SFX.volume = volume;
+        if(onDragRelease_SFX)onDragRelease_SFX.volume = volume;
+        if(rotate__SFX)rotate__SFX.volume = volume;
 
         PlayerPrefs.SetFloat(PLAYER_PREF_SFX_VOLUME, volume);
     }
+
+    public void PlayOnDrag()
+    {
+        if(onDrag__SFX)onDrag__SFX.Play();
+    }
+    public void StopOnDrag()
+    {
+        if(onDrag__SFX)onDrag__SFX.Stop();
+    }
+    public bool isOnDragPlay()
+    {
+        return onDrag__SFX.isPlaying;
+    }
+    public void PlayOnDragRelease()
+    {
+        if(onDragRelease_SFX)onDragRelease_SFX.Play();
+    }
+
+    public void PlayButtonCanBeUsed()
+    {
+        if(buttonCanBeUsed_SFX)buttonCanBeUsed_SFX.Play();
+    }
+    public void PlayButtonCantBeUsed()
+    {
+        Debug.Log("Play");
+        if(buttonCantBeUsed_SFX)buttonCantBeUsed_SFX.Play();
+    }
+    public void PlayRotate()
+    {
+        if(rotate__SFX)rotate__SFX.Play();
+    }
+    
 }

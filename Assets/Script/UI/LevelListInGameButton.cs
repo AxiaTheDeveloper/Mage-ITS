@@ -9,16 +9,22 @@ public class LevelListInGameButton : MonoBehaviour
     private int levelNumber;
     private PlayerSaveScriptableObject.LevelIdentity thisLevelIdentity;
     [SerializeField]private FadeInOutBlackScreen fade;
+    [SerializeField]private SFXManager sFXManager;
     private void Awake() 
     {
         button = GetComponent<Button>();
         if(button)button.onClick.AddListener(ToTheLevel);
+    }
+    private void Start() 
+    {
+        sFXManager = SFXManager.Instance;
     }
     public void ToTheLevel()
     {
         int thisStageLevelNumber = PuzzleGameManager.Instance.PuzzleLevel();
         if(thisLevelIdentity.levelUnlocked && levelNumber != thisStageLevelNumber)
         {
+            if(sFXManager)sFXManager.PlayButtonCanBeUsed();
             if(levelNumber > thisStageLevelNumber)PlayerPrefs.SetString("PlayerPress", "JumpNext");
             else PlayerPrefs.SetString("PlayerPress", "JumpPrev");
             
@@ -26,6 +32,7 @@ public class LevelListInGameButton : MonoBehaviour
         }
         else
         {
+            if(sFXManager)sFXManager.PlayButtonCantBeUsed();
             //bunyi kek teken tombol kosong
             Debug.Log("tidak bisa");
         }

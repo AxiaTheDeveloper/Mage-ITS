@@ -101,7 +101,7 @@ public class FadeInOutBlackScreen : MonoBehaviour
     }
     public void FadeOutEnded()
     {
-        if(isLevelScene)PuzzleGameManager.Instance.StartGame();
+        PuzzleGameManager.Instance.StartGame();
         
         blackScreen.gameObject.SetActive(false);
     }
@@ -153,6 +153,7 @@ public class FadeInOutBlackScreen : MonoBehaviour
         }
         else if(playerPress == "Quit")
         {
+            BGMManager.Instance.DestroyInstance();
             sceneName = "Main Menu";
         }
         SceneManager.LoadScene(sceneName);

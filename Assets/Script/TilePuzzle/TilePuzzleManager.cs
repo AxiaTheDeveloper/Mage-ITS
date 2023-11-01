@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+[Serializable]
+public class FinishWant
+{
+    public FinishModeWhenOn mode;
+    public int totalInputNeeded;
+}
 public class TilePuzzleManager : MonoBehaviour
 {
+    
     public static TilePuzzleManager Instance {get; private set;}
     [SerializeField]private TilePuzzleListScriptableObject tilePuzzleListSO;
     [SerializeField]private int totalRow, totalColumn, jarakAntarTile;//kolom ke kiri, row ke bawah
@@ -16,6 +22,8 @@ public class TilePuzzleManager : MonoBehaviour
 
     // public event EventHandler OnFinishSpawnPuzzle;
     [SerializeField]private List<MoveTile> tileListForStart = new List<MoveTile>();
+    [SerializeField]private List<FinishBlock> finishBlockList = new List<FinishBlock>();
+    [SerializeField]private List<FinishWant> finishWants;
     
     private void Awake() 
     {
@@ -25,6 +33,7 @@ public class TilePuzzleManager : MonoBehaviour
         maxPuzzleSize.x = startPositionTile.x + jarakAntarTile * (totalColumn-1);
         maxPuzzleSize.y = (startPositionTile.y + jarakAntarTile * (totalRow-1)) * -1;
         // int positionTilePuzzleList_Now = 0;
+        int counterFinish = 0;
         for(int i=0;i<totalRow;i++)
         {
             for(int j=0;j<totalColumn;j++)
@@ -51,6 +60,15 @@ public class TilePuzzleManager : MonoBehaviour
 
                         Transform tileInstantiate = Instantiate(chosenTileToInstantiate.transform, this.gameObject.transform);
                         
+                        if(tilePuzzleList_ForThisPuzzle[listNumber] == TilePuzzleName.FinishPuzzle)
+                        {
+                            FinishBlock finishTile = tileInstantiate.GetComponent<FinishBlock>();
+                            finishTile.ChangeTotalInputNeeded(finishWants[counterFinish].totalInputNeeded);
+                            finishTile.ChangeFinishMode(finishWants[counterFinish].mode);
+                            counterFinish++;
+                            finishTile.OnFinishOn += finishTile_OnFinishOn;
+                            finishBlockList.Add(finishTile);
+                        }
 
                         tileInstantiate.transform.localPosition = new Vector3((startPositionTile.x + jarakAntarTile * j), (startPositionTile.y + jarakAntarTile * i)*-1, 0f);
 
@@ -154,6 +172,20 @@ public class TilePuzzleManager : MonoBehaviour
             }
         }
         // OnFinishSpawnPuzzle?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void finishTile_OnFinishOn(object sender, EventArgs e)
+    {
+        bool isFinish = true;
+        foreach(FinishBlock block in finishBlockList)
+        {
+            if(!block.IsOn())
+            {
+                isFinish = false;
+                break;
+            }
+        }
+        if(isFinish)PuzzleGameManager.Instance.FinishGame();
     }
 
     // 0 1 2
