@@ -30,17 +30,24 @@ public class PauseUI : MonoBehaviour
         ChangeSFXVolText();
     }
 
-    // Update is called once per frame
+    //Set Float so the lean Tween understood wtf we want to change, a weird flex from leanTween, but ok?
+
+    void UpdateAlpha(float alpha) {
+        Color tempColor = BG.GetComponent<Image>().color;
+        tempColor.a = alpha;
+        BG.GetComponent<Image>().color = tempColor;
+    }
+
     public void ShowPause()
     {
         BG.SetActive(true);
-        LeanTween.alpha(BG, 0.5f, 0.2f);
+        LeanTween.value(BG, UpdateAlpha, 0f, 0.5f, 1f);
         LeanTween.moveLocal(pauseUI, toVector, 0.5f).setEaseSpring();
     }
     public void HidePause()
     {
         gameManager.Pause();
-        LeanTween.alpha(BG, 0, 0.2f).setOnComplete(
+        LeanTween.value(BG, UpdateAlpha, 0.5f, 0f, 1f).setOnComplete(
             ()=>BG.SetActive(false)
         );
         LeanTween.moveLocal(pauseUI, startVector, 0.2f);

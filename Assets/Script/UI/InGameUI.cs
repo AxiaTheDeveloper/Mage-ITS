@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System;
+using UnityEditor.Rendering.LookDev;
 
 public class InGameUI : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class InGameUI : MonoBehaviour
                 }
             );
         }
+        else
+            Debug.LogWarning("Missing a Button, If available please create one : " + RestartButton);
         if(PauseButton != null)
         {
             PauseButton.onClick.AddListener(
@@ -39,6 +42,8 @@ public class InGameUI : MonoBehaviour
                 }
             );
         }
+        else
+            Debug.LogWarning("Missing a Button, If available please create one : " + PauseButton);
         if(PrevLevelButton != null)
         {
             PrevLevelButton.onClick.AddListener(
@@ -47,10 +52,10 @@ public class InGameUI : MonoBehaviour
                     
                     PrevLevel();
                 }
-            );
-            
-            
+            );    
         }
+        else
+            Debug.LogWarning("Missing a Button, If available please create one : " + PrevLevelButton);
         if(NextLevelButton != null)
         {
             NextLevelButton.onClick.AddListener(
@@ -61,7 +66,9 @@ public class InGameUI : MonoBehaviour
                 }
             );
         }
-        if(QuitButton != null)
+        else
+            Debug.LogWarning("Missing a Button, If available please create one : " + NextLevelButton);
+        if (QuitButton != null)
         {
             QuitButton.onClick.AddListener(
                 () =>
@@ -70,7 +77,8 @@ public class InGameUI : MonoBehaviour
                 }
             );
         }
-
+        else
+            Debug.LogWarning("Missing a Button, If available please create one : " + NextLevelButton);
     }
     private void Start()
     {
