@@ -12,6 +12,7 @@ public class PlayerSaveManager : MonoBehaviour
     [SerializeField]private int playerTotalMove = 0;
     [SerializeField]private int score;
     public event EventHandler OnChangeMove;
+    [SerializeField]private bool isMainMenu;
     
     private void Awake() 
     {
@@ -54,7 +55,7 @@ public class PlayerSaveManager : MonoBehaviour
     public void AddPlayerMove()
     {
         playerTotalMove++;
-        OnChangeMove?.Invoke(this,EventArgs.Empty);
+        if(!isMainMenu)OnChangeMove?.Invoke(this,EventArgs.Empty);
         // Debug.Log(playerTotalMove);
     }
     public int GetPlayerMove()
