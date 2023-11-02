@@ -50,7 +50,7 @@ public class FinishBlock : MonoBehaviour
                             
                 }
 
-                if(totalInput == totalInputNeeded && !isOn)
+                if(totalInput == totalInputNeeded)
                 {
                     isOn = true;
                     ChangeVisual(true);

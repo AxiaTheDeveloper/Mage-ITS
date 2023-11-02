@@ -22,7 +22,7 @@ public enum TilePuzzleName
     
     Obstacle_MoveAble, Obstacle_UnMoveAble,
 
-    FinishPuzzle, StartPuzzle
+    FinishPuzzle, StartPuzzleKanan, StartPuzzleKiri, StartPuzzleAtas, StartPuzzleBawah
 }
 
 [CreateAssetMenu]

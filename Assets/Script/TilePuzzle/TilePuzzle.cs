@@ -113,7 +113,7 @@ public class TilePuzzle : MonoBehaviour
                             
                             Transform parent = collider.gameObject.GetComponentInParent<Transform>();
                             TilePuzzle tilePuzzleColliderInside = parent.GetComponentInParent<TilePuzzle>();
-                            if(tilePuzzleColliderInside && tilePuzzleColliderInside.TileName() == TilePuzzleName.StartPuzzle)
+                            if(tilePuzzleColliderInside && (tilePuzzleColliderInside.TileName() == TilePuzzleName.StartPuzzleKanan || tilePuzzleColliderInside.TileName() == TilePuzzleName.StartPuzzleKiri || tilePuzzleColliderInside.TileName() == TilePuzzleName.StartPuzzleAtas || tilePuzzleColliderInside.TileName() == TilePuzzleName.StartPuzzleBawah))
                             {
                                 hasElectricityInput = true;
                             }
