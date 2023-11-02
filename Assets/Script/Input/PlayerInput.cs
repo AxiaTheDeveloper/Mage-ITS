@@ -61,6 +61,7 @@ public class PlayerInput : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, layerClickAble);
                 if(hit)
                 {
+                    Debug.Log(hit.transform.name);
                     TilePuzzle tilePuzzle = hit.collider.GetComponent<TilePuzzle>();
                     if(tilePuzzle.IsTilePuzzle() && tilePuzzle.IsRotateAble())
                     {
