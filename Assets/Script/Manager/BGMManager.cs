@@ -50,13 +50,16 @@ public class BGMManager : MonoBehaviour
         volume = bgmSlider.value;
         // Debug.Log(volume);
         if(BGM)BGM.volume = volume;
+        
         PlayerPrefs.SetFloat(PLAYER_PREF_BGM_VOLUME, volume);
+        
     }
     public void DestroyInstance(){
         Destroy(gameObject);
     }
     private IEnumerator fadeIn()
     {
+        bgmSlider.value = volume;
         if(BGM)BGM.Play();
         while(fadeInDuratiom < fadeInDurationMax )
         {
@@ -66,7 +69,7 @@ public class BGMManager : MonoBehaviour
             // Debug.Log(BGM.volume);      
             yield return new WaitForSeconds(0.1f);
         }
-        bgmSlider.value = volume;
+        if(BGM)BGM.volume = volume;
     }
     // public void PlayBGM()
     // {

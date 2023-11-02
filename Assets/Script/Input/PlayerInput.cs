@@ -87,10 +87,15 @@ public class PlayerInput : MonoBehaviour
                     
                 }
             }
+        }
+        else
+        {
+            if(chosenTile)chosenTile = null;
         }  
         
         
         
     }
+
 
 }

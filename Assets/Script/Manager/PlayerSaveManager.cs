@@ -36,7 +36,7 @@ public class PlayerSaveManager : MonoBehaviour
         }
         
         
-        // gameSaveManager.SaveData(playerSaveSO);
+        gameSaveManager.SaveData(playerSaveSO);
     }
     public PlayerSaveScriptableObject GetPlayerSaveSO()
     {
@@ -67,6 +67,10 @@ public class PlayerSaveManager : MonoBehaviour
     public bool IsLevelDone()
     {
         return playerSaveSO.levelIdentities[gameManager.PuzzleLevel() - 1].levelDone;
+    }
+    public void SaveData()
+    {
+        gameSaveManager.SaveData(playerSaveSO);
     }
 
     

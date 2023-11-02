@@ -14,13 +14,16 @@ public class SFXManager : MonoBehaviour
     private void Awake() 
     {
         Instance = this;
+        Debug.Log(PlayerPrefs.GetFloat(PLAYER_PREF_SFX_VOLUME));
         if(!PlayerPrefs.HasKey(PLAYER_PREF_SFX_VOLUME))PlayerPrefs.SetFloat(PLAYER_PREF_SFX_VOLUME, 0.3f);
         volume = PlayerPrefs.GetFloat(PLAYER_PREF_SFX_VOLUME);
-        UpdateSFX_Volume();
+        
+        
     }
     void Start()
     {
         SFXSlider.value = volume;
+        UpdateSFX_Volume();
     }
 
     public void UpdateSFX_Volume(){
@@ -30,8 +33,9 @@ public class SFXManager : MonoBehaviour
         if(onDrag__SFX)onDrag__SFX.volume = volume;
         if(onDragRelease_SFX)onDragRelease_SFX.volume = volume;
         if(rotate__SFX)rotate__SFX.volume = volume;
-
+        
         PlayerPrefs.SetFloat(PLAYER_PREF_SFX_VOLUME, volume);
+        Debug.Log(PlayerPrefs.GetFloat(PLAYER_PREF_SFX_VOLUME));
     }
 
     public void PlayOnDrag()

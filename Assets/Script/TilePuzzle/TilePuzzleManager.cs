@@ -24,6 +24,10 @@ public class TilePuzzleManager : MonoBehaviour
     [SerializeField]private List<MoveTile> tileListForStart = new List<MoveTile>();
     [SerializeField]private List<FinishBlock> finishBlockList = new List<FinishBlock>();
     [SerializeField]private List<FinishWant> finishWants;
+    [Header("Untuk Main Menu")]
+    [SerializeField]private bool isMainMenu;
+    [SerializeField]private List<MoveTile> NOTTilePuzzleList;
+
     
     private void Awake() 
     {
@@ -68,6 +72,13 @@ public class TilePuzzleManager : MonoBehaviour
                             counterFinish++;
                             finishTile.OnFinishOn += finishTile_OnFinishOn;
                             finishBlockList.Add(finishTile);
+                        }
+                        if(isMainMenu)
+                        {
+                            if(tilePuzzleList_ForThisPuzzle[listNumber] == TilePuzzleName.NOTAtas_Gate_MoveAble || tilePuzzleList_ForThisPuzzle[listNumber] == TilePuzzleName.NOTBawah_Gate_MoveAble || tilePuzzleList_ForThisPuzzle[listNumber] == TilePuzzleName.NOTKanan_Gate_MoveAble || tilePuzzleList_ForThisPuzzle[listNumber] == TilePuzzleName.NOTKiri_Gate_MoveAble)
+                            {
+                                NOTTilePuzzleList.Add(tileInstantiate.GetComponent<MoveTile>());
+                            }
                         }
 
                         tileInstantiate.transform.localPosition = new Vector3((startPositionTile.x + jarakAntarTile * j), (startPositionTile.y + jarakAntarTile * i)*-1, 0f);
@@ -298,5 +309,14 @@ public class TilePuzzleManager : MonoBehaviour
     public Vector2 MaxPuzzleSize()
     {
         return maxPuzzleSize;
+    }
+    
+    //buat main menu
+    public void ResetNOTTiletoStart(int NOTTIlePosition)
+    {
+        //0 start 1 options 2 credit 3 quit - lsg mati sih
+        NOTTilePuzzleList[NOTTIlePosition].transform.localPosition = new Vector2(NOTTilePuzzleList[NOTTIlePosition].transform.localPosition.x - jarakAntarTile, NOTTilePuzzleList[NOTTIlePosition].transform.localPosition.y);
+        NOTTilePuzzleList[NOTTIlePosition].ChangeWasBeingClicked(true);
+        PuzzleGameManager.Instance.StartGame();
     }
 }

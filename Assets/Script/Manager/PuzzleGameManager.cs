@@ -35,7 +35,7 @@ public class PuzzleGameManager : MonoBehaviour
         
         playerSaveManager = GetComponent<PlayerSaveManager>();
         maxMove = levelMaxMoveSO.MaxMovePerLevel[level-1].maxMove;
-        starControlUI.ChangeTotalMoves(maxMove);
+        if(starControlUI)starControlUI.ChangeTotalMoves(maxMove);
     }
     private void Start() 
     {

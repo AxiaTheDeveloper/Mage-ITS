@@ -18,6 +18,7 @@ public class InGameUI : MonoBehaviour
     [SerializeField]private TextMeshProUGUI moveText, nameTileText;
     [SerializeField]private SFXManager sFXManager;
     
+    
     private void Awake() 
     {
         Instance = this;
@@ -169,7 +170,7 @@ public class InGameUI : MonoBehaviour
     public void Quit()
     {
         if(sFXManager)sFXManager.PlayButtonCanBeUsed();
-        
+        playerSaveManager.SaveData();
         PlayerPrefs.SetString("PlayerPress", "Quit");
         fade.FadeInBlackScreen();
     }

@@ -82,6 +82,7 @@ public class FinishBlock : MonoBehaviour
     {
         Debug.Log("Start");
         PuzzleGameManager.Instance.MainMenuMode();
+        StartCoroutine(Counter());
         //terus geser ke level list sambil di reset semua terus balik ke start mode;
     }
     public void FinishSettings()
@@ -116,6 +117,17 @@ public class FinishBlock : MonoBehaviour
     public bool IsOn()
     {
         return isOn;
+    }
+    private IEnumerator Counter()
+    {
+        int i=0;
+        while(i<5)
+        {
+            i++;
+            Debug.Log(i);
+            yield return new WaitForSeconds(0.1f);
+        }
+        TilePuzzleManager.Instance.ResetNOTTiletoStart(0);
     }
 
 }
