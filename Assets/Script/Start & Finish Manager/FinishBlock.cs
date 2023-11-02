@@ -68,6 +68,7 @@ public class FinishBlock : MonoBehaviour
                     if(finishMode == FinishModeWhenOn.finishSettings)FinishSettings();
                     if(finishMode == FinishModeWhenOn.finishCredit)FinishCredit();
                     if(finishMode == FinishModeWhenOn.finishQuit)FinishQuit();
+                    if(finishMode == FinishModeWhenOn.finishMainMenu)FinishMainMenu();
                     break;
                 }
                 else if(totalInput == totalInputNeeded && isOn)break;
@@ -91,40 +92,45 @@ public class FinishBlock : MonoBehaviour
     {
         Debug.Log("Main Menu");
         PuzzleGameManager.Instance.MainMenuMode();
-        MainMenuControlUI.Instance.GoToMainMenu();
         tilepuzzleParent.ResetNOTTiletoStart(NOTTile_Position);
+        MainMenuControlUI.Instance.GoToMainMenu();
+        
         //terus geser ke level list sambil di reset semua terus balik ke start mode;
     }
     public void FinishStart()
     {
         Debug.Log("Start");
         PuzzleGameManager.Instance.MainMenuMode();
-        MainMenuControlUI.Instance.GoToLevelListUI();
         tilepuzzleParent.ResetNOTTiletoStart(NOTTile_Position);
+        MainMenuControlUI.Instance.GoToLevelListUI();
+        
         //terus geser ke level list sambil di reset semua terus balik ke start mode;
     }
     public void FinishSettings()
     {
         Debug.Log("Settings");
         PuzzleGameManager.Instance.MainMenuMode();
-        MainMenuControlUI.Instance.GoToSettings();
         tilepuzzleParent.ResetNOTTiletoStart(NOTTile_Position);
+        MainMenuControlUI.Instance.GoToSettings();
+        
         //terus geser ke level list sambil di reset semua terus balik ke start mode;
     }
     public void FinishCredit()
     {
         Debug.Log("Credit");
         PuzzleGameManager.Instance.MainMenuMode();
-        MainMenuControlUI.Instance.GoToCredits();
         tilepuzzleParent.ResetNOTTiletoStart(NOTTile_Position);
+        MainMenuControlUI.Instance.GoToCredits();
+        
         //terus geser ke level list sambil di reset semua terus balik ke start mode;
     }
     public void FinishQuit()
     {
         Debug.Log("Quit");
         PuzzleGameManager.Instance.MainMenuMode();
-        MainMenuControlUI.Instance.Quit();
         tilepuzzleParent.ResetNOTTiletoStart(NOTTile_Position);
+        MainMenuControlUI.Instance.Quit();
+        
     }
     public void ChangeTotalInputNeeded(int change)
     {

@@ -103,6 +103,7 @@ public class FadeInOutBlackScreen : MonoBehaviour
     }
     public void FadeInBlackScreenOutsideInGame(int level)
     {
+        PuzzleGameManager.Instance.WaitToStart();
         blackScreen.gameObject.SetActive(true);
         blackScreen.LeanAlpha(1, 0.8f).setOnComplete(
             ()=>FadeInEndedOutsideInGame(level)
@@ -110,6 +111,8 @@ public class FadeInOutBlackScreen : MonoBehaviour
     }
     public void FadeInEndedOutsideInGame(int level)
     {
+        
+        playerPress = PlayerPrefs.GetString("PlayerPress");
         if(playerPress == "QuitGame")
         {
             Debug.Log("Quit");
@@ -117,6 +120,7 @@ public class FadeInOutBlackScreen : MonoBehaviour
         }
         else if(playerPress == "Main Menu")
         {
+            Debug.Log("aa");
             string sceneName = "Level " + level;
             SceneManager.LoadScene(sceneName);
         }

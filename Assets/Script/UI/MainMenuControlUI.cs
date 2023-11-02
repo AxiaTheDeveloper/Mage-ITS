@@ -45,10 +45,25 @@ public class MainMenuControlUI : MonoBehaviour
         PlayerSaveManager.Instance.SaveData();
         PlayerPrefs.SetString("PlayerPress", "QuitGame");
         LeanTween.moveLocal(wholeGameObjectPerPartList[canvasOnCamera], leftPos, duration);
+        PuzzleGameManager.Instance.StartGame();
         fade.FadeInBlackScreenOutsideInGame(0);
     }
     public void MovingTheCanvas(int wantToGoCanvas)
     {
+        if(wantToGoCanvas == canvasOnCamera)
+        {
+            if(wantToGoCanvas != 1)
+            {
+                StartCoroutine(Timer());
+                return;
+            }
+            else
+            {
+                wantToGoCanvas = 0;
+            }
+            
+        }
+    
         wholeGameObjectPerPartList[wantToGoCanvas].transform.localPosition = new Vector3(rightPos.x, wholeGameObjectPerPartList[wantToGoCanvas].transform.localPosition.y, wholeGameObjectPerPartList[wantToGoCanvas].transform.localPosition.z);
         LeanTween.moveLocalX(wholeGameObjectPerPartList[canvasOnCamera], leftPos.x, duration);
 
@@ -60,5 +75,15 @@ public class MainMenuControlUI : MonoBehaviour
             }
             
         );
+    }
+    public IEnumerator Timer()
+    {
+        int i = 0;
+        while(i<5)
+        {
+            i++;
+            yield return new WaitForSeconds(0.1f);
+        }
+        PuzzleGameManager.Instance.StartGame();
     }
 }

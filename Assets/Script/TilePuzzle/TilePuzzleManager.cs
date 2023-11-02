@@ -317,6 +317,12 @@ public class TilePuzzleManager : MonoBehaviour
     public void ResetNOTTiletoStart(int NOTTIlePosition)
     {
         //0 start 1 options 2 credit 3 quit - lsg mati sih
+        StartCoroutine(Reset(NOTTIlePosition));
+    }
+    public IEnumerator Reset(int NOTTIlePosition)
+    {
+        yield return null;
+        yield return null;
         NOTTilePuzzleList[NOTTIlePosition].transform.localPosition = new Vector2(NOTTilePuzzleList[NOTTIlePosition].transform.localPosition.x - jarakAntarTile, NOTTilePuzzleList[NOTTIlePosition].transform.localPosition.y);
         NOTTilePuzzleList[NOTTIlePosition].IsResetPlaceMainMenu(true);
         NOTTilePuzzleList[NOTTIlePosition].ChangeWasBeingClicked(true);
