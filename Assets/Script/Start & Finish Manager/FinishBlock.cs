@@ -85,7 +85,7 @@ public class FinishBlock : MonoBehaviour
     // finishGame, finishStart, finishSettings, finishCredit, finishQuit
     public void FinishGame()
     {
-        Debug.Log("Finish Game");
+        // Debug.Log("Finish Game");
         OnFinishOn?.Invoke(this,EventArgs.Empty);
     }
     public void FinishMainMenu()

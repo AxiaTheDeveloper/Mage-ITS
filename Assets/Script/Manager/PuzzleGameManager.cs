@@ -9,6 +9,7 @@ public class PuzzleGameManager : MonoBehaviour
     [SerializeField]private int level;
     [SerializeField]private LevelMaxMoveScriptableObject levelMaxMoveSO;
     [SerializeField]private int[] maxMove = new int[3];
+    private int score = 3, lastScore;
     private GameInput gameInput;
     public enum GameState
     {
@@ -33,10 +34,25 @@ public class PuzzleGameManager : MonoBehaviour
         stateGame = GameState.WaitingToStart;
         startState = StartState.None;
         
+        lastScore = 3;
+
         playerSaveManager = GetComponent<PlayerSaveManager>();
+        playerSaveManager.OnChangeMove += playerSaveManager_OnChangeMove;
         maxMove = levelMaxMoveSO.MaxMovePerLevel[level-1].maxMove;
         if(starControlUI)starControlUI.ChangeTotalMoves(maxMove);
     }
+
+    private void playerSaveManager_OnChangeMove(object sender, EventArgs e)
+    {
+        score = CalculatingScore(playerSaveManager.GetPlayerMove());
+        if(score != lastScore)
+        {
+            starControlUI.DestroyStarVisual(score);
+            lastScore = score;
+        }
+        
+    }
+
     private void Start() 
     {
         gameInput = GameInput.Instance;
@@ -100,8 +116,8 @@ public class PuzzleGameManager : MonoBehaviour
     {
         stateGame = GameState.Finish;
         startState = StartState.None;
-        int score = CalculatingScore(playerSaveManager.GetPlayerMove());
-        starControlUI.ChangeStarsVisual(score);
+        // int score = CalculatingScore(playerSaveManager.GetPlayerMove());
+        // starControlUI.ChangeStarsVisual(score);
         //UI diubah lwt sini
         // Debug.Log(score);
         playerSaveManager.SaveScore(score);

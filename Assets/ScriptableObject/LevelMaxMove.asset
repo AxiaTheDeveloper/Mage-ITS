@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelMaxMove
   m_EditorClassIdentifier: 
   MaxMovePerLevel:
-  - maxMove: 0a000000140000001e000000
+  - maxMove: 050000000600000007000000
   - maxMove: 05000000090000000c000000
   - maxMove: 000000000000000000000000
   - maxMove: 000000000000000000000000
