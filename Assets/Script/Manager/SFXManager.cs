@@ -14,7 +14,7 @@ public class SFXManager : MonoBehaviour
     private void Awake() 
     {
         Instance = this;
-        Debug.Log(PlayerPrefs.GetFloat(PLAYER_PREF_SFX_VOLUME));
+        // Debug.Log(PlayerPrefs.GetFloat(PLAYER_PREF_SFX_VOLUME));
         if(!PlayerPrefs.HasKey(PLAYER_PREF_SFX_VOLUME))PlayerPrefs.SetFloat(PLAYER_PREF_SFX_VOLUME, 0.3f);
         volume = PlayerPrefs.GetFloat(PLAYER_PREF_SFX_VOLUME);
         
@@ -35,7 +35,7 @@ public class SFXManager : MonoBehaviour
         if(rotate__SFX)rotate__SFX.volume = volume;
         
         PlayerPrefs.SetFloat(PLAYER_PREF_SFX_VOLUME, volume);
-        Debug.Log(PlayerPrefs.GetFloat(PLAYER_PREF_SFX_VOLUME));
+        // Debug.Log(PlayerPrefs.GetFloat(PLAYER_PREF_SFX_VOLUME));
     }
 
     public void PlayOnDrag()
@@ -61,7 +61,7 @@ public class SFXManager : MonoBehaviour
     }
     public void PlayButtonCantBeUsed()
     {
-        Debug.Log("Play");
+        // Debug.Log("Play");
         if(buttonCantBeUsed_SFX)buttonCantBeUsed_SFX.Play();
     }
     public void PlayRotate()

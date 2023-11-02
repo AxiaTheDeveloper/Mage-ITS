@@ -26,11 +26,7 @@ public class FadeInOutBlackScreen : MonoBehaviour
             else
             {
                 playerPress = PlayerPrefs.GetString("PlayerPress");
-                if(playerPress == "MainMenu")//jangan dilupakan ges
-                {
-
-                }
-                else if(playerPress == "NextLevel")
+                if(playerPress == "Main Menu" || playerPress == "NextLevel")
                 {
                     tilePuzzle.transform.position = tilePuzzleStartPos;
                 }
@@ -114,8 +110,17 @@ public class FadeInOutBlackScreen : MonoBehaviour
     }
     public void FadeInEndedOutsideInGame(int level)
     {
-        string sceneName = "Level " + level;
-        SceneManager.LoadScene(sceneName);
+        if(playerPress == "QuitGame")
+        {
+            Debug.Log("Quit");
+            Application.Quit();
+        }
+        else if(playerPress == "Main Menu")
+        {
+            string sceneName = "Level " + level;
+            SceneManager.LoadScene(sceneName);
+        }
+        
     }
     public void FadeInBlackScreen()
     {

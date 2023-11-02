@@ -69,9 +69,11 @@ public class TilePuzzleManager : MonoBehaviour
                             FinishBlock finishTile = tileInstantiate.GetComponent<FinishBlock>();
                             finishTile.ChangeTotalInputNeeded(finishWants[counterFinish].totalInputNeeded);
                             finishTile.ChangeFinishMode(finishWants[counterFinish].mode);
+                            finishTile.ChangeNOTTileNumber(counterFinish);
                             counterFinish++;
                             finishTile.OnFinishOn += finishTile_OnFinishOn;
                             finishBlockList.Add(finishTile);
+                            
                         }
                         if(isMainMenu)
                         {
@@ -316,7 +318,7 @@ public class TilePuzzleManager : MonoBehaviour
     {
         //0 start 1 options 2 credit 3 quit - lsg mati sih
         NOTTilePuzzleList[NOTTIlePosition].transform.localPosition = new Vector2(NOTTilePuzzleList[NOTTIlePosition].transform.localPosition.x - jarakAntarTile, NOTTilePuzzleList[NOTTIlePosition].transform.localPosition.y);
+        NOTTilePuzzleList[NOTTIlePosition].IsResetPlaceMainMenu(true);
         NOTTilePuzzleList[NOTTIlePosition].ChangeWasBeingClicked(true);
-        PuzzleGameManager.Instance.StartGame();
     }
 }

@@ -23,6 +23,7 @@ public class MoveTile : MonoBehaviour
 
     [SerializeField]private bool goHorizontal, goVertical, isFirstTime = true;
     [SerializeField]private SFXManager sFXManager;
+    private bool isResetPlaceMainMenu;
     // [SerializeField]private int counterSFX, maxCounterSFx;
 
     private void Awake() 
@@ -118,7 +119,8 @@ public class MoveTile : MonoBehaviour
                 if(sFXManager)
                 {
                     if(sFXManager.isOnDragPlay())sFXManager.StopOnDrag();
-                    sFXManager.PlayOnDragRelease();
+                    if(!isResetPlaceMainMenu)sFXManager.PlayOnDragRelease();
+                    if(isResetPlaceMainMenu)isResetPlaceMainMenu = false;
                 }
                 if((oldStartPosX != startPosX && oldStartPosY == startPosY) || (oldStartPosX == startPosX && oldStartPosY != startPosY))
                 {
@@ -582,6 +584,10 @@ public class MoveTile : MonoBehaviour
     public void AddDown(Collider2D newCollider)
     {
         down.Add(newCollider);
+    }
+    public void IsResetPlaceMainMenu(bool change)
+    {
+        isResetPlaceMainMenu = change;
     }
     
 }

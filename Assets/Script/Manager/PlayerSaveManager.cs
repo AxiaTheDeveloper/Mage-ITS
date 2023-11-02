@@ -12,6 +12,7 @@ public class PlayerSaveManager : MonoBehaviour
     [SerializeField]private int playerTotalMove = 0;
     [SerializeField]private int score;
     public event EventHandler OnChangeMove;
+    
     private void Awake() 
     {
         Instance = this;
@@ -71,6 +72,19 @@ public class PlayerSaveManager : MonoBehaviour
     public void SaveData()
     {
         gameSaveManager.SaveData(playerSaveSO);
+    }
+    public void LoadData()
+    {
+        gameSaveManager.LoadData(playerSaveSO);
+        
+    }
+    public bool IsFirstTime()
+    {
+        return playerSaveSO.isFirstTimeLoadGame;
+    }
+    public void ChangeIsFirstTime()
+    {
+        playerSaveSO.isFirstTimeLoadGame = false;
     }
 
     

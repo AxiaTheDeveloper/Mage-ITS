@@ -59,7 +59,7 @@ public class BGMManager : MonoBehaviour
     }
     private IEnumerator fadeIn()
     {
-        bgmSlider.value = volume;
+        if(bgmSlider)bgmSlider.value = volume;
         if(BGM)BGM.Play();
         while(fadeInDuratiom < fadeInDurationMax )
         {

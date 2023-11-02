@@ -20,6 +20,10 @@ public class LevelButtonUIManager : MonoBehaviour
                 BackToMainMenu();
             }
         );
+        
+    } 
+    public void SpawnLevelButton()
+    {
         totalLevel = playerSaveSO.levelIdentities.Length;
         for(int i=0;i<totalLevel;i++)
         {
@@ -27,7 +31,7 @@ public class LevelButtonUIManager : MonoBehaviour
             LevelButtonUI levelButton = instatiateButton.GetComponent<LevelButtonUI>();
             levelButton.GetLevelIdentity(playerSaveSO.levelIdentities[i],i+1);
         }
-    } 
+    }
     private void Start() 
     {
         sFXManager = SFXManager.Instance;

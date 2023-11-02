@@ -31,15 +31,12 @@ public class PauseUI : MonoBehaviour
         sFXManager = SFXManager.Instance;
         LeanTween.alpha(BG, 0, 0);
         // Debug.Log(BGM.value + "dan" + SFX.value);
-
-
-        
-        
     }
 
     //Set Float so the lean Tween understood wtf we want to change, a weird flex from leanTween, but ok?
 
-    void UpdateAlpha(float alpha) {
+    void UpdateAlpha(float alpha) 
+    {
         Color tempColor = BG.GetComponent<Image>().color;
         tempColor.a = alpha;
         BG.GetComponent<Image>().color = tempColor;

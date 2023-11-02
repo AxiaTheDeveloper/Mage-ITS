@@ -5,7 +5,9 @@ using System;
 
 public enum FinishModeWhenOn
 {
-    finishGame, finishStart, finishSettings, finishCredit, finishQuit
+    finishGame, finishStart, finishSettings, finishCredit, finishQuit,
+
+    finishMainMenu
 }
 public class FinishBlock : MonoBehaviour
 {
@@ -17,7 +19,14 @@ public class FinishBlock : MonoBehaviour
     [SerializeField]private bool isOn;
     public event EventHandler OnFinishOn;
     [SerializeField]private FinishModeWhenOn finishMode;
+    //buat main menu
+    [SerializeField]private TilePuzzleManager tilepuzzleParent;
+    private int NOTTile_Position;
 
+    private void Start() 
+    {
+        tilepuzzleParent = GetComponentInParent<TilePuzzleManager>();
+    }
     private void Update() 
     {
         if(PuzzleGameManager.Instance.GetStateGame() == PuzzleGameManager.GameState.Start)
@@ -78,28 +87,44 @@ public class FinishBlock : MonoBehaviour
         Debug.Log("Finish Game");
         OnFinishOn?.Invoke(this,EventArgs.Empty);
     }
+    public void FinishMainMenu()
+    {
+        Debug.Log("Main Menu");
+        PuzzleGameManager.Instance.MainMenuMode();
+        MainMenuControlUI.Instance.GoToMainMenu();
+        tilepuzzleParent.ResetNOTTiletoStart(NOTTile_Position);
+        //terus geser ke level list sambil di reset semua terus balik ke start mode;
+    }
     public void FinishStart()
     {
         Debug.Log("Start");
         PuzzleGameManager.Instance.MainMenuMode();
-        StartCoroutine(Counter());
+        MainMenuControlUI.Instance.GoToLevelListUI();
+        tilepuzzleParent.ResetNOTTiletoStart(NOTTile_Position);
         //terus geser ke level list sambil di reset semua terus balik ke start mode;
     }
     public void FinishSettings()
     {
         Debug.Log("Settings");
         PuzzleGameManager.Instance.MainMenuMode();
+        MainMenuControlUI.Instance.GoToSettings();
+        tilepuzzleParent.ResetNOTTiletoStart(NOTTile_Position);
         //terus geser ke level list sambil di reset semua terus balik ke start mode;
     }
     public void FinishCredit()
     {
         Debug.Log("Credit");
         PuzzleGameManager.Instance.MainMenuMode();
+        MainMenuControlUI.Instance.GoToCredits();
+        tilepuzzleParent.ResetNOTTiletoStart(NOTTile_Position);
         //terus geser ke level list sambil di reset semua terus balik ke start mode;
     }
     public void FinishQuit()
     {
         Debug.Log("Quit");
+        PuzzleGameManager.Instance.MainMenuMode();
+        MainMenuControlUI.Instance.Quit();
+        tilepuzzleParent.ResetNOTTiletoStart(NOTTile_Position);
     }
     public void ChangeTotalInputNeeded(int change)
     {
@@ -118,16 +143,11 @@ public class FinishBlock : MonoBehaviour
     {
         return isOn;
     }
-    private IEnumerator Counter()
+    public void ChangeNOTTileNumber(int number)
     {
-        int i=0;
-        while(i<5)
-        {
-            i++;
-            Debug.Log(i);
-            yield return new WaitForSeconds(0.1f);
-        }
-        TilePuzzleManager.Instance.ResetNOTTiletoStart(0);
+        NOTTile_Position = number;
     }
+
+
 
 }
