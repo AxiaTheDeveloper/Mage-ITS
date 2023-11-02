@@ -335,6 +335,10 @@ public class MoveTile : MonoBehaviour
     {
         wasBeingClicked = change;
     }
+    public bool WasBeingClicked()
+    {
+        return wasBeingClicked;
+    }
     public bool IsBeingClicked()
     {
         Debug.Log("Clicked");

@@ -321,8 +321,10 @@ public class TilePuzzleManager : MonoBehaviour
     }
     public IEnumerator Reset(int NOTTIlePosition)
     {
-        yield return null;
-        yield return null;
+        while(NOTTilePuzzleList[NOTTIlePosition].WasBeingClicked())
+        {
+            yield return null;
+        }
         NOTTilePuzzleList[NOTTIlePosition].transform.localPosition = new Vector2(NOTTilePuzzleList[NOTTIlePosition].transform.localPosition.x - jarakAntarTile, NOTTilePuzzleList[NOTTIlePosition].transform.localPosition.y);
         NOTTilePuzzleList[NOTTIlePosition].IsResetPlaceMainMenu(true);
         NOTTilePuzzleList[NOTTIlePosition].ChangeWasBeingClicked(true);
