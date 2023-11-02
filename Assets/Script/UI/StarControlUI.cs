@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Cinemachine;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class StarControlUI : MonoBehaviour
 {
@@ -13,7 +14,17 @@ public class StarControlUI : MonoBehaviour
     [SerializeField]private CinemachineVirtualCamera cm;
     [SerializeField]private float amplitude, frequency, duration;
 
-    
+    private void Start()
+    {
+        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cm.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cinemachineBasicMultiChannelPerlin.m_FrequencyGain = frequency;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P)) StartCoroutine(Shake());
+    }
+
     public void ChangeTotalMoves(int[] moves)
     {
         for(int i=0;i<starTotalMovesText.Length;i++)
@@ -40,17 +51,16 @@ public class StarControlUI : MonoBehaviour
         }
         StartCoroutine(Shake());
     }
-    public void ShakeScreen(float amp, float fre)
+    public void ShakeScreen(float amp)
     {
         CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cm.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = amp;
-        cinemachineBasicMultiChannelPerlin.m_FrequencyGain = fre;
     }
+
     public IEnumerator Shake()
     {
-        ShakeScreen(amplitude, frequency);
-        yield return new WaitForSeconds(duration);
-        ShakeScreen(0, 0);
+        LeanTween.value(gameObject, ShakeScreen, amplitude, 0f, duration);
+        yield return null;
     }
 
 }
