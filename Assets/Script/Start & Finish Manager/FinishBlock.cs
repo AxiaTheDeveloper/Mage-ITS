@@ -50,7 +50,7 @@ public class FinishBlock : MonoBehaviour
                             
                 }
 
-                if(totalInput == totalInputNeeded)
+                if(totalInput == totalInputNeeded && !isOn)
                 {
                     isOn = true;
                     ChangeVisual(true);
@@ -61,6 +61,7 @@ public class FinishBlock : MonoBehaviour
                     if(finishMode == FinishModeWhenOn.finishQuit)FinishQuit();
                     break;
                 }
+                else if(totalInput == totalInputNeeded && isOn)break;
                 else if(totalInput != totalInputNeeded && i == collInput.Length - 1 && isOn)
                 {
                     isOn = false;
@@ -74,6 +75,7 @@ public class FinishBlock : MonoBehaviour
     // finishGame, finishStart, finishSettings, finishCredit, finishQuit
     public void FinishGame()
     {
+        Debug.Log("Finish Game");
         OnFinishOn?.Invoke(this,EventArgs.Empty);
     }
     public void FinishStart()

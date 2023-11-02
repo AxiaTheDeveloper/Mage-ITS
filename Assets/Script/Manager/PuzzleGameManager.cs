@@ -25,6 +25,7 @@ public class PuzzleGameManager : MonoBehaviour
 
     public event EventHandler OnRotatingTile, OnFinishGame; //
     [SerializeField]private PlayerSaveManager playerSaveManager;
+    [SerializeField]private StarControlUI starControlUI;
 
     private void Awake() 
     {
@@ -34,6 +35,7 @@ public class PuzzleGameManager : MonoBehaviour
         
         playerSaveManager = GetComponent<PlayerSaveManager>();
         maxMove = levelMaxMoveSO.MaxMovePerLevel[level-1].maxMove;
+        starControlUI.ChangeTotalMoves(maxMove);
     }
     private void Start() 
     {
@@ -99,6 +101,7 @@ public class PuzzleGameManager : MonoBehaviour
         stateGame = GameState.Finish;
         startState = StartState.None;
         int score = CalculatingScore(playerSaveManager.GetPlayerMove());
+        starControlUI.ChangeStarsVisual(score);
         //UI diubah lwt sini
         // Debug.Log(score);
         playerSaveManager.SaveScore(score);
@@ -142,6 +145,11 @@ public class PuzzleGameManager : MonoBehaviour
         }
         return 0;
     }
+    public int[] GetMaxMoves()
+    {
+        return maxMove;
+    }
+    
 
 
 
