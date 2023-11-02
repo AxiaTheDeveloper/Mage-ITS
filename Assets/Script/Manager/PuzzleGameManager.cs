@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PuzzleGameManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class PuzzleGameManager : MonoBehaviour
     private GameInput gameInput;
     public enum GameState
     {
-        WaitingToStart, Start, Pause, Finish, MainMenuMode
+        WaitingToStart, Start, Pause, Finish, MainMenuMode, Cinematic
     }
     public enum StartState
     {
@@ -30,6 +31,7 @@ public class PuzzleGameManager : MonoBehaviour
 
     private void Awake() 
     {
+        level = SceneManager.GetActiveScene().buildIndex;
         Instance = this;
         stateGame = GameState.WaitingToStart;
         startState = StartState.None;

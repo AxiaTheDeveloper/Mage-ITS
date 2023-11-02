@@ -24,6 +24,7 @@ public class FinishBlock : MonoBehaviour
     [SerializeField]private TilePuzzleManager tilepuzzleParent;
     private int NOTTile_Position;
     [SerializeField]private TextMeshProUGUI totalInput_text;
+    [SerializeField]private ParticleSystem particleActivate;
 
     private void Start() 
     {
@@ -65,6 +66,7 @@ public class FinishBlock : MonoBehaviour
                 {
                     isOn = true;
                     ChangeVisual(true);
+                    particleActivate.Play();
                     if(finishMode == FinishModeWhenOn.finishGame)FinishGame();
                     if(finishMode == FinishModeWhenOn.finishStart)FinishStart();
                     if(finishMode == FinishModeWhenOn.finishSettings)FinishSettings();

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System;
-using UnityEditor.Rendering.LookDev;
+
 
 public class InGameUI : MonoBehaviour
 {
@@ -120,7 +120,7 @@ public class InGameUI : MonoBehaviour
     }
     public void Pause()
     {
-        if(gameManager.GetStateGame() == PuzzleGameManager.GameState.Start)
+        if(gameManager.GetStateGame() == PuzzleGameManager.GameState.Start || gameManager.GetStateGame() == PuzzleGameManager.GameState.Finish)
         {
             if(sFXManager)sFXManager.PlayButtonCanBeUsed();
             PuzzleGameManager.Instance.Pause();
