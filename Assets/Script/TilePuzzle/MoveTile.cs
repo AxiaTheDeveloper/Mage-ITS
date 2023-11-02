@@ -337,6 +337,7 @@ public class MoveTile : MonoBehaviour
     }
     public bool IsBeingClicked()
     {
+        Debug.Log("Clicked");
         return isBeingClicked;
     }
     public void ChangeLeftMax(float change)
