@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public enum FinishModeWhenOn
 {
@@ -22,6 +23,7 @@ public class FinishBlock : MonoBehaviour
     //buat main menu
     [SerializeField]private TilePuzzleManager tilepuzzleParent;
     private int NOTTile_Position;
+    [SerializeField]private TextMeshProUGUI totalInput_text;
 
     private void Start() 
     {
@@ -135,6 +137,7 @@ public class FinishBlock : MonoBehaviour
     public void ChangeTotalInputNeeded(int change)
     {
         totalInputNeeded = change;
+        totalInput_text.text = totalInputNeeded.ToString();
     }
     public void ChangeFinishMode(FinishModeWhenOn mode)
     {
