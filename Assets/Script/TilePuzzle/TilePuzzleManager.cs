@@ -327,6 +327,12 @@ public class TilePuzzleManager : MonoBehaviour
         }
         NOTTilePuzzleList[NOTTIlePosition].transform.localPosition = new Vector2(NOTTilePuzzleList[NOTTIlePosition].transform.localPosition.x - jarakAntarTile, NOTTilePuzzleList[NOTTIlePosition].transform.localPosition.y);
         NOTTilePuzzleList[NOTTIlePosition].IsResetPlaceMainMenu(true);
-        NOTTilePuzzleList[NOTTIlePosition].ChangeWasBeingClicked(true);
+        // NOTTilePuzzleList[NOTTIlePosition].ChangeWasBeingClicked(true);
+        for(int i=0;i<NOTTilePuzzleList.Count;i++)
+        {
+            NOTTilePuzzleList[i].ChangeTopMax(NOTTilePuzzleList[i].transform.localPosition.y);
+            NOTTilePuzzleList[i].ChangeDownMax(NOTTilePuzzleList[i].transform.localPosition.y);
+        }
+        
     }
 }
