@@ -2468,7 +2468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0187890dbcdf6478199ea71bf2e122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
+  level: 1
   levelMaxMoveSO: {fileID: 11400000, guid: 6a703fadb68fde645b0d23f9494f9a04, type: 2}
   maxMove: 0a000000140000001e000000
   stateGame: 0
