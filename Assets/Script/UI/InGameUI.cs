@@ -90,13 +90,17 @@ public class InGameUI : MonoBehaviour
 
         gameManager = PuzzleGameManager.Instance;
         sFXManager = SFXManager.Instance;
-        // gameManager.OnFinishGame += gameManager_OnFinishGame;
+        gameManager.OnFinishGame += gameManager_OnFinishGame;
     }
-    // private void gameManager_OnFinishGame(object sender, EventArgs e)
-    // {
-    //     ShowNextLevelButton();
-    //     // Debug.Log("finish ui");
-    // }
+    private void gameManager_OnFinishGame(object sender, EventArgs e)
+    {
+        StartCoroutine(CountDownNextLevel());
+    }
+    private IEnumerator CountDownNextLevel()
+    {
+        yield return new WaitForSeconds(0.5f);
+        NextLevel();
+    }
 
     private void playerSaveManager_OnChangeMove(object sender, EventArgs e)
     {
