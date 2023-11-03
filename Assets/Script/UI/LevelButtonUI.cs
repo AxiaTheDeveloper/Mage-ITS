@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
-public class LevelButtonUI : MonoBehaviour
+public class LevelButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]private FadeInOutBlackScreen fade;
     [SerializeField]private int levelNumber;
@@ -13,10 +15,13 @@ public class LevelButtonUI : MonoBehaviour
     [SerializeField]private SFXManager sFXManager;
     [SerializeField]private TextMeshProUGUI levelText;
     [SerializeField]private GameObject[] stars;
+    [SerializeField]private GameObject selectedSprite;
+    [SerializeField] private Sprite notCompleteSprite;
+    [SerializeField] private Sprite completeSprite;
     [SerializeField]private Color[] colorOnOff; //0 - On, 1 - off
     private void Awake() 
     {
-        
+        selectedSprite = gameObject.transform.GetChild(2).gameObject;
         if(!levelButton)levelButton = GetComponent<Button>();
         levelButton.onClick.AddListener(
             ()=>
@@ -29,7 +34,22 @@ public class LevelButtonUI : MonoBehaviour
     {
         sFXManager = SFXManager.Instance;
         fade = FadeInOutBlackScreen.Instance;
+        if(thisLevelIdentity.levelScore == 3) 
+            gameObject.GetComponent<Image>().sprite = completeSprite;
+        else 
+            gameObject.GetComponent<Image>().sprite = notCompleteSprite;
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        selectedSprite.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        selectedSprite.SetActive(false);
+    }
+
     public void GoToLevel()
     {
         if(thisLevelIdentity.levelUnlocked)
