@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePuzzleListSO: {fileID: 11400000, guid: 9c565cba032bf4b429a0c6930e93616c, type: 2}
+  tileMapSO: {fileID: 0}
+  gameManager: {fileID: 0}
   totalRow: 5
   totalColumn: 3
   jarakAntarTile: 2
@@ -3007,6 +3009,10 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 302539700508758239, guid: 7e345520dd0d93340ac3f2657196124b, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2af452cf6289ca34bab6d85a0adeb485, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e345520dd0d93340ac3f2657196124b, type: 3}
 --- !u!1 &1939593090

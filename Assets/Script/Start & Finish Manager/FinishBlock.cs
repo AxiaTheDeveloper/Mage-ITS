@@ -65,6 +65,7 @@ public class FinishBlock : MonoBehaviour
                 if(totalInput == totalInputNeeded && !isOn)
                 {
                     isOn = true;
+                    SFXManager.Instance.PlayCapacitorOn();
                     ChangeVisual(true);
                     particleActivate.Play();
                     if(finishMode == FinishModeWhenOn.finishGame)FinishGame();
