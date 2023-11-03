@@ -8,7 +8,7 @@ public class SFXManager : MonoBehaviour
     public static SFXManager Instance{get; private set;}
     
     [SerializeField]private Slider SFXSlider;
-    [SerializeField]private AudioSource buttonCanBeUsed_SFX, buttonCantBeUsed_SFX, onDrag__SFX, onDragRelease_SFX, rotate__SFX, win_SFX, capacitorOn_SFX;
+    [SerializeField]private AudioSource buttonCanBeUsed_SFX, buttonCantBeUsed_SFX, onDrag__SFX, onDragRelease_SFX, rotate__SFX, win_SFX, capacitorOn_SFX, noStars_SFX;
     private const string PLAYER_PREF_SFX_VOLUME = "SFX_Volume";
     private float volume;
     private void Awake() 
@@ -42,6 +42,7 @@ public class SFXManager : MonoBehaviour
         if(rotate__SFX)rotate__SFX.volume = volume;
         if(win_SFX)win_SFX.volume = volume;
         if(capacitorOn_SFX)capacitorOn_SFX.volume = volume;
+        if(noStars_SFX)noStars_SFX.volume = volume;
         
         PlayerPrefs.SetFloat(PLAYER_PREF_SFX_VOLUME, volume);
         // Debug.Log(PlayerPrefs.GetFloat(PLAYER_PREF_SFX_VOLUME));
@@ -84,6 +85,10 @@ public class SFXManager : MonoBehaviour
     public void PlayCapacitorOn()
     {
         if(capacitorOn_SFX)capacitorOn_SFX.Play();
+    }
+    public void PlayNoStars()
+    {
+        if(noStars_SFX)noStars_SFX.Play();
     }
     
 }

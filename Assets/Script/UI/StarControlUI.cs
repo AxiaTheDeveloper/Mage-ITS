@@ -48,6 +48,7 @@ public class StarControlUI : MonoBehaviour
         {
             stars[2].SetActive(false);
             starParticles[2].Play();
+            SFXManager.Instance.PlayNoStars();
         }
         StartCoroutine(Shake());
     }

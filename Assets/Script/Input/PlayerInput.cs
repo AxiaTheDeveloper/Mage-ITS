@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField]private PuzzleGameManager puzzleGameManager;
@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]private LayerMask layerClickAble;
     [SerializeField]private GameInput gameInput;
     private MoveTile chosenTile;
+    public event EventHandler OnRotate;
     private void Awake() 
     {
         Instance = this;
@@ -17,6 +18,14 @@ public class PlayerInput : MonoBehaviour
     {
         gameInput = GameInput.Instance;
         puzzleGameManager = PuzzleGameManager.Instance;
+    }
+    public bool IsThereChosenTile()
+    {
+        if(chosenTile)
+        {
+            return true;
+        }
+        return false;
     }
     private void Update()
     {
@@ -65,22 +74,24 @@ public class PlayerInput : MonoBehaviour
                     TilePuzzle tilePuzzle = hit.collider.GetComponent<TilePuzzle>();
                     if(tilePuzzle.IsTilePuzzle() && tilePuzzle.IsRotateAble())
                     {
-                        if(tilePuzzle.TileName() == TilePuzzleName.StraightWireHorizontal_MoveAble || tilePuzzle.TileName() == TilePuzzleName.StraightWireHorizontal_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.StraightWireVertical_MoveAble || tilePuzzle.TileName() == TilePuzzleName.StraightWireVertical_UnMoveAble)
+                        if(tilePuzzle.TileName() == TilePuzzleName.StraightWireHorizontal_MoveAble ||  tilePuzzle.TileName() == TilePuzzleName.StraightWireVertical_MoveAble)
                         {
                             
                             TilePuzzleStraight straight = hit.collider.GetComponent<TilePuzzleStraight>();
                             if(!straight.IsRotating())
                             {
+                                OnRotate?.Invoke(this,EventArgs.Empty);
                                 SFXManager.Instance.PlayRotate();
                                 straight.RotateVisual(90);
                             }
                             
                         }
-                        else if(tilePuzzle.TileName() == TilePuzzleName.CornerWireLB_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLB_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLU_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLU_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRB_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRB_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRU_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRU_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.SplitKanan_MoveAble || tilePuzzle.TileName() == TilePuzzleName.SplitKanan_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.SplitAtas_MoveAble || tilePuzzle.TileName() == TilePuzzleName.SplitAtas_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.SplitKiri_MoveAble || tilePuzzle.TileName() == TilePuzzleName.SplitKiri_UnMoveAble || tilePuzzle.TileName() == TilePuzzleName.SplitBawah_MoveAble || tilePuzzle.TileName() == TilePuzzleName.SplitBawah_UnMoveAble)
+                        else if(tilePuzzle.TileName() == TilePuzzleName.CornerWireLB_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireLU_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRB_MoveAble || tilePuzzle.TileName() == TilePuzzleName.CornerWireRU_MoveAble  || tilePuzzle.TileName() == TilePuzzleName.SplitKanan_MoveAble || tilePuzzle.TileName() == TilePuzzleName.SplitAtas_MoveAble ||  tilePuzzle.TileName() == TilePuzzleName.SplitKiri_MoveAble || tilePuzzle.TileName() == TilePuzzleName.SplitBawah_MoveAble )
                         {
                             TilePuzzleCorner straight = hit.collider.GetComponent<TilePuzzleCorner>();
                             if(!straight.IsRotating())
                             {
+                                OnRotate?.Invoke(this,EventArgs.Empty);
                                 SFXManager.Instance.PlayRotate();
                                 straight.RotateVisual(90);
                             }

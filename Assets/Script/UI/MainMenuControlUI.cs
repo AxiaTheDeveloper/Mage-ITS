@@ -62,7 +62,7 @@ public class MainMenuControlUI : MonoBehaviour
     {
         PlayerSaveManager.Instance.SaveData();
         PlayerPrefs.SetString("PlayerPress", "QuitGame");
-        LeanTween.moveLocal(wholeGameObjectPerPartList[canvasOnCamera], leftPos, duration);
+        LeanTween.moveLocalX(wholeGameObjectPerPartList[canvasOnCamera], leftPos.x, duration);
         PuzzleGameManager.Instance.StartGame();
         fade.FadeInBlackScreenOutsideInGame(0);
     }

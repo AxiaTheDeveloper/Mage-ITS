@@ -17,6 +17,7 @@ public class FadeInOutBlackScreen : MonoBehaviour
     //buat tutorial
     [SerializeField]private TutorialManager tutorialManager;
     [SerializeField]private TilePuzzleManager tilePuzzleManager;
+    [SerializeField]private bool isMainMenu;
     private void Awake() 
     {
         Instance = this;
@@ -105,7 +106,7 @@ public class FadeInOutBlackScreen : MonoBehaviour
             tilePuzzleManager.LockAllMoveAble();
             tilePuzzleManager.UnlockAMoveAble(0);
         }
-        else if(playerSaveManager.IsFirstTimeTutorial())
+        else if(!playerSaveManager.IsFinishTutorial() && !isMainMenu)
         {
             tilePuzzleManager.LockAllMoveAble();
             tilePuzzleManager.LockAllRotateAble();

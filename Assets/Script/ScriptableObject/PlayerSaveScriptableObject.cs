@@ -18,4 +18,5 @@ public class PlayerSaveScriptableObject : ScriptableObject
     public bool isFirstTimeLoadGame = true;
     public bool isFirstTimeEnterGame = true;
     public bool isFirstTimeTutorial = true;
+    public bool isFinishTutorial = false;
 }

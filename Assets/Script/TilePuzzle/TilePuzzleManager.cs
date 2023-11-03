@@ -366,6 +366,10 @@ public class TilePuzzleManager : MonoBehaviour
             tile.ChangeIsMoveAble(false);
         }
     }
+    public void LockAMoveAble(int position)
+    {
+        MoveAbleTileList[position].ChangeIsMoveAble(false);
+    }
     public void UnlockAMoveAble(int position)
     {
         MoveAbleTileList[position].ChangeIsMoveAble(true);
@@ -384,15 +388,23 @@ public class TilePuzzleManager : MonoBehaviour
             tile.ChangeIsRotateAble(false);
         }
     }
+    public void LockARotateAble(int position)
+    {
+        MoveAbleTileList[position].ChangeIsRotateAble(false);
+    }
     public void UnlockARotateAble(int position)
     {
         MoveAbleTileList[position].ChangeIsRotateAble(true);
     }
-    public void UnloockAllRotateAble()
+    public void UnlockAllRotateAble()
     {
         foreach(TilePuzzle tile in MoveAbleTileList)
         {
-            tile.ChangeIsRotateAble(false);
+            tile.ChangeIsRotateAble(true);
         }
+    }
+    public MoveTile GetTheLockMoveTile(int position)
+    {
+        return MoveAbleTileList[position].GetComponent<MoveTile>();
     }
 }

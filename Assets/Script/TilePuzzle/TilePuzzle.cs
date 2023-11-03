@@ -552,7 +552,7 @@ public class TilePuzzle : MonoBehaviour
 
     private void OnMouseEnter() 
     {
-        if(playerSave.IsFirstTimeTutorial())
+        if(playerSave.IsFirstTimeTutorial() && !playerSave.IsFinishTutorial())
         {
             if(TutorialManager.Instance && TutorialManager.Instance.CanInteractTutorial())
             {

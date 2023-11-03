@@ -10,7 +10,7 @@ class PlayerData
 {
     public PlayerSaveScriptableObject.LevelIdentity[] levelIdentities;
     public bool isFirstTimeEnterGame;
-    public bool isFirstTimeTutorial;
+    public bool isFinishTutorial;
 }
 public class GameSaveManager : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class GameSaveManager : MonoBehaviour
         PlayerData pd = new PlayerData();
         pd.levelIdentities = playerSO.levelIdentities;
         pd.isFirstTimeEnterGame = playerSO.isFirstTimeEnterGame;
-        pd.isFirstTimeTutorial = playerSO.isFirstTimeTutorial;
+        pd.isFinishTutorial = playerSO.isFinishTutorial;
 
         File.WriteAllText(playerSavePath, JsonUtility.ToJson(pd));
     }
@@ -39,6 +39,6 @@ public class GameSaveManager : MonoBehaviour
         PlayerData pd = JsonUtility.FromJson<PlayerData>(File.ReadAllText(playerSavePath));
         playerSO.levelIdentities = pd.levelIdentities;
         playerSO.isFirstTimeEnterGame = pd.isFirstTimeEnterGame;
-        playerSO.isFirstTimeTutorial = pd.isFirstTimeTutorial;
+        playerSO.isFinishTutorial = pd.isFinishTutorial;
     }
 }

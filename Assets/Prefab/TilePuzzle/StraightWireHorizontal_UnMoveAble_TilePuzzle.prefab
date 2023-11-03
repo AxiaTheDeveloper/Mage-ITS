@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7827120475807742009, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
       propertyPath: isRotateAble
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7827120475807742009, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
       propertyPath: onVisual.Array.size

@@ -18,6 +18,7 @@ public class PlayerSaveManager : MonoBehaviour
     {
         Instance = this;
         gameManager = GetComponent<PuzzleGameManager>();
+        
     }
     public void SaveScore(int score)
     {
@@ -103,6 +104,15 @@ public class PlayerSaveManager : MonoBehaviour
     {
         playerSaveSO.isFirstTimeTutorial = false;
     }
+    public bool IsFinishTutorial()
+    {
+        return playerSaveSO.isFinishTutorial;
+    }
+    public void ChangeIsFinishTutorial()
+    {
+        playerSaveSO.isFinishTutorial = true;
+    }
+
 
     
 }

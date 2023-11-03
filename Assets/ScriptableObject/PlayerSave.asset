@@ -44,6 +44,7 @@ MonoBehaviour:
     levelDone: 0
     levelUnlocked: 0
   isPlayerRestartLevel: 0
-  isFirstTimeLoadGame: 0
-  isFirstTimeEnterGame: 0
-  isFirstTimeTutorial: 0
+  isFirstTimeLoadGame: 1
+  isFirstTimeEnterGame: 1
+  isFirstTimeTutorial: 1
+  isFinishTutorial: 0
