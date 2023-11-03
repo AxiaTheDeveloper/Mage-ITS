@@ -1941,6 +1941,10 @@ PrefabInstance:
       value: 119.99999
       objectReference: {fileID: 0}
     - target: {fileID: 6918093448940029335, guid: 63801fe63cbfd9f48a47444dc0e450d9, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918093448940029335, guid: 63801fe63cbfd9f48a47444dc0e450d9, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2143989232}

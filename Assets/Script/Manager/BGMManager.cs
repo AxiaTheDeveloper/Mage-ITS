@@ -42,10 +42,11 @@ public class BGMManager : MonoBehaviour
         if(bgmSlider == null){
             bgmSlider = GameObject.FindWithTag("BGMSlider").transform.parent.transform.parent.GetComponent<PauseUI>().GetBGMSlider();
             bgmSlider.value = volume;
+            bgmSlider.onValueChanged.AddListener(UpdateBGM_Volume);
         }
     }
 
-    public void UpdateBGM_Volume(){
+    public void UpdateBGM_Volume(float a){
         // Debug.Log("test");
         volume = bgmSlider.value;
         // Debug.Log(volume);
