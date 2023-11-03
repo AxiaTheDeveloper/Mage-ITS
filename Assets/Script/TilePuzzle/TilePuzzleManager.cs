@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 [Serializable]
 public class FinishWant
 {
@@ -13,6 +14,8 @@ public class TilePuzzleManager : MonoBehaviour
     
     public static TilePuzzleManager Instance {get; private set;}
     [SerializeField]private TilePuzzleListScriptableObject tilePuzzleListSO;
+    [SerializeField]private TileMapPuzzleScriptableObject tileMapSO;
+    [SerializeField]private PuzzleGameManager gameManager;
     [SerializeField]private int totalRow, totalColumn, jarakAntarTile;//kolom ke kiri, row ke bawah
     [SerializeField]private Vector2 startPositionTile;
     [SerializeField]private Vector2 minPuzzleSize, maxPuzzleSize;
@@ -32,7 +35,7 @@ public class TilePuzzleManager : MonoBehaviour
     private void Awake() 
     {
         Instance = this;
-
+        if(!isMainMenu)tilePuzzleList_ForThisPuzzle = tileMapSO.tileMapPuzzles[SceneManager.GetActiveScene().buildIndex-1].tilePuzzleListForMap;
         minPuzzleSize = startPositionTile;
         maxPuzzleSize.x = startPositionTile.x + jarakAntarTile * (totalColumn-1);
         maxPuzzleSize.y = (startPositionTile.y + jarakAntarTile * (totalRow-1)) * -1;
@@ -332,6 +335,8 @@ public class TilePuzzleManager : MonoBehaviour
         {
             NOTTilePuzzleList[i].ChangeTopMax(NOTTilePuzzleList[i].transform.localPosition.y);
             NOTTilePuzzleList[i].ChangeDownMax(NOTTilePuzzleList[i].transform.localPosition.y);
+            NOTTilePuzzleList[i].ChangeLeftMax(NOTTilePuzzleList[i].transform.localPosition.x);
+            NOTTilePuzzleList[i].ChangeRightMax(NOTTilePuzzleList[i].transform.localPosition.x + jarakAntarTile);
         }
         
     }

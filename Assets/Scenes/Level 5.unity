@@ -2476,6 +2476,7 @@ MonoBehaviour:
   saveStartState: 0
   playerSaveManager: {fileID: 662804196}
   starControlUI: {fileID: 549016932}
+  isMainMenu: 0
 --- !u!114 &662804196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2795,6 +2796,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePuzzleListSO: {fileID: 11400000, guid: 9c565cba032bf4b429a0c6930e93616c, type: 2}
+  tileMapSO: {fileID: 11400000, guid: 7df82e66b38d57e4c9b5ebd4e4e5c445, type: 2}
+  gameManager: {fileID: 662804195}
   totalRow: 4
   totalColumn: 6
   jarakAntarTile: 2

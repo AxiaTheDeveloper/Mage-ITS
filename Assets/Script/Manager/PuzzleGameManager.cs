@@ -28,10 +28,11 @@ public class PuzzleGameManager : MonoBehaviour
     public event EventHandler OnRotatingTile, OnFinishGame; //
     [SerializeField]private PlayerSaveManager playerSaveManager;
     [SerializeField]private StarControlUI starControlUI;
+    [SerializeField]private bool isMainMenu;
 
     private void Awake() 
     {
-        level = SceneManager.GetActiveScene().buildIndex;
+        if(!isMainMenu)level = SceneManager.GetActiveScene().buildIndex;
         Instance = this;
         stateGame = GameState.WaitingToStart;
         startState = StartState.None;
@@ -118,6 +119,7 @@ public class PuzzleGameManager : MonoBehaviour
     {
         stateGame = GameState.Finish;
         startState = StartState.None;
+        SFXManager.Instance.PlayWin();
         // int score = CalculatingScore(playerSaveManager.GetPlayerMove());
         // starControlUI.ChangeStarsVisual(score);
         //UI diubah lwt sini
