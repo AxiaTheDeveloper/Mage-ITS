@@ -14,7 +14,9 @@ public class LevelListInGameController : MonoBehaviour
     [SerializeField]private Image[] levelList;
     [SerializeField]private LevelListInGameButton[] levelListButTheLevelListInGameButton;
     [SerializeField]private GameObject levelSelect;
-    [SerializeField]private Color[] colorList;//0 normal, 1 yg locke;
+    [SerializeField]private ParticleSystem particleOpenLevel;
+    [SerializeField]private Color[] colorList;//0 normal, 1 yg locked;
+
     
     private void Awake() 
     {
@@ -53,7 +55,13 @@ public class LevelListInGameController : MonoBehaviour
         // Debug.Log("Change");
         levelList[gameManager.PuzzleLevel() - 1].sprite = spriteLevelList[1];
         // Debug.Log(levelList[gameManager.PuzzleLevel() - 1].sprite);
-        if(gameManager.PuzzleLevel() != playerSaveSO.levelIdentities.Length)levelList[gameManager.PuzzleLevel()].color = colorList[0];
+        if(gameManager.PuzzleLevel() != playerSaveSO.levelIdentities.Length)
+        {
+            levelList[gameManager.PuzzleLevel()].color = colorList[0];
+            particleOpenLevel.transform.SetParent(levelList[gameManager.PuzzleLevel()].gameObject.transform);
+            particleOpenLevel.Play();
+        }
+        
         // Debug.Log(levelList[gameManager.PuzzleLevel()].gameObject);
     }
 }
