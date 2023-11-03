@@ -41,7 +41,9 @@ public class BGMManager : MonoBehaviour
     private void Update() {
         if(bgmSlider == null){
             bgmSlider = GameObject.FindWithTag("BGMSlider").transform.parent.transform.parent.GetComponent<PauseUI>().GetBGMSlider();
-            bgmSlider.value = volume;
+            float saveVolume = volume;
+            if(bgmSlider.value == volume)bgmSlider.value = 0;
+            bgmSlider.value = saveVolume;
             bgmSlider.onValueChanged.AddListener(UpdateBGM_Volume);
         }
     }
@@ -60,7 +62,13 @@ public class BGMManager : MonoBehaviour
     }
     private IEnumerator fadeIn()
     {
-        if(bgmSlider)bgmSlider.value = volume;
+        if(bgmSlider)
+        {
+            float saveVolume = volume;
+            if(bgmSlider.value == volume)bgmSlider.value = 0;
+            bgmSlider.value = saveVolume;
+        }
+        
         if(BGM)BGM.Play();
         while(fadeInDuratiom < fadeInDurationMax )
         {

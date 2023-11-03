@@ -6,6 +6,7 @@ using TMPro;
 
 public class PauseUI : MonoBehaviour
 {
+    public static PauseUI Instance{get;private set;}
     [SerializeField]private GameObject BG;
     [SerializeField]private GameObject pauseUI;
     [SerializeField]private Vector3 startVector, toVector;
@@ -18,6 +19,7 @@ public class PauseUI : MonoBehaviour
     private bool isFirsTimeSFX = true, isFirsTimeBGM= true;
     private void Awake() 
     {
+        Instance = this;
         UnPauseButton.onClick.AddListener(
             ()=>
             {
@@ -69,7 +71,9 @@ public class PauseUI : MonoBehaviour
     {
         if(BGM.value > 0 && BGM.value < 1 && !isFirsTimeBGM)sFXManager.PlayButtonCanBeUsed();
         if(isFirsTimeBGM)isFirsTimeBGM = false;
+        // Debug.Log(value);
         float value = Mathf.Round(BGM.value * 100);
+        // Debug.Log(value);
         // Debug.Log(value);
         BGMVolText.text = value.ToString();
     }
@@ -79,6 +83,7 @@ public class PauseUI : MonoBehaviour
         if(SFX.value > 0 && SFX.value < 1 && !isFirsTimeSFX)sFXManager.PlayButtonCanBeUsed();
         if(isFirsTimeSFX)isFirsTimeSFX = false;
         float value = Mathf.Round(SFX.value * 100);
+        // Debug.Log(value);
         // Debug.Log(value);
         SFXVolText.text = value.ToString();
     }

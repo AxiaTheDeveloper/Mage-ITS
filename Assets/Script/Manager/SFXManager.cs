@@ -22,7 +22,14 @@ public class SFXManager : MonoBehaviour
     }
     void Start()
     {
-        SFXSlider.value = volume;
+        float saveVolume = volume;
+        if(SFXSlider.value == volume)
+        {
+            SFXSlider.value = 0;
+        }
+        SFXSlider.value = saveVolume;
+        // Debug.Log(volume);
+        
         UpdateSFX_Volume();
     }
 
