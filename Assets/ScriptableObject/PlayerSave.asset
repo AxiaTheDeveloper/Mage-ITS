@@ -36,12 +36,12 @@ MonoBehaviour:
     levelUnlocked: 1
   - levelScore: 0
     levelDone: 1
-    levelUnlocked: 1
+    levelUnlocked: 0
   - levelScore: 0
     levelDone: 0
-    levelUnlocked: 1
+    levelUnlocked: 0
   - levelScore: 1111
     levelDone: 0
-    levelUnlocked: 1
+    levelUnlocked: 0
   isPlayerRestartLevel: 0
   isFirstTimeLoadGame: 0

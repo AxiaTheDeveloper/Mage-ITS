@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelButtonUI : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class LevelButtonUI : MonoBehaviour
     [SerializeField]private Button levelButton;
     [SerializeField]private PlayerSaveScriptableObject.LevelIdentity thisLevelIdentity;
     [SerializeField]private SFXManager sFXManager;
+    [SerializeField]private TextMeshProUGUI levelText;
+    [SerializeField]private GameObject[] stars;
+    [SerializeField]private Color[] colorOnOff; //0 - On, 1 - off
     private void Awake() 
     {
         
@@ -45,7 +49,24 @@ public class LevelButtonUI : MonoBehaviour
     }
     public void ChangeVisual()
     {
-        //based on byk skor, lock unlock, done itu gaperlu
+        levelText.text = levelNumber.ToString();
+        if(thisLevelIdentity.levelUnlocked)
+        {
+            GetComponent<Image>().color = colorOnOff[0];
+            levelText.color = colorOnOff[0];
+            if(thisLevelIdentity.levelDone)
+            {
+                for(int i=0;i<thisLevelIdentity.levelScore;i++)
+                {
+                    stars[i].SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            GetComponent<Image>().color = colorOnOff[1];
+            levelText.color = colorOnOff[1];
+        }
     }
     public void GetLevelIdentity(PlayerSaveScriptableObject.LevelIdentity lvl, int levelNumbers)
     {
