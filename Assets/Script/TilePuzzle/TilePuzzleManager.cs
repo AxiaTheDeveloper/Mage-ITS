@@ -30,6 +30,8 @@ public class TilePuzzleManager : MonoBehaviour
     [Header("Untuk Main Menu")]
     [SerializeField]private bool isMainMenu;
     [SerializeField]private List<MoveTile> NOTTilePuzzleList;
+    [Header("Untuk Tutorial")]
+    [SerializeField]private List<TilePuzzle> MoveAbleTileList;
 
     
     private void Awake() 
@@ -40,7 +42,7 @@ public class TilePuzzleManager : MonoBehaviour
         {
             tilePuzzleList_ForThisPuzzle = tileMapSO.tileMapPuzzles[level-1].tilePuzzleListForMap;
             finishWants = tileMapSO.tileMapPuzzles[level-1].finishWantsPuzzle;
-            
+
             totalRow = tileMapSO.tileMapPuzzles[level-1].totalRow;
             totalColumn = tileMapSO.tileMapPuzzles[level-1].totalColumn;
             jarakAntarTile = tileMapSO.tileMapPuzzles[level-1].jarakAntarTile;
@@ -96,6 +98,11 @@ public class TilePuzzleManager : MonoBehaviour
                             {
                                 NOTTilePuzzleList.Add(tileInstantiate.GetComponent<MoveTile>());
                             }
+                        }
+                        TilePuzzle tilePuzzleTileInstantiate = tileInstantiate.GetComponent<TilePuzzle>();
+                        if(tilePuzzleTileInstantiate.IsMoveAble())
+                        {
+                            MoveAbleTileList.Add(tilePuzzleTileInstantiate);
                         }
 
                         tileInstantiate.transform.localPosition = new Vector3((startPositionTile.x + jarakAntarTile * j), (startPositionTile.y + jarakAntarTile * i)*-1, 0f);
@@ -351,5 +358,23 @@ public class TilePuzzleManager : MonoBehaviour
             NOTTilePuzzleList[i].ChangeRightMax(NOTTilePuzzleList[i].transform.localPosition.x + jarakAntarTile);
         }
         
+    }
+    public void LockAllMoveAble()
+    {
+        foreach(TilePuzzle tile in MoveAbleTileList)
+        {
+            tile.ChangeIsMoveAble(false);
+        }
+    }
+    public void UnlockAMoveAble(int position)
+    {
+        MoveAbleTileList[position].ChangeIsMoveAble(true);
+    }
+    public void UnlockAllMoveAble()
+    {
+        foreach(TilePuzzle tile in MoveAbleTileList)
+        {
+            tile.ChangeIsMoveAble(true);
+        }
     }
 }

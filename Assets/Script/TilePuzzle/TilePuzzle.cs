@@ -558,5 +558,9 @@ public class TilePuzzle : MonoBehaviour
     {
         if(inGameUI)inGameUI.ChangeNameText("");
     }
+    public void ChangeIsMoveAble(bool change)
+    {
+        isMoveAble = change;
+    }
 
 }

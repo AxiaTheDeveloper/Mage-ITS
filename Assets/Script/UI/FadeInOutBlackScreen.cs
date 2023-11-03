@@ -14,6 +14,9 @@ public class FadeInOutBlackScreen : MonoBehaviour
     private bool isFirstUpdate = true, hasFadeOut;
     [SerializeField]private bool isLevelScene = true;
     private string playerPress;
+    //buat tutorial
+    [SerializeField]private TutorialManager tutorialManager;
+    [SerializeField]private TilePuzzleManager tilePuzzleManager;
     private void Awake() 
     {
         Instance = this;
@@ -97,6 +100,11 @@ public class FadeInOutBlackScreen : MonoBehaviour
     }
     public void FadeOutEnded()
     {
+        if(playerSaveManager.IsFirstTimeEnterGame())
+        {
+            tilePuzzleManager.LockAllMoveAble();
+            tilePuzzleManager.UnlockAMoveAble(0);
+        }
         PuzzleGameManager.Instance.StartGame();
         
         blackScreen.gameObject.SetActive(false);

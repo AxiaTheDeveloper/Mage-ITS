@@ -87,6 +87,22 @@ public class PlayerSaveManager : MonoBehaviour
     {
         playerSaveSO.isFirstTimeLoadGame = false;
     }
+    public bool IsFirstTimeEnterGame()
+    {
+        return playerSaveSO.isFirstTimeEnterGame;
+    }
+    public bool IsFirstTimeTutorial()
+    {
+        return playerSaveSO.isFirstTimeTutorial;
+    }
+    public void ChangeIsFirstTimeEnterGame()
+    {
+        playerSaveSO.isFirstTimeEnterGame = false;
+    }
+    public void ChangeIsFirstTimeTutorial()
+    {
+        playerSaveSO.isFirstTimeTutorial = false;
+    }
 
     
 }

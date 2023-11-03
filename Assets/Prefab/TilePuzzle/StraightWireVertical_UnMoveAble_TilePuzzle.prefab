@@ -60,6 +60,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: bc13efa51eebf8246affd61a19c576eb, type: 3}
     - target: {fileID: 7827120475807742009, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
+      propertyPath: nameTILE
+      value: Straight Wire (Unmoveable)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7827120475807742009, guid: d1735c522cfe4014ab529aef518a0f9a, type: 3}
       propertyPath: tileName
       value: 5
       objectReference: {fileID: 0}

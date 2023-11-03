@@ -16,4 +16,6 @@ public class PlayerSaveScriptableObject : ScriptableObject
     public LevelIdentity[] levelIdentities;
     public bool isPlayerRestartLevel;
     public bool isFirstTimeLoadGame = true;
+    public bool isFirstTimeEnterGame = true;
+    public bool isFirstTimeTutorial = true;
 }

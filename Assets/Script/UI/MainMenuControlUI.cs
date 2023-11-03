@@ -13,6 +13,7 @@ public class MainMenuControlUI : MonoBehaviour
     [SerializeField]private FadeInOutBlackScreen fade;
     private int canvasOnCamera = 0;
     [SerializeField]private LevelButtonUIManager levelButtonManager;
+    [SerializeField]private TutorialManager tutorialManager;
 
     private void Awake() 
     {
@@ -26,11 +27,28 @@ public class MainMenuControlUI : MonoBehaviour
     }
     public void GoToMainMenu()
     {
-        MovingTheCanvas(2);
+        if(playerSave.IsFirstTimeEnterGame())
+        {
+            tutorialManager.FadeTutorialMainMenu();
+            Debug.Log("Test");
+        }
+        else
+        {
+            MovingTheCanvas(2);
+        }
+        
     }
     public void GoToLevelListUI()
     {
-        MovingTheCanvas(1);
+        if(playerSave.IsFirstTimeEnterGame())
+        {
+            tutorialManager.FadeTutorialMainMenu();
+            Debug.Log("Test");
+        }
+        else
+        {
+            MovingTheCanvas(1);
+        }
     }
     public void GoToSettings()
     {

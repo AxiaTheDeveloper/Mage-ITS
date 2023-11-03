@@ -60,6 +60,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 4c2e81e10cea8dd49b19c4409966e1a9, type: 3}
     - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
+      propertyPath: nameTILE
+      value: Corner Wire (UnmoveAble)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909907393182860687, guid: f730d5304c8757d4b9a139fa45235cb7, type: 3}
       propertyPath: tileName
       value: 11
       objectReference: {fileID: 0}
