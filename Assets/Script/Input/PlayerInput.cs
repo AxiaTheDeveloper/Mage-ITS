@@ -71,6 +71,7 @@ public class PlayerInput : MonoBehaviour
                             TilePuzzleStraight straight = hit.collider.GetComponent<TilePuzzleStraight>();
                             if(!straight.IsRotating())
                             {
+                                SFXManager.Instance.PlayRotate();
                                 straight.RotateVisual(90);
                             }
                             
@@ -80,6 +81,7 @@ public class PlayerInput : MonoBehaviour
                             TilePuzzleCorner straight = hit.collider.GetComponent<TilePuzzleCorner>();
                             if(!straight.IsRotating())
                             {
+                                SFXManager.Instance.PlayRotate();
                                 straight.RotateVisual(90);
                             }
                         }

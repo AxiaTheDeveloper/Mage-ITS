@@ -35,7 +35,19 @@ public class TilePuzzleManager : MonoBehaviour
     private void Awake() 
     {
         Instance = this;
-        if(!isMainMenu)tilePuzzleList_ForThisPuzzle = tileMapSO.tileMapPuzzles[SceneManager.GetActiveScene().buildIndex-1].tilePuzzleListForMap;
+        int level = SceneManager.GetActiveScene().buildIndex;
+        if(!isMainMenu)
+        {
+            tilePuzzleList_ForThisPuzzle = tileMapSO.tileMapPuzzles[level-1].tilePuzzleListForMap;
+            finishWants = tileMapSO.tileMapPuzzles[level-1].finishWantsPuzzle;
+            
+            totalRow = tileMapSO.tileMapPuzzles[level-1].totalRow;
+            totalColumn = tileMapSO.tileMapPuzzles[level-1].totalColumn;
+            jarakAntarTile = tileMapSO.tileMapPuzzles[level-1].jarakAntarTile;
+            startPositionTile = tileMapSO.tileMapPuzzles[level-1].startPositionTile;
+        }
+        
+
         minPuzzleSize = startPositionTile;
         maxPuzzleSize.x = startPositionTile.x + jarakAntarTile * (totalColumn-1);
         maxPuzzleSize.y = (startPositionTile.y + jarakAntarTile * (totalRow-1)) * -1;

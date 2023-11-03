@@ -29,7 +29,9 @@ public class TilePuzzleCorner : TilePuzzle
     }
     public void RotateVisual(float rotasi)
     {
+        
         if(gameManager != null)gameManager.ChangeIsTileRotating(true);
+        
         Quaternion rotasi_visual = visual.transform.localRotation;
         float rotasiNew = rotasi_visual.eulerAngles.z + rotasi;
         if(rotasiNew == 360)
