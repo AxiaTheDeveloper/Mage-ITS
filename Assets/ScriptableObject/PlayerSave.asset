@@ -17,7 +17,7 @@ MonoBehaviour:
     levelDone: 1
     levelUnlocked: 1
   - levelScore: 3
-    levelDone: 1
+    levelDone: 0
     levelUnlocked: 1
   - levelScore: 0
     levelDone: 0

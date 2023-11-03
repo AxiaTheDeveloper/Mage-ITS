@@ -59,6 +59,7 @@ public class LevelListInGameController : MonoBehaviour
         {
             levelList[gameManager.PuzzleLevel()].color = colorList[0];
             particleOpenLevel.transform.SetParent(levelList[gameManager.PuzzleLevel()].gameObject.transform);
+            particleOpenLevel.transform.localPosition = Vector3.zero;
             particleOpenLevel.Play();
         }
         
