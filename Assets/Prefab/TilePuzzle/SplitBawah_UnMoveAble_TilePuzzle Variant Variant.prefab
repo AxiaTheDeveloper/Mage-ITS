@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: direction
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6724359897461442188, guid: 5451974891a2e2746af12796477004cc, type: 3}
+      propertyPath: isRotateAble
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8106881387239504094, guid: 5451974891a2e2746af12796477004cc, type: 3}
       propertyPath: m_RootOrder
       value: 0

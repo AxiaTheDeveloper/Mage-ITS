@@ -105,6 +105,11 @@ public class FadeInOutBlackScreen : MonoBehaviour
             tilePuzzleManager.LockAllMoveAble();
             tilePuzzleManager.UnlockAMoveAble(0);
         }
+        else if(playerSaveManager.IsFirstTimeTutorial())
+        {
+            tilePuzzleManager.LockAllMoveAble();
+            tilePuzzleManager.LockAllRotateAble();
+        }
         PuzzleGameManager.Instance.StartGame();
         
         blackScreen.gameObject.SetActive(false);

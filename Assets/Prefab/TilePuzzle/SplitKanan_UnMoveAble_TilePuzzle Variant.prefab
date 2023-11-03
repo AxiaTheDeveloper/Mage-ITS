@@ -20,6 +20,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 903023358543277082, guid: 45e3722c431662d46b38308586692ba9, type: 3}
+      propertyPath: isRotateAble
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 903023358543277082, guid: 45e3722c431662d46b38308586692ba9, type: 3}
       propertyPath: onVisual.Array.data[0]
       value: 
       objectReference: {fileID: 21300000, guid: 794b4c311fe98ad44b1b7a086a151199, type: 3}

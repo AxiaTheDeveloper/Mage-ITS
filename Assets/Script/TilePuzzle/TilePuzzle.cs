@@ -552,6 +552,16 @@ public class TilePuzzle : MonoBehaviour
 
     private void OnMouseEnter() 
     {
+        if(playerSave.IsFirstTimeTutorial())
+        {
+            if(TutorialManager.Instance && TutorialManager.Instance.CanInteractTutorial())
+            {
+                playerSave.ChangeIsFirstTimeTutorial();
+                TutorialManager.Instance.PlayTutorial_OpenNamePlace();
+            }
+            
+            //play tutorial A
+        }
         if(inGameUI)inGameUI.ChangeNameText(nameTILE);
     }
     private void OnMouseExit() 
@@ -561,6 +571,10 @@ public class TilePuzzle : MonoBehaviour
     public void ChangeIsMoveAble(bool change)
     {
         isMoveAble = change;
+    }
+    public void ChangeIsRotateAble(bool change)
+    {
+        isRotateAble = change;
     }
 
 }

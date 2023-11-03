@@ -377,4 +377,22 @@ public class TilePuzzleManager : MonoBehaviour
             tile.ChangeIsMoveAble(true);
         }
     }
+    public void LockAllRotateAble()
+    {
+        foreach(TilePuzzle tile in MoveAbleTileList)
+        {
+            tile.ChangeIsRotateAble(false);
+        }
+    }
+    public void UnlockARotateAble(int position)
+    {
+        MoveAbleTileList[position].ChangeIsRotateAble(true);
+    }
+    public void UnloockAllRotateAble()
+    {
+        foreach(TilePuzzle tile in MoveAbleTileList)
+        {
+            tile.ChangeIsRotateAble(false);
+        }
+    }
 }

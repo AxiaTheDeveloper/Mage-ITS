@@ -46,4 +46,4 @@ MonoBehaviour:
   isPlayerRestartLevel: 0
   isFirstTimeLoadGame: 0
   isFirstTimeEnterGame: 0
-  isFirstTimeTutorial: 1
+  isFirstTimeTutorial: 0

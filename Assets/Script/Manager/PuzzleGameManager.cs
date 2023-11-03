@@ -95,6 +95,11 @@ public class PuzzleGameManager : MonoBehaviour
         stateGame = GameState.Start;
         startState = StartState.Normal;
     }
+    public void TutorialMode()
+    {
+        stateGame = GameState.Start;
+        startState = StartState.None;
+    }
     public void Pause()
     {
         isPause = !isPause;
