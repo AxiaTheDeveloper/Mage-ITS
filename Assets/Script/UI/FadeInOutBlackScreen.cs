@@ -18,6 +18,7 @@ public class FadeInOutBlackScreen : MonoBehaviour
     [SerializeField]private TutorialManager tutorialManager;
     [SerializeField]private TilePuzzleManager tilePuzzleManager;
     [SerializeField]private bool isMainMenu;
+    [SerializeField]private CutsceneUI cutsceneUI;
     private void Awake() 
     {
         Instance = this;
@@ -101,19 +102,34 @@ public class FadeInOutBlackScreen : MonoBehaviour
     }
     public void FadeOutEnded()
     {
-        if(playerSaveManager.IsFirstTimeEnterGame())
+        blackScreen.gameObject.SetActive(false);
+        if(isMainMenu)
         {
-            tilePuzzleManager.LockAllMoveAble();
-            tilePuzzleManager.UnlockAMoveAble(0);
+            cutsceneUI.StartCutscene();
         }
         else if(!playerSaveManager.IsFinishTutorial() && !isMainMenu)
         {
             tilePuzzleManager.LockAllMoveAble();
             tilePuzzleManager.LockAllRotateAble();
         }
+        if(!isMainMenu)
+        {
+            PuzzleGameManager.Instance.StartGame();
+        
+            
+        }
+        
+    }
+    public void PlayAfterCutsceneMainMenu()
+    {
+        if(playerSaveManager.IsFirstTimeEnterGame())
+        {
+            tilePuzzleManager.LockAllMoveAble();
+            tilePuzzleManager.UnlockAMoveAble(0);
+        }
         PuzzleGameManager.Instance.StartGame();
         
-        blackScreen.gameObject.SetActive(false);
+        
     }
     public void FadeInBlackScreenOutsideInGame(int level)
     {
