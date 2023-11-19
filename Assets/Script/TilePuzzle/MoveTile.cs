@@ -297,6 +297,9 @@ public class MoveTile : MonoBehaviour
             // }
             // Debug.Log(transform.localPosition + " " + mousePos);
             transform.localPosition = mousePos;
+            //range = mouse pos - tengah blok
+            //mousepos  = mousepos - range;
+            // transform.localPosition = mousePos;
 
             
             
