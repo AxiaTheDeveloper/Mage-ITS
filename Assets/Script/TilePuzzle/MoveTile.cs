@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class MoveTile : MonoBehaviour
 {
-    [SerializeField]private TilePuzzle tilePuzzle;
-    [SerializeField]private TilePuzzleManager tilePuzzleManager;
-    [SerializeField]private PlayerSaveManager playerSave;
-    [SerializeField]private GameInput gameInput;
+    [SerializeField] private TilePuzzle tilePuzzle;
+    [SerializeField] private TilePuzzleManager tilePuzzleManager;
+    [SerializeField] private PlayerSaveManager playerSave;
+    [SerializeField] private GameInput gameInput;
 
-    
+
     private bool isMoveAble;
     private bool isBeingClicked = false, wasBeingClicked = true;
-    [SerializeField]private Vector3 mousePos;
+    [SerializeField] private Vector3 mousePos;
+    [SerializeField] private Vector3 tempMousePos;
     [SerializeField]private float startPosX, startPosY, leftMax, topMax, rightMax, downMax;
 
     [SerializeField]private List<Collider2D> top,down,left,right;
@@ -215,25 +216,45 @@ public class MoveTile : MonoBehaviour
                     mousePos.x = startPosX;
                 }
             }
-            else if(!goHorizontal && !goVertical)
+            if(Mathf.Abs(mousePos.x - tempMousePos.x) > Mathf.Abs(mousePos.y - tempMousePos.y))
             {
-                if(Mathf.Abs(mousePos.y - transform.localPosition.y) > Mathf.Abs(mousePos.x - transform.localPosition.x))
+                Debug.Log("This");
+                if(Mathf.Abs(mousePos.x - tempMousePos.x) > 0.1f)
                 {
-                    
-                    // Debug.Log(mousePos + " x 0");
-                    goHorizontal = false;
-                    goVertical = true;
-                    mousePos.x = startPosX;
-                    // Debug.Log(mousePos);
-                }
-                else
-                {
-                    // Debug.Log(mousePos + " y 0");
                     mousePos.y = startPosY;
                     goHorizontal = true;
                     goVertical = false;
                 }
+
             }
+            else
+            {
+                if (Mathf.Abs(mousePos.y - tempMousePos.y) > 0.1f)
+                {
+                    goHorizontal = false;
+                    goVertical = true;
+                    mousePos.x = startPosX;
+                }
+                Debug.Log("That");
+            }
+            /*else if(!goHorizontal && !goVertical)
+            {
+                if (Mathf.Abs(mousePos.y - transform.localPosition.y) > Mathf.Abs(mousePos.x - transform.localPosition.x))
+                {
+                    // Debug.Log(mousePos + " x 0");
+                    goHorizontal = false;
+                    goVertical = true;
+                    mousePos.x = startPosX;
+                    Debug.Log("This");
+                }
+                else
+                {
+                    Debug.Log("That");
+                    mousePos.y = startPosY;
+                    goHorizontal = true;
+                    goVertical = false;
+                }
+            }*/
             
             
             if(goVertical)
@@ -296,7 +317,8 @@ public class MoveTile : MonoBehaviour
                 
             // }
             // Debug.Log(transform.localPosition + " " + mousePos);
-            transform.localPosition = mousePos;
+            if(goHorizontal || goVertical)
+                transform.localPosition = mousePos;
             //range = mouse pos - tengah blok
             //mousepos  = mousepos - range;
             // transform.localPosition = mousePos;
@@ -331,8 +353,15 @@ public class MoveTile : MonoBehaviour
     public void ChangeIsBeingClicked(bool change)
     {
         isBeingClicked = change;
-        if(!isBeingClicked)PuzzleGameManager.Instance.ChangeIsTileMoving(false);
-        else PuzzleGameManager.Instance.ChangeIsTileMoving(true);
+        if (!isBeingClicked) PuzzleGameManager.Instance.ChangeIsTileMoving(false);
+        else
+        {
+            tempMousePos = gameInput.GetMousePosition();
+            tempMousePos = Camera.main.ScreenToWorldPoint(tempMousePos);
+            tempMousePos -= tilePuzzleManager.GetComponent<Transform>().position;
+            Debug.Log(tempMousePos + "< First Coor Temp");
+            PuzzleGameManager.Instance.ChangeIsTileMoving(true);
+        }
     }
     public void ChangeWasBeingClicked(bool change)
     {

@@ -3935,7 +3935,8 @@ MonoBehaviour:
   tilePuzzleManager: {fileID: 958714287}
   playerSaveManager: {fileID: 662804196}
   gameManager: {fileID: 662804195}
-  tutorialUI: {fileID: 0}
+  tutorialUI: {fileID: 543051205}
+  tutorialMainMenu: {fileID: 0}
   isMainMenu: 0
   canInteractTutorial: 0
   tutorialAllTile: {fileID: 590529245}
@@ -5198,6 +5199,8 @@ MonoBehaviour:
   isLevelScene: 1
   tutorialManager: {fileID: 1090629853}
   tilePuzzleManager: {fileID: 958714287}
+  isMainMenu: 0
+  cutsceneUI: {fileID: 0}
 --- !u!1 &1337601027
 GameObject:
   m_ObjectHideFlags: 0
